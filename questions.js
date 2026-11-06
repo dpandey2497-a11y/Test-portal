@@ -604,29 +604,27 @@ var CA_OCT_2026_T1 = [
   }
 ];
 
-// Helper to create months
-function createMonthsList(year, icon) {
+// Helper for Generating 12 Months
+function generateMonths(year, icon) {
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
   return months.map(m => {
-    const mId = `${m.toLowerCase()}_${year}`;
-    const testsArr = (year === 2026 && m === "October") ? [
-      {
-        id: "oct_t1",
-        title: "Test 01: October 2026 Full Length Mock Test",
-        desc: "100 High-Yield Questions • Time Limit: 80 Minutes • Full Explanations",
-        timeMins: 80,
-        data: CA_OCT_2026_T1
-      }
-    ] : [];
-
+    const isOct2026 = (year === "2026" && m === "October");
     return {
-      id: mId,
+      id: `${m.toLowerCase()}_${year}`,
       name: `${m} ${year} – Current Affairs`,
       icon: icon,
-      tests: testsArr
+      tests: isOct2026 ? [
+        {
+          id: "oct_t1",
+          title: "Test 01: October 2026 Full Length Mock Test",
+          desc: "100 High-Yield Questions • Time Limit: 80 Minutes • Full Explanations",
+          timeMins: 80,
+          data: CA_OCT_2026_T1
+        }
+      ] : [] // Khali rehne par Coming Soon 😍 dikhega
     };
   });
 }
@@ -683,29 +681,19 @@ var EXAMS_DATA = {
       { id: "ugc_paper2", name: "Paper 2: Political Science", icon: "🏛️", tests: [] }
     ]
   },
-  // CURRENT AFFAIRS: TWO SECTIONS (2025 & 2026)
+  // CURRENT AFFAIRS WITH 2 SEPARATE YEARS (2025 & 2026)
   ca: {
     id: "ca",
     name: "Current Affairs",
-    title: "National & International Monthly Current Affairs",
-    desc: "Dedicated Year-wise Archives: 2026 and 2025",
+    title: "National & International Current Affairs Bank",
+    desc: "Select Year (2026 or 2025) to access monthly mock tests",
     penaltyText: "Negative Penalty: 1/3rd (-0.33)",
     correctMarks: 1.0,
     negativePenalty: 0.33,
-    groups: [
-      {
-        groupId: "ca_2026",
-        groupTitle: "Current Affairs 2026 (Monthly Bank)",
-        icon: "🔥",
-        subjects: createMonthsList(2026, "🪔")
-      },
-      {
-        groupId: "ca_2025",
-        groupTitle: "Current Affairs 2025 (Annual & Monthly Archive)",
-        icon: "📚",
-        subjects: createMonthsList(2025, "📁")
-      }
-    ]
+    years: {
+      "2026": generateMonths("2026", "🪔"),
+      "2025": generateMonths("2025", "📁")
+    }
   },
   pyq: {
     id: "pyq",
