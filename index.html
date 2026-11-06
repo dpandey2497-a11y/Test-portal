@@ -3,122 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apex Exam Simulator | UPSC • BPSC • UGC NET • CA • PYQ</title>
+  <title>TestChakra | Modern Civil Services Exam Simulator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif; }
+    body { 
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', sans-serif; 
+      background-color: #f8fafc;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(244, 63, 94, 0.06) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(14, 165, 233, 0.06) 0px, transparent 50%);
+      background-attachment: fixed;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
   </style>
 </head>
-<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col">
+<body class="text-slate-800 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
   <!-- TOP BAR -->
-  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm px-4 sm:px-8 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3 cursor-pointer" onclick="showView('subjects')">
-      <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black text-xl shadow">
-        A
+  <header class="sticky top-0 z-50 glass-card border-b border-slate-200/80 shadow-sm px-4 sm:px-8 py-3.5 flex items-center justify-between transition-all">
+    <div class="flex items-center gap-3.5 cursor-pointer group" onclick="showView('subjects')">
+      <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center text-white font-black text-2xl shadow-lg shadow-indigo-200 group-hover:scale-105 transition-transform duration-300">
+        🎯
       </div>
       <div>
-        <h1 class="font-black text-lg tracking-tight text-indigo-700">APEX TEST SERIES</h1>
-        <p class="text-[11px] text-slate-500 font-semibold">UPSC • BPSC • UGC NET • CA (2025 & 2026) • PYQ</p>
+        <h1 class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-indigo-700 via-purple-600 to-rose-600 bg-clip-text text-transparent">
+          TESTCHAKRA
+        </h1>
+        <p class="text-[11px] text-slate-500 font-bold tracking-wide">UPSC • BPSC • UGC NET • CA (2025 & 2026) • PYQ</p>
       </div>
     </div>
     
     <div class="flex items-center gap-2">
-      <span class="text-xs font-bold px-3 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full">
-        CBT Portal
+      <span class="text-xs font-bold px-3.5 py-1.5 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 border border-indigo-200/80 rounded-full shadow-sm">
+        ✨ CBT Engine Live
       </span>
     </div>
   </header>
 
   <!-- BREADCRUMB -->
-  <nav class="bg-white border-b border-slate-200 px-4 sm:px-8 py-2 text-xs font-medium text-slate-600 flex items-center gap-2">
-    <span class="cursor-pointer text-indigo-600 font-bold hover:underline" onclick="showView('subjects')">Home</span>
-    <span>/</span>
-    <span id="bcExam" class="uppercase font-semibold text-slate-700">Exam</span>
+  <nav class="glass-card border-b border-slate-200/60 px-4 sm:px-8 py-2.5 text-xs font-semibold text-slate-500 flex items-center gap-2">
+    <span class="cursor-pointer text-indigo-600 hover:text-indigo-800 transition" onclick="showView('subjects')">Home</span>
+    <span class="text-slate-300">/</span>
+    <span id="bcExam" class="uppercase text-slate-700">Exam</span>
     <span id="bcYearWrap" class="hidden flex items-center gap-2">
-      <span>/</span>
-      <span id="bcYear" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="showView('caYears')">Year</span>
+      <span class="text-slate-300">/</span>
+      <span id="bcYear" class="cursor-pointer text-indigo-600 hover:underline" onclick="showView('caYears')">Year</span>
     </span>
     <span id="bcSubjectWrap" class="hidden flex items-center gap-2">
-      <span>/</span>
-      <span id="bcSubject" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="handleBreadcrumbSubject()">Subject</span>
+      <span class="text-slate-300">/</span>
+      <span id="bcSubject" class="cursor-pointer text-indigo-600 hover:underline" onclick="handleBreadcrumbSubject()">Subject</span>
     </span>
     <span id="bcTestWrap" class="hidden flex items-center gap-2">
-      <span>/</span>
+      <span class="text-slate-300">/</span>
       <span id="bcTest" class="font-bold text-slate-900">Test</span>
     </span>
   </nav>
 
   <!-- MAIN CONTAINER -->
-  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6">
+  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8">
 
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
-      <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/80 rounded-2xl w-fit">
-        <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition">
+      
+      <!-- EXAM TABS -->
+      <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
+        <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">
           🏛️ UPSC CSE
         </button>
-        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           🎯 BPSC
         </button>
-        <button onclick="setExam('ugc')" id="tab-ugc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+        <button onclick="setExam('ugc')" id="tab-ugc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           🎓 UGC NET / JRF
         </button>
-        <button onclick="setExam('ca')" id="tab-ca" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+        <button onclick="setExam('ca')" id="tab-ca" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           🔥 Current Affairs
         </button>
-        <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+        <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           📚 PYQ Archives
         </button>
       </div>
 
-      <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 id="examTitle" class="text-xl font-extrabold text-slate-900">Portal</h2>
-          <p id="examDesc" class="text-xs text-slate-500 mt-1">Select an option to start practicing</p>
+      <!-- HERO GRADIENT BANNER -->
+      <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-indigo-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-400/30 text-indigo-300 text-xs font-bold mb-2">
+            <span>⚡ Interactive Test Platform</span>
+          </div>
+          <h2 id="examTitle" class="text-2xl sm:text-3xl font-black tracking-tight text-white">TestChakra Simulator</h2>
+          <p id="examDesc" class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">Exam specific standard practice questions with verified solutions.</p>
         </div>
-        <span id="examPenaltyBadge" class="text-xs font-bold px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg">
-          Negative Penalty
-        </span>
+        <div class="relative z-10">
+          <span id="examPenaltyBadge" class="text-xs font-bold px-4 py-2 bg-rose-500/20 text-rose-300 border border-rose-500/30 rounded-xl shadow-inner">
+            Negative Penalty
+          </span>
+        </div>
       </div>
 
+      <!-- SUBJECTS GRID -->
       <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
-    <!-- 1.1 CA YEAR SELECTION VIEW (Only for Current Affairs) -->
+    <!-- 1.1 CA YEAR SELECTION VIEW -->
     <div id="viewCaYears" class="hidden space-y-6">
-      <div class="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-        <button onclick="showView('subjects')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2">
+      <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <button onclick="showView('subjects')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
           ← Back
         </button>
-        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Current Affairs Selection</h3>
+        <h3 class="font-black text-slate-800 text-base sm:text-lg">Select Current Affairs Year</h3>
       </div>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!-- 2026 CARD -->
-        <div onclick="openCaYear('2026')" class="bg-white p-8 rounded-3xl border-2 border-indigo-100 hover:border-indigo-600 shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col justify-between group">
+        <div onclick="openCaYear('2026')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
+          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition"></div>
           <div>
-            <span class="text-4xl">🔥</span>
-            <h3 class="text-2xl font-black text-slate-900 mt-4 group-hover:text-indigo-600 transition">Current Affairs 2026</h3>
-            <p class="text-xs text-slate-500 mt-2">January 2026 to December 2026 Monthly Bank (Includes October Full Test)</p>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-3xl shadow-sm">
+              🔥
+            </div>
+            <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-indigo-600 transition">Current Affairs 2026</h3>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2026 to December 2026 Monthly Bank. Includes October 2026 Full Length 100 Q Test (80 Mins).</p>
           </div>
-          <button class="mt-6 w-full py-3 bg-indigo-600 text-white font-bold text-xs rounded-xl shadow group-hover:bg-indigo-700 transition">
-            Open 2026 Months →
+          <button class="mt-8 w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-indigo-200 transition">
+            Explore 2026 Months →
           </button>
         </div>
 
         <!-- 2025 CARD -->
-        <div onclick="openCaYear('2025')" class="bg-white p-8 rounded-3xl border-2 border-slate-100 hover:border-indigo-600 shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col justify-between group">
+        <div onclick="openCaYear('2025')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-slate-200 hover:border-violet-500 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
+          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition"></div>
           <div>
-            <span class="text-4xl">📚</span>
-            <h3 class="text-2xl font-black text-slate-900 mt-4 group-hover:text-indigo-600 transition">Current Affairs 2025</h3>
-            <p class="text-xs text-slate-500 mt-2">January 2025 to December 2025 Annual Archive</p>
+            <div class="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-3xl shadow-sm">
+              📚
+            </div>
+            <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-purple-600 transition">Current Affairs 2025</h3>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2025 to December 2025 Annual Comprehensive Current Affairs Archive.</p>
           </div>
-          <button class="mt-6 w-full py-3 bg-slate-100 text-slate-700 font-bold text-xs rounded-xl hover:bg-indigo-50 hover:text-indigo-700 transition">
-            Open 2025 Months →
+          <button class="mt-8 w-full py-3.5 bg-white hover:bg-purple-50 border border-slate-200 text-slate-800 group-hover:text-purple-700 font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition">
+            Explore 2025 Months →
           </button>
         </div>
       </div>
@@ -126,24 +157,24 @@
 
     <!-- 1.2 CA MONTHS LIST VIEW -->
     <div id="viewCaMonths" class="hidden space-y-6">
-      <div class="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-        <button onclick="showView('caYears')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2">
+      <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <button onclick="showView('caYears')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
           ← Back
         </button>
-        <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Current Affairs Months</h3>
+        <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Monthly Modules</h3>
       </div>
       <div id="caMonthsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
     <!-- 2. SUBJECT DETAIL & TESTS LIST -->
     <div id="viewSubjectTests" class="hidden space-y-6">
-      <div class="flex items-center justify-between bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
-        <button onclick="handleBackFromSubjectTests()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2">
+      <div class="flex items-center justify-between glass-card p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <button onclick="handleBackFromSubjectTests()" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
           ← Back
         </button>
         <div class="text-right">
           <h2 id="subjectHeading" class="text-lg sm:text-xl font-black text-slate-900">Subject Name</h2>
-          <p id="subjectSubHeading" class="text-xs text-slate-500">Test Modules</p>
+          <p id="subjectSubHeading" class="text-xs text-slate-500">Available Practice Series</p>
         </div>
       </div>
 
@@ -152,15 +183,15 @@
 
     <!-- 3. EXPLORE ALL QUESTIONS WITH SOLUTIONS -->
     <div id="viewExplore" class="hidden space-y-6">
-      <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
+      <div class="glass-card p-4 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
-          <button onclick="showView('subjectTests')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 mb-3">
+          <button onclick="showView('subjectTests')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 mb-3 shadow-sm transition">
             ← Back
           </button>
-          <h2 id="exploreTitle" class="text-xl sm:text-2xl font-black text-slate-900">Test Explorer</h2>
-          <p id="exploreDesc" class="text-xs text-slate-500 mt-1">Study mode with detailed solutions</p>
+          <h2 id="exploreTitle" class="text-xl sm:text-2xl font-black text-slate-900">Study Solutions</h2>
+          <p id="exploreDesc" class="text-xs text-slate-500 mt-1">Review questions with verified explanations</p>
         </div>
-        <button onclick="startCbt()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md">
+        <button onclick="startCbt()" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-indigo-200 transition">
           🚀 Take Timed CBT Exam
         </button>
       </div>
@@ -172,29 +203,29 @@
     <div id="viewCbt" class="hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <div class="lg:col-span-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col justify-between min-h-[520px]">
+        <div class="lg:col-span-8 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between min-h-[540px]">
           <div>
-            <div class="flex items-center justify-between border-b border-slate-200 pb-3 mb-4">
-              <span class="px-3 py-1 rounded-md bg-indigo-100 text-indigo-800 text-xs font-black">
-                Q. <span id="cbtCurrentNum">1</span> / <span id="cbtTotalNum">0</span>
+            <div class="flex items-center justify-between border-b border-slate-200/70 pb-3 mb-5">
+              <span class="px-3.5 py-1.5 rounded-lg bg-indigo-50 border border-indigo-200/80 text-indigo-800 text-xs font-black">
+                Question <span id="cbtCurrentNum">1</span> / <span id="cbtTotalNum">0</span>
               </span>
-              <span id="cbtMarkingScheme" class="text-xs font-semibold text-slate-500">Marks: +1.00 | Penalty: -0.33</span>
+              <span id="cbtMarkingScheme" class="text-xs font-bold text-slate-500">Marks: +1.00 | Penalty: -0.33</span>
             </div>
             
-            <p id="cbtQuestionPrompt" class="text-sm sm:text-base font-bold text-slate-900 whitespace-pre-line leading-relaxed mb-6"></p>
+            <p id="cbtQuestionPrompt" class="text-base sm:text-lg font-bold text-slate-900 whitespace-pre-line leading-relaxed mb-6"></p>
             
             <div id="cbtOptionsList" class="space-y-3"></div>
           </div>
 
-          <div class="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-3 mt-6">
-            <button onclick="clearCurrentAnswer()" class="px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+          <div class="pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 mt-6">
+            <button onclick="clearCurrentAnswer()" class="px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">
               Clear Response
             </button>
-            <div class="flex gap-2">
-              <button onclick="prevCbtQ()" id="btnPrev" class="px-4 py-2 rounded-lg border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50">
+            <div class="flex gap-2.5">
+              <button onclick="prevCbtQ()" id="btnPrev" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
                 Previous
               </button>
-              <button onclick="nextCbtQ()" class="px-5 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow">
+              <button onclick="nextCbtQ()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-md shadow-indigo-200 transition">
                 Save & Next
               </button>
             </div>
@@ -202,18 +233,18 @@
         </div>
 
         <div class="lg:col-span-4 space-y-5">
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
+          <div class="glass-card p-5 rounded-3xl border border-slate-200/80 shadow-sm flex items-center justify-between">
             <div>
-              <p class="text-[11px] font-bold text-slate-400 uppercase">Time Left</p>
-              <p id="timerClock" class="text-2xl font-black text-rose-600">00:00</p>
+              <p class="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider">Time Remaining</p>
+              <p id="timerClock" class="text-3xl font-black text-rose-600 mt-0.5 tracking-tight">00:00</p>
             </div>
-            <button onclick="openSubmitModal()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black rounded-xl shadow">
+            <button onclick="openSubmitModal()" class="px-5 py-2.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-black rounded-xl shadow-md shadow-emerald-200 transition">
               Submit Test
             </button>
           </div>
 
-          <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm max-h-[460px] overflow-y-auto">
-            <h4 class="text-xs font-bold text-slate-700 uppercase mb-3">Question Palette</h4>
+          <div class="glass-card p-5 rounded-3xl border border-slate-200/80 shadow-sm max-h-[460px] overflow-y-auto">
+            <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wide mb-3">Question Palette</h4>
             <div id="cbtPalette" class="grid grid-cols-5 gap-2"></div>
           </div>
         </div>
@@ -223,8 +254,8 @@
 
     <!-- 5. FINAL SUBMISSION MODAL POPUP -->
     <div id="submitModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4">
-        <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mx-auto">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
+        <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mx-auto border border-amber-200">
           ⚠️
         </div>
         <h3 class="text-lg sm:text-xl font-black text-slate-900">
@@ -234,10 +265,10 @@
           Once submitted, your answers will be locked, and your final score, accuracy percentage, and time taken will be calculated immediately.
         </p>
         <div class="flex items-center gap-3 pt-2">
-          <button onclick="closeSubmitModal()" class="flex-1 py-2.5 rounded-xl border border-slate-300 font-bold text-xs text-slate-600 hover:bg-slate-50">
-            Cancel & Continue Test
+          <button onclick="closeSubmitModal()" class="flex-1 py-2.5 rounded-xl border border-slate-300 font-bold text-xs text-slate-600 hover:bg-slate-50 transition">
+            Cancel & Continue
           </button>
-          <button onclick="confirmSubmitTest()" class="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-black text-xs text-white shadow-md">
+          <button onclick="confirmSubmitTest()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 font-black text-xs text-white shadow-md transition">
             Yes, Final Submit
           </button>
         </div>
@@ -246,52 +277,54 @@
 
     <!-- 6. SCORECARD VIEW -->
     <div id="viewScore" class="hidden space-y-6">
-      <div class="bg-indigo-900 text-white p-6 sm:p-8 rounded-3xl shadow flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <span class="text-xs px-2.5 py-1 bg-white/20 rounded-full font-bold">EXAM COMPLETED</span>
-          <h3 id="scoreTestTitle" class="text-2xl font-black mt-2">Test Result & Performance Analytics</h3>
-          <p id="scoreExamSub" class="text-xs text-indigo-200 mt-1">Apex CBT Simulator Evaluation</p>
+      <div class="relative overflow-hidden bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-wrap items-center justify-between gap-4">
+        <div class="absolute -right-8 -top-8 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="relative z-10">
+          <span class="text-xs px-3 py-1 bg-white/10 rounded-full font-bold border border-white/20">TEST COMPLETED</span>
+          <h3 id="scoreTestTitle" class="text-2xl sm:text-3xl font-black mt-2 tracking-tight">Test Result & Analytics</h3>
+          <p id="scoreExamSub" class="text-xs text-indigo-200 mt-1">TestChakra Simulator Evaluation</p>
         </div>
-        <div class="text-right">
-          <p class="text-xs text-indigo-200 font-bold uppercase">Net Score</p>
-          <p id="finalScoreVal" class="text-4xl font-black text-amber-300">0.00</p>
-          <p id="finalScoreMax" class="text-xs text-indigo-300">out of 0.00</p>
+        <div class="relative z-10 text-right">
+          <p class="text-xs text-indigo-200 font-bold uppercase tracking-wider">Net Score</p>
+          <p id="finalScoreVal" class="text-4xl sm:text-5xl font-black text-amber-300 tracking-tight">0.00</p>
+          <p id="finalScoreMax" class="text-xs text-indigo-300 font-semibold">out of 0.00</p>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
-          <p class="text-xs font-semibold text-emerald-600">Correct</p>
-          <p id="scoreCorrect" class="text-2xl font-black text-emerald-600 mt-1">0</p>
+      <!-- METRICS GRID -->
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
+        <div class="glass-card p-4 rounded-2xl border border-emerald-100 shadow-sm text-center">
+          <p class="text-xs font-bold text-emerald-600">Correct</p>
+          <p id="scoreCorrect" class="text-2xl font-black text-emerald-700 mt-1">0</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
-          <p class="text-xs font-semibold text-rose-600">Wrong</p>
-          <p id="scoreWrong" class="text-2xl font-black text-rose-600 mt-1">0</p>
+        <div class="glass-card p-4 rounded-2xl border border-rose-100 shadow-sm text-center">
+          <p class="text-xs font-bold text-rose-600">Wrong</p>
+          <p id="scoreWrong" class="text-2xl font-black text-rose-700 mt-1">0</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
-          <p class="text-xs font-semibold text-slate-500">Skipped</p>
+        <div class="glass-card p-4 rounded-2xl border border-slate-200 shadow-sm text-center">
+          <p class="text-xs font-bold text-slate-500">Skipped</p>
           <p id="scoreSkipped" class="text-2xl font-black text-slate-700 mt-1">0</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center">
-          <p class="text-xs font-semibold text-indigo-600">Accuracy</p>
-          <p id="scoreAccuracy" class="text-2xl font-black text-indigo-600 mt-1">0%</p>
+        <div class="glass-card p-4 rounded-2xl border border-indigo-100 shadow-sm text-center">
+          <p class="text-xs font-bold text-indigo-600">Accuracy</p>
+          <p id="scoreAccuracy" class="text-2xl font-black text-indigo-700 mt-1">0%</p>
         </div>
-        <div class="bg-white p-4 rounded-xl border border-slate-200 text-center col-span-2 sm:col-span-1">
-          <p class="text-xs font-semibold text-amber-600">Time Taken</p>
-          <p id="scoreTimeTaken" class="text-2xl font-black text-amber-600 mt-1">00:00</p>
+        <div class="glass-card p-4 rounded-2xl border border-amber-100 shadow-sm text-center col-span-2 sm:col-span-1">
+          <p class="text-xs font-bold text-amber-600">Time Taken</p>
+          <p id="scoreTimeTaken" class="text-2xl font-black text-amber-700 mt-1">00:00</p>
         </div>
       </div>
 
-      <button onclick="handleBackFromSubjectTests()" class="w-full py-3 bg-white border border-slate-300 text-slate-800 font-bold text-xs sm:text-sm rounded-xl hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2">
+      <button onclick="handleBackFromSubjectTests()" class="w-full py-3.5 bg-white border border-slate-300 text-slate-800 font-bold text-xs sm:text-sm rounded-2xl hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 transition">
         ← Back
       </button>
     </div>
 
   </main>
 
-  <script src="questions.js?v=nav_comingsoon_oct2026"></script>
+  <script src="questions.js?v=testchakra_aesthetic_v1"></script>
 
-  <!-- CONTROLLER -->
+  <!-- CONTROLLER SCRIPT -->
   <script>
     let currentExamKey = 'upsc';
     let currentCaYear = null;
@@ -302,6 +335,16 @@
     let initialTotalSeconds = 0;
     let timerSeconds = 0;
     let timerTimer = null;
+
+    // Palette Color classes for Aesthetic Subject Cards
+    const COLOR_CLASSES = [
+      { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
+      { bg: "bg-rose-50/60", border: "border-rose-100", hover: "hover:border-rose-500", text: "text-rose-700", btn: "bg-rose-50 text-rose-700 hover:bg-rose-100" },
+      { bg: "bg-amber-50/60", border: "border-amber-100", hover: "hover:border-amber-500", text: "text-amber-700", btn: "bg-amber-50 text-amber-700 hover:bg-amber-100" },
+      { bg: "bg-emerald-50/60", border: "border-emerald-100", hover: "hover:border-emerald-500", text: "text-emerald-700", btn: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100" },
+      { bg: "bg-sky-50/60", border: "border-sky-100", hover: "hover:border-sky-500", text: "text-sky-700", btn: "bg-sky-50 text-sky-700 hover:bg-sky-100" },
+      { bg: "bg-purple-50/60", border: "border-purple-100", hover: "hover:border-purple-500", text: "text-purple-700", btn: "bg-purple-50 text-purple-700 hover:bg-purple-100" }
+    ];
 
     function init() {
       setExam('upsc');
@@ -350,9 +393,9 @@
         const btn = document.getElementById('tab-' + k);
         if (btn) {
           if (k === examKey) {
-            btn.className = "px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition";
+            btn.className = "px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all";
           } else {
-            btn.className = "px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition";
+            btn.className = "px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all";
           }
         }
       });
@@ -362,7 +405,6 @@
       document.getElementById('examDesc').innerText = exam.desc;
       document.getElementById('examPenaltyBadge').innerText = exam.penaltyText;
 
-      // Special handling for Current Affairs tab -> Open CA Years view directly
       if (examKey === 'ca') {
         showView('caYears');
         return;
@@ -370,17 +412,20 @@
 
       const list = document.getElementById('subjectsList');
       list.innerHTML = "";
-      exam.subjects.forEach(sub => {
+      exam.subjects.forEach((sub, i) => {
+        const theme = COLOR_CLASSES[i % COLOR_CLASSES.length];
         const div = document.createElement('div');
-        div.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition cursor-pointer flex flex-col justify-between";
+        div.className = `glass-card p-6 rounded-3xl border ${theme.border} shadow-sm ${theme.hover} hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col justify-between`;
         div.onclick = () => openSubject(sub.id);
         div.innerHTML = `
           <div>
-            <span class="text-3xl">${sub.icon}</span>
-            <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
-            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Ready</p>
+            <div class="w-12 h-12 rounded-2xl ${theme.bg} flex items-center justify-center text-2xl shadow-sm border ${theme.border}">
+              ${sub.icon}
+            </div>
+            <h3 class="text-lg font-black text-slate-900 mt-4">${sub.name}</h3>
+            <p class="text-xs text-slate-500 mt-1 font-medium">${sub.tests.length} Test Module(s) Ready</p>
           </div>
-          <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
+          <button class="mt-6 w-full py-2.5 ${theme.btn} font-extrabold text-xs rounded-xl shadow-sm transition">
             View Tests →
           </button>
         `;
@@ -390,7 +435,6 @@
       showView('subjects');
     }
 
-    // CURRENT AFFAIRS YEAR SELECTION (2025 vs 2026)
     function openCaYear(year) {
       currentCaYear = year;
       document.getElementById('bcYear').innerText = `CA ${year}`;
@@ -400,17 +444,20 @@
       grid.innerHTML = "";
 
       const subjects = EXAMS_DATA.ca.years[year];
-      subjects.forEach(sub => {
+      subjects.forEach((sub, i) => {
+        const theme = COLOR_CLASSES[i % COLOR_CLASSES.length];
         const div = document.createElement('div');
-        div.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition cursor-pointer flex flex-col justify-between";
+        div.className = `glass-card p-6 rounded-3xl border ${theme.border} shadow-sm ${theme.hover} hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col justify-between`;
         div.onclick = () => openSubject(sub.id);
         div.innerHTML = `
           <div>
-            <span class="text-3xl">${sub.icon}</span>
-            <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
-            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Available</p>
+            <div class="w-12 h-12 rounded-2xl ${theme.bg} flex items-center justify-center text-2xl shadow-sm border ${theme.border}">
+              ${sub.icon}
+            </div>
+            <h3 class="text-lg font-black text-slate-900 mt-4">${sub.name}</h3>
+            <p class="text-xs text-slate-500 mt-1 font-medium">${sub.tests.length} Test Module(s) Available</p>
           </div>
-          <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
+          <button class="mt-6 w-full py-2.5 ${theme.btn} font-extrabold text-xs rounded-xl shadow-sm transition">
             Open Month →
           </button>
         `;
@@ -437,15 +484,17 @@
       const testsGrid = document.getElementById('testsGrid');
       testsGrid.innerHTML = "";
 
-      // IF NO TESTS ARE AVAILABLE -> SHOW "Coming Soon 😍"
+      // IF NO TESTS ARE AVAILABLE -> AESTHETIC "Coming Soon 😍"
       if (!subject.tests || subject.tests.length === 0) {
         testsGrid.className = "col-span-full";
         testsGrid.innerHTML = `
-          <div class="bg-white p-10 sm:p-14 rounded-3xl border border-slate-200 shadow-sm text-center max-w-lg mx-auto space-y-3">
-            <span class="text-5xl">😍</span>
-            <h3 class="text-2xl font-black text-slate-900">Coming Soon 😍</h3>
-            <p class="text-xs text-slate-500 leading-relaxed">
-              Is section ke tests abhi upload kiye ja rahe hain. Jald hi naye questions yahan live ho jayenge!
+          <div class="relative overflow-hidden glass-card p-10 sm:p-14 rounded-3xl border border-slate-200 shadow-md text-center max-w-lg mx-auto space-y-4">
+            <div class="w-16 h-16 rounded-3xl bg-indigo-50 text-indigo-600 border border-indigo-100 flex items-center justify-center text-3xl mx-auto shadow-sm">
+              😍
+            </div>
+            <h3 class="text-2xl font-black text-slate-900 tracking-tight">Coming Soon 😍</h3>
+            <p class="text-xs text-slate-500 leading-relaxed font-medium">
+              Is section ke high-yield test questions abhi curate kiye ja rahe hain. Jald hi naye tests yahan live ho jayenge!
             </p>
           </div>
         `;
@@ -459,22 +508,24 @@
           }
 
           const card = document.createElement('div');
-          card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4";
+          card.className = "glass-card p-6 sm:p-7 rounded-3xl border border-indigo-100 hover:border-indigo-400 shadow-sm hover:shadow-xl transition-all duration-200 space-y-4 flex flex-col justify-between";
           card.innerHTML = `
             <div>
-              <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md">Mock Test</span>
-              <h4 class="text-lg font-black text-slate-900 mt-2">${cleanTitle}</h4>
-              <p class="text-xs text-slate-500 mt-1">${test.desc}</p>
-              <div class="flex gap-4 mt-3 text-xs text-slate-600 font-medium">
-                <span>⏱️ ${test.timeMins} Mins</span>
-                <span>📝 ${test.data.length} Questions</span>
+              <span class="text-[10px] font-black uppercase tracking-wider px-3 py-1 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 border border-indigo-200 rounded-lg">
+                Full CBT Mock
+              </span>
+              <h4 class="text-lg font-black text-slate-900 mt-3 text-left leading-snug">${cleanTitle}</h4>
+              <p class="text-xs text-slate-500 mt-1.5 text-left font-medium leading-relaxed">${test.desc}</p>
+              <div class="flex items-center gap-4 mt-4 text-xs text-slate-600 font-bold">
+                <span class="flex items-center gap-1.5 bg-slate-100 px-3 py-1 rounded-lg">⏱️ ${test.timeMins} Mins</span>
+                <span class="flex items-center gap-1.5 bg-slate-100 px-3 py-1 rounded-lg">📝 ${test.data.length} Questions</span>
               </div>
             </div>
-            <div class="flex gap-2 pt-2 border-t border-slate-100">
-              <button onclick="openExplorer('${test.id}')" class="flex-1 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50">
+            <div class="flex gap-2.5 pt-3 border-t border-slate-100">
+              <button onclick="openExplorer('${test.id}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 shadow-sm transition">
                 Study Solutions
               </button>
-              <button onclick="launchCbtDirect('${test.id}')" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow">
+              <button onclick="launchCbtDirect('${test.id}')" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-black shadow-md shadow-indigo-200 transition">
                 Take CBT Exam
               </button>
             </div>
@@ -486,7 +537,6 @@
       showView('subjectTests');
     }
 
-    // BACK NAVIGATION HANDLERS
     function handleBackFromSubjectTests() {
       if (currentExamKey === 'ca') {
         showView('caMonths');
@@ -517,22 +567,22 @@
 
       currentTest.data.forEach((q, idx) => {
         const card = document.createElement('div');
-        card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3";
+        card.className = "glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-3.5";
         card.innerHTML = `
-          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
-            <span class="text-xs font-bold text-indigo-600">Question ${idx + 1}</span>
-            <span class="text-xs text-emerald-600 font-bold">Answer: Option (${String.fromCharCode(65 + q.ans)})</span>
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Question ${idx + 1}</span>
+            <span class="text-xs text-emerald-700 font-extrabold bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">Correct Option: (${String.fromCharCode(65 + q.ans)})</span>
           </div>
-          <p class="text-sm font-bold text-slate-900 whitespace-pre-line">${q.q}</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+          <p class="text-sm sm:text-base font-bold text-slate-900 whitespace-pre-line leading-relaxed">${q.q}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
             ${q.opts.map((opt, i) => `
-              <div class="p-2.5 rounded-lg border ${i === q.ans ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-slate-200 text-slate-700'} text-xs">
-                (${String.fromCharCode(65 + i)}) ${opt}
+              <div class="p-3 rounded-xl border ${i === q.ans ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900 shadow-sm' : 'border-slate-200 text-slate-700 bg-white'} text-xs leading-relaxed">
+                <span class="font-bold mr-1">(${String.fromCharCode(65 + i)})</span> ${opt}
               </div>
             `).join('')}
           </div>
-          <div class="mt-3 p-3 bg-slate-50 rounded-xl text-xs text-slate-700 whitespace-pre-line border border-slate-100">
-            <b class="text-slate-900">Explanation:</b>\n${q.exp}
+          <div class="mt-3.5 p-4 bg-slate-50/90 rounded-2xl text-xs text-slate-700 whitespace-pre-line border border-slate-200/80 leading-relaxed">
+            <b class="text-slate-900 text-sm block mb-1">💡 Detailed Explanation:</b>${q.exp}
           </div>
         `;
         list.appendChild(card);
@@ -595,13 +645,13 @@
       q.opts.forEach((opt, idx) => {
         const isChosen = userAnswers[cbtIndex] === idx;
         const row = document.createElement('div');
-        row.className = `p-3.5 rounded-xl border-2 transition cursor-pointer flex items-center gap-3 text-xs sm:text-sm font-semibold ${isChosen ? 'border-indigo-600 bg-indigo-50 text-indigo-900' : 'border-slate-200 hover:border-slate-300 text-slate-700'}`;
+        row.className = `p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center gap-3.5 text-xs sm:text-sm font-semibold ${isChosen ? 'border-indigo-600 bg-indigo-50/80 text-indigo-900 shadow-sm' : 'border-slate-200/90 bg-white hover:border-slate-300 text-slate-700'}`;
         row.onclick = () => selectOption(idx);
         row.innerHTML = `
-          <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center ${isChosen ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-slate-400'} text-[10px] font-bold">
+          <div class="w-6 h-6 rounded-full border-2 flex items-center justify-center ${isChosen ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-slate-400'} text-xs font-bold">
             ${isChosen ? '✓' : String.fromCharCode(65 + idx)}
           </div>
-          <span>${opt}</span>
+          <span class="leading-relaxed">${opt}</span>
         `;
         optsContainer.appendChild(row);
       });
@@ -643,7 +693,7 @@
         const btn = document.createElement('button');
         btn.onclick = () => { cbtIndex = idx; renderCbtQuestion(); };
         btn.innerText = idx + 1;
-        btn.className = `h-9 rounded-lg font-bold text-xs border ${isCurrent ? 'ring-2 ring-indigo-600' : ''} ${isAnswered ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 text-slate-700 border-slate-200'}`;
+        btn.className = `h-9 rounded-xl font-bold text-xs border transition-all ${isCurrent ? 'ring-2 ring-indigo-600 border-indigo-600' : ''} ${isAnswered ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' : 'bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200'}`;
         pal.appendChild(btn);
       });
     }
