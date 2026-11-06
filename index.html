@@ -75,7 +75,7 @@
     </span>
   </nav>
 
-  <!-- MAIN CONTAINER (LOCKED UNTIL USER SIGNS IN) -->
+  <!-- MAIN CONTAINER -->
   <main id="portalMainContent" class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8">
 
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
@@ -450,6 +450,24 @@
       </div>
     </div>
 
+    <!-- MODAL 5: WELCOME POPUP MODAL (SHOWS WELCOME [NAME]) -->
+    <div id="welcomeSuccessModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl p-7 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
+        <div class="w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-3xl mx-auto shadow-sm">
+          🎉
+        </div>
+        <h3 class="text-xl sm:text-2xl font-black text-slate-900">
+          Welcome, <span id="welcomeUserName" class="text-indigo-600">Student</span>!
+        </h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-medium">
+          Aapka TestChakra account safaltapoorvak login ho chuka hai. Ab aap sabhi CBT mock tests de sakte hain.
+        </p>
+        <button onclick="dismissWelcomeModal()" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-indigo-200 transition">
+          Continue to Portal 🚀
+        </button>
+      </div>
+    </div>
+
     <!-- 5. SCORECARD VIEW -->
     <div id="viewScore" class="hidden space-y-6">
       <div class="relative overflow-hidden bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-wrap items-center justify-between gap-4">
@@ -503,15 +521,18 @@
 
   <!-- AUTHENTICATION MODAL (SIGN IN / CREATE ACCOUNT) -->
   <div id="authModal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 text-left my-8 animate-in fade-in zoom-in-95 duration-200">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 text-left my-8 animate-in fade-in zoom-in-95 duration-200 relative">
       
+      <!-- Close button on Auth Modal -->
+      <button onclick="closeAuthModal()" class="absolute right-5 top-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-sm">✕</button>
+
       <!-- Modal Header -->
       <div class="text-center pb-4 border-b border-slate-100">
         <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white text-2xl mx-auto shadow-md">
           🎯
         </div>
         <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3 tracking-tight">Welcome to TestChakra</h3>
-        <p class="text-xs text-slate-500 font-medium mt-1">Pehle Sign In ya Create Account karein portal access karne ke liye.</p>
+        <p class="text-xs text-slate-500 font-medium mt-1">Test shuru karne ke liye pehle Sign In ya Create Account karein.</p>
         
         <!-- Tab Switcher -->
         <div class="flex p-1 bg-slate-100 rounded-xl mt-4 border border-slate-200/80">
@@ -543,11 +564,11 @@
         </p>
       </form>
 
-      <!-- FORM 2: CREATE ACCOUNT -->
+      <!-- FORM 2: CREATE ACCOUNT (WITH SHADOW PLACEHOLDER & ALL STATES DROPDOWN) -->
       <form id="formSignUp" onsubmit="executeSignUp(event)" class="hidden space-y-3.5 pt-4">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
-          <input type="text" id="regName" required placeholder="Dilip Pandey" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          <input type="text" id="regName" required placeholder="Name (e.g. User Name xxx)" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
         </div>
         
         <div class="grid grid-cols-2 gap-3">
@@ -561,7 +582,7 @@
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 mb-1">Mobile No</label>
-            <input type="tel" id="regMobile" required placeholder="9876543210" pattern="[0-9]{10}" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+            <input type="tel" id="regMobile" required placeholder="98XXXXXXXX (Mobile No xxx)" pattern="[0-9]{10}" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
           </div>
         </div>
 
@@ -581,8 +602,46 @@
             <input type="text" id="regCity" required placeholder="Patna / Ara" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">State</label>
-            <input type="text" id="regState" required placeholder="Bihar" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+            <label class="block text-xs font-bold text-slate-700 mb-1">State / UT</label>
+            <select id="regState" required class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition bg-white">
+              <option value="">Select State / UT</option>
+              <option value="Bihar" selected>Bihar</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Delhi">Delhi (NCT)</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli & Daman and Diu</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Ladakh">Ladakh</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Puducherry">Puducherry</option>
+            </select>
           </div>
         </div>
 
@@ -599,7 +658,7 @@
     </div>
   </div>
 
-  <script src="questions.js?v=testchakra_auth_v1"></script>
+  <script src="questions.js?v=testchakra_welcome_state_v1"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -616,6 +675,7 @@
     let currentCaMode = 'monthly';
     let isExitingAllowed = false;
     let currentUser = null;
+    let pendingTestIdToLaunch = null;
 
     const COLOR_CLASSES = [
       { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
@@ -632,35 +692,48 @@
       setupHistoryNavigationGuard();
     }
 
-    // AUTHENTICATION SYSTEM (LOCAL STORAGE BASED)
+    // AUTHENTICATION SYSTEM
     function checkAuthSession() {
       const stored = localStorage.getItem('testchakra_logged_user');
       if (stored) {
         try {
           currentUser = JSON.parse(stored);
-          onUserLoggedIn(currentUser);
+          onUserLoggedIn(currentUser, false);
         } catch (e) {
           currentUser = null;
-          showAuthGate();
+          updateAuthUIForGuest();
         }
       } else {
-        showAuthGate();
+        updateAuthUIForGuest();
       }
     }
 
-    function showAuthGate() {
+    function updateAuthUIForGuest() {
       document.getElementById('userProfileBadge').classList.add('hidden');
       document.getElementById('btnSignOut').classList.add('hidden');
       document.getElementById('btnHeaderSignIn').classList.remove('hidden');
-      openAuthModal('signin');
     }
 
-    function onUserLoggedIn(user) {
+    function onUserLoggedIn(user, showWelcome = true) {
       document.getElementById('navUserName').innerText = user.name || 'Student';
       document.getElementById('userProfileBadge').classList.remove('hidden');
       document.getElementById('btnSignOut').classList.remove('hidden');
       document.getElementById('btnHeaderSignIn').classList.add('hidden');
-      closeAuthModal();
+      document.getElementById('authModal').classList.add('hidden');
+
+      if (showWelcome) {
+        document.getElementById('welcomeUserName').innerText = user.name || 'Student';
+        document.getElementById('welcomeSuccessModal').classList.remove('hidden');
+      }
+    }
+
+    function dismissWelcomeModal() {
+      document.getElementById('welcomeSuccessModal').classList.add('hidden');
+      if (pendingTestIdToLaunch) {
+        const tId = pendingTestIdToLaunch;
+        pendingTestIdToLaunch = null;
+        openInstructionsModal(tId);
+      }
     }
 
     function openAuthModal(mode) {
@@ -669,9 +742,7 @@
     }
 
     function closeAuthModal() {
-      if (currentUser) {
-        document.getElementById('authModal').classList.add('hidden');
-      }
+      document.getElementById('authModal').classList.add('hidden');
     }
 
     function switchAuthTab(tab) {
@@ -708,9 +779,13 @@
       const city = document.getElementById('regCity').value.trim();
       const state = document.getElementById('regState').value.trim();
 
-      let users = JSON.parse(localStorage.getItem('testchakra_registered_users') || '[]');
+      if (!state) {
+        errBox.innerText = "Kripya apna State select karein.";
+        errBox.classList.remove('hidden');
+        return;
+      }
 
-      // Check if email already registered
+      let users = JSON.parse(localStorage.getItem('testchakra_registered_users') || '[]');
       if (users.find(u => u.email === email)) {
         errBox.innerText = "Yeh Email ID pehle se registered hai. Kripya Sign In karein.";
         errBox.classList.remove('hidden');
@@ -723,7 +798,7 @@
       localStorage.setItem('testchakra_logged_user', JSON.stringify(newUser));
 
       currentUser = newUser;
-      onUserLoggedIn(newUser);
+      onUserLoggedIn(newUser, true);
     }
 
     function executeSignIn(e) {
@@ -740,9 +815,9 @@
       if (matched) {
         currentUser = matched;
         localStorage.setItem('testchakra_logged_user', JSON.stringify(matched));
-        onUserLoggedIn(matched);
+        onUserLoggedIn(matched, true);
       } else {
-        errBox.innerText = "Email ID ya Password galat hai. Kripya dobara check karein.";
+        errBox.innerText = "Email ID ya Password galat hai. Kripya check karein.";
         errBox.classList.remove('hidden');
       }
     }
@@ -751,7 +826,7 @@
       if (confirm("Kya aap sach me Sign Out karna chahte hain?")) {
         localStorage.removeItem('testchakra_logged_user');
         currentUser = null;
-        showAuthGate();
+        updateAuthUIForGuest();
       }
     }
 
@@ -1048,7 +1123,7 @@
               </div>
             </div>
             <div class="pt-3 border-t border-slate-100">
-              <button onclick="openInstructionsModal('${test.id}')" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs sm:text-sm font-black shadow-md shadow-indigo-200 transition flex items-center justify-center gap-2">
+              <button onclick="handleStartTestClick('${test.id}')" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs sm:text-sm font-black shadow-md shadow-indigo-200 transition flex items-center justify-center gap-2">
                 Start Test 🚀
               </button>
             </div>
@@ -1056,6 +1131,16 @@
           testsGrid.appendChild(card);
         });
       }
+    }
+
+    // CHECK LOGIN BEFORE OPENING TEST INSTRUCTIONS
+    function handleStartTestClick(testId) {
+      if (!currentUser) {
+        pendingTestIdToLaunch = testId;
+        openAuthModal('signin');
+        return;
+      }
+      openInstructionsModal(testId);
     }
 
     function handleBackFromSubjectTests() {
@@ -1075,11 +1160,6 @@
     }
 
     function openInstructionsModal(testId) {
-      if (!currentUser) {
-        openAuthModal('signin');
-        return;
-      }
-
       let subject = null;
       if (currentExamKey === 'ca') {
         if (currentCaMode === 'daily') {
