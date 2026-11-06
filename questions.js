@@ -1,4 +1,4 @@
-// questions.js — TestChakra Database (UPSC, BPSC, UGC NET, SSC, Bihar SI, CA 2025/2026, PYQ)
+// questions.js — TestChakra Database (UPSC, BPSC, UGC NET, SSC, Bihar Exams, RRB, CA 2025/2026, PYQ)
 
 // OCTOBER 2026 TEST 01 (100 High-Yield Questions, 80 Minutes)
 var CA_OCT_2026_T1 = [
@@ -630,6 +630,7 @@ function generateMonths(year, icon) {
 
 // MASTER DATABASE
 var EXAMS_DATA = {
+  // 1. UPSC CSE
   upsc: {
     id: "upsc",
     name: "UPSC CSE",
@@ -648,6 +649,8 @@ var EXAMS_DATA = {
       { id: "int_org", name: "International Organizations", icon: "🌐", tests: [] }
     ]
   },
+
+  // 2. BPSC CCE
   bpsc: {
     id: "bpsc",
     name: "BPSC CCE",
@@ -667,6 +670,8 @@ var EXAMS_DATA = {
       { id: "int_org_bpsc", name: "International Organizations", icon: "🌐", tests: [] }
     ]
   },
+
+  // 3. UGC NET / JRF
   ugc: {
     id: "ugc",
     name: "UGC NET / JRF",
@@ -680,41 +685,65 @@ var EXAMS_DATA = {
       { id: "ugc_paper2", name: "Paper 2: Political Science", icon: "🏛️", tests: [] }
     ]
   },
-  // SSC EXAMS
+
+  // 4. SSC EXAMS (8 SUB-EXAMS)
   ssc: {
     id: "ssc",
     name: "SSC Exams",
-    title: "Staff Selection Commission (CGL / CPO / CHSL)",
-    desc: "Tier-1 CBT Simulator • General Awareness, Reasoning, Quant & English",
+    title: "Staff Selection Commission (SSC Recruitment Portal)",
+    desc: "All National Level Exams • 2 Marks Per Question • Negative Penalty: 0.50 Marks",
     penaltyText: "Negative Penalty: 0.50 Marks",
     correctMarks: 2.0,
     negativePenalty: 0.50,
     subjects: [
-      { id: "ssc_ga", name: "General Awareness (GS & GK)", icon: "🌐", tests: [] },
-      { id: "ssc_reasoning", name: "General Intelligence & Reasoning", icon: "🧩", tests: [] },
-      { id: "ssc_quant", name: "Quantitative Aptitude (Maths)", icon: "📐", tests: [] },
-      { id: "ssc_english", name: "English Comprehension", icon: "📝", tests: [] }
+      { id: "ssc_cgl", name: "SSC CGL (Combined Graduate Level)", icon: "🎓", tests: [] },
+      { id: "ssc_chsl", name: "SSC CHSL (Combined Higher Secondary Level)", icon: "📄", tests: [] },
+      { id: "ssc_mts", name: "SSC MTS (Multi-Tasking Staff)", icon: "🛠️", tests: [] },
+      { id: "ssc_gd", name: "SSC GD (General Duty Constable)", icon: "🎖️", tests: [] },
+      { id: "ssc_cpo", name: "SSC CPO (Central Police Organisation)", icon: "👮", tests: [] },
+      { id: "ssc_steno", name: "SSC Stenographer (Grade C and D)", icon: "⌨️", tests: [] },
+      { id: "ssc_je", name: "SSC JE (Junior Engineer)", icon: "⚙️", tests: [] },
+      { id: "ssc_jht", name: "SSC JHT (Junior Hindi Translator)", icon: "🌐", tests: [] }
     ]
   },
-  // BIHAR SI (DAROGA)
-  biharsi: {
-    id: "biharsi",
-    name: "Bihar SI (Daroga)",
-    title: "Bihar Police Sub-Inspector (BPSSC)",
-    desc: "Prelims & Mains GS Simulator • Negative Penalty: 0.20 Marks",
-    penaltyText: "Negative Penalty: 0.20 Marks",
+
+  // 5. BIHAR EXAMS (4 SUB-EXAMS)
+  bihar_exams: {
+    id: "bihar_exams",
+    name: "Bihar Exams",
+    title: "Bihar State Competitive Exams Portal",
+    desc: "BPSSC & BSSC Recruitment Examination CBT Series",
+    penaltyText: "State Exam Specific Marking",
     correctMarks: 2.0,
     negativePenalty: 0.20,
     subjects: [
-      { id: "si_gs", name: "General Studies & Current Events", icon: "👮", tests: [] },
-      { id: "si_history", name: "Indian History & Culture", icon: "📜", tests: [] },
-      { id: "si_geography", name: "Geography of India & World", icon: "🌍", tests: [] },
-      { id: "si_polity", name: "Indian Polity & Constitution", icon: "⚖️", tests: [] },
-      { id: "si_science", name: "General Science (Phy, Chem, Bio)", icon: "🔬", tests: [] },
-      { id: "si_bihar", name: "Bihar Special GK", icon: "🎯", tests: [] }
+      { id: "bihar_si", name: "Bihar SI (Sub-Inspector)", icon: "👮", tests: [] },
+      { id: "bihar_constable", name: "Bihar Police Constable", icon: "🛡️", tests: [] },
+      { id: "bssc_inter", name: "BSSC (Bihar Staff Selection Commission)", icon: "📋", tests: [] },
+      { id: "bihar_cgl", name: "Bihar CGL (Bihar Combined Graduate Level)", icon: "🏛️", tests: [] }
     ]
   },
-  // CURRENT AFFAIRS
+
+  // 6. RRB EXAMS (6 SUB-EXAMS)
+  rrb: {
+    id: "rrb",
+    name: "RRB Exams",
+    title: "Railway Recruitment Board (RRB Exams Portal)",
+    desc: "Indian Railways CBT Examination Modules • Negative Penalty: 1/3rd (-0.33)",
+    penaltyText: "Negative Penalty: 1/3rd (-0.33)",
+    correctMarks: 1.0,
+    negativePenalty: 0.33,
+    subjects: [
+      { id: "rrb_alp", name: "ALP (Assistant Loco Pilot)", icon: "🚆", tests: [] },
+      { id: "rrb_technician", name: "Technician", icon: "🔧", tests: [] },
+      { id: "rrb_group_d", name: "Group D (Level 1)", icon: "🛤️", tests: [] },
+      { id: "rrb_ntpc_ug", name: "NTPC (Under-Graduate Level 12th Pass)", icon: "📑", tests: [] },
+      { id: "rrb_ntpc_grad", name: "NTPC (Graduate Level Degree Holders)", icon: "🎓", tests: [] },
+      { id: "rrb_je", name: "JE (Junior Engineer)", icon: "⚙️", tests: [] }
+    ]
+  },
+
+  // 7. CURRENT AFFAIRS
   ca: {
     id: "ca",
     name: "Current Affairs",
@@ -728,6 +757,8 @@ var EXAMS_DATA = {
       "2025": generateMonths("2025", "📁")
     }
   },
+
+  // 8. PYQ ARCHIVES
   pyq: {
     id: "pyq",
     name: "PYQ Archives",
