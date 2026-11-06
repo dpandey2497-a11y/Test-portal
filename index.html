@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apex Exam Simulator | UPSC • BPSC • UGC NET</title>
+  <title>Apex Exam Simulator | UPSC • BPSC • UGC NET • Current Affairs</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
       </div>
       <div>
         <h1 class="font-black text-lg tracking-tight text-indigo-700">APEX TEST SERIES</h1>
-        <p class="text-[11px] text-slate-500 font-semibold">UPSC CSE • BPSC • UGC NET</p>
+        <p class="text-[11px] text-slate-500 font-semibold">UPSC CSE • BPSC • UGC NET • CURRENT AFFAIRS</p>
       </div>
     </div>
     
@@ -40,7 +40,7 @@
     <span id="bcExam" class="uppercase font-semibold text-slate-700">UPSC CSE</span>
     <span id="bcSubjectWrap" class="hidden flex items-center gap-2">
       <span>/</span>
-      <span id="bcSubject" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="showView('subjectTests')">Polity</span>
+      <span id="bcSubject" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="showView('subjectTests')">Subject</span>
     </span>
     <span id="bcTestWrap" class="hidden flex items-center gap-2">
       <span>/</span>
@@ -53,7 +53,7 @@
 
     <!-- 1. SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
-      <!-- EXAM TABS -->
+      <!-- EXAM TABS (Ab Current Affairs bhi shamil hai) -->
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/80 rounded-2xl w-fit">
         <button onclick="setExam('upsc')" id="tab-upsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition">
           🏛️ UPSC CSE
@@ -63,6 +63,9 @@
         </button>
         <button onclick="setExam('ugc')" id="tab-ugc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
           🎓 UGC NET / JRF
+        </button>
+        <button onclick="setExam('ca')" id="tab-ca" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+          🔥 Current Affairs
         </button>
       </div>
 
@@ -88,7 +91,7 @@
           <button onclick="showView('subjects')" class="text-xs font-bold text-indigo-600 hover:underline mb-2 block">
             ← Back to Subjects
           </button>
-          <h2 id="subjectHeading" class="text-2xl font-black text-slate-900">Indian Polity & Governance</h2>
+          <h2 id="subjectHeading" class="text-2xl font-black text-slate-900">Subject Name</h2>
           <p id="subjectSubHeading" class="text-xs text-slate-500 mt-1">Special Chapter Test Modules</p>
         </div>
       </div>
@@ -208,10 +211,10 @@
 
   </main>
 
-  <!-- बाहरी डेटाबेस फ़ाइल -->
+  <!-- EXTERNAL DATA SOURCE -->
   <script src="questions.js"></script>
 
-  <!-- मुख्य कंट्रोलर लॉजिक -->
+  <!-- CONTROLLER -->
   <script>
     let currentExamKey = 'upsc';
     let currentSubjectId = null;
@@ -253,7 +256,8 @@
       currentExamKey = examKey;
       const exam = EXAMS_DATA[examKey];
 
-      ['upsc', 'bpsc', 'ugc'].forEach(k => {
+      // Tab highlighting
+      ['upsc', 'bpsc', 'ugc', 'ca'].forEach(k => {
         const btn = document.getElementById('tab-' + k);
         if (k === examKey) {
           btn.className = "px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm";
