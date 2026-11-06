@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apex Exam Simulator | UPSC • BPSC • UGC NET • Current Affairs</title>
+  <title>Apex Exam Simulator | UPSC • BPSC • UGC NET • CA • PYQ</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,13 +22,13 @@
       </div>
       <div>
         <h1 class="font-black text-lg tracking-tight text-indigo-700">APEX TEST SERIES</h1>
-        <p class="text-[11px] text-slate-500 font-semibold">UPSC CSE • BPSC • UGC NET • CURRENT AFFAIRS</p>
+        <p class="text-[11px] text-slate-500 font-semibold">UPSC CSE • BPSC • UGC NET • CA 2026 • PYQ PORTAL</p>
       </div>
     </div>
     
     <div class="flex items-center gap-2">
       <span class="text-xs font-bold px-3 py-1 bg-indigo-50 text-indigo-700 border border-indigo-200 rounded-full">
-        Civil Services CBT
+        Civil Services CBT Engine
       </span>
     </div>
   </header>
@@ -53,19 +53,22 @@
 
     <!-- 1. SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
-      <!-- EXAM TABS (Ab Current Affairs bhi shamil hai) -->
+      <!-- EXAM TABS (Ab PYQ Archive bhi shamil hai) -->
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/80 rounded-2xl w-fit">
-        <button onclick="setExam('upsc')" id="tab-upsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition">
+        <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition">
           🏛️ UPSC CSE
         </button>
-        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
           🎯 BPSC
         </button>
-        <button onclick="setExam('ugc')" id="tab-ugc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+        <button onclick="setExam('ugc')" id="tab-ugc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
           🎓 UGC NET / JRF
         </button>
-        <button onclick="setExam('ca')" id="tab-ca" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
-          🔥 Current Affairs
+        <button onclick="setExam('ca')" id="tab-ca" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+          🔥 Current Affairs 2026
+        </button>
+        <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
+          📚 PYQ Archives
         </button>
       </div>
 
@@ -89,7 +92,7 @@
       <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
         <div>
           <button onclick="showView('subjects')" class="text-xs font-bold text-indigo-600 hover:underline mb-2 block">
-            ← Back to Subjects
+            ← Back to Categories
           </button>
           <h2 id="subjectHeading" class="text-2xl font-black text-slate-900">Subject Name</h2>
           <p id="subjectSubHeading" class="text-xs text-slate-500 mt-1">Special Chapter Test Modules</p>
@@ -257,12 +260,14 @@
       const exam = EXAMS_DATA[examKey];
 
       // Tab highlighting
-      ['upsc', 'bpsc', 'ugc', 'ca'].forEach(k => {
+      ['upsc', 'bpsc', 'ugc', 'ca', 'pyq'].forEach(k => {
         const btn = document.getElementById('tab-' + k);
-        if (k === examKey) {
-          btn.className = "px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm";
-        } else {
-          btn.className = "px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900";
+        if (btn) {
+          if (k === examKey) {
+            btn.className = "px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition";
+          } else {
+            btn.className = "px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition";
+          }
         }
       });
 
@@ -281,10 +286,10 @@
           <div>
             <span class="text-3xl">${sub.icon}</span>
             <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
-            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Available</p>
+            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Module(s) Available</p>
           </div>
           <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
-            View Tests →
+            Open Modules →
           </button>
         `;
         list.appendChild(div);
@@ -300,7 +305,7 @@
 
       document.getElementById('bcSubject').innerText = subject.name;
       document.getElementById('subjectHeading').innerText = subject.name;
-      document.getElementById('subjectSubHeading').innerText = `${exam.name} Preparation Series`;
+      document.getElementById('subjectSubHeading').innerText = `${exam.name} Series`;
 
       const testsGrid = document.getElementById('testsGrid');
       testsGrid.innerHTML = "";
@@ -309,7 +314,7 @@
         card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4";
         card.innerHTML = `
           <div>
-            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md">Mock Test</span>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md">Mock / PYQ</span>
             <h4 class="text-lg font-black text-slate-900 mt-2">${test.title}</h4>
             <p class="text-xs text-slate-500 mt-1">${test.desc}</p>
             <div class="flex gap-4 mt-3 text-xs text-slate-600 font-medium">
