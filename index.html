@@ -19,11 +19,10 @@
       background-attachment: fixed;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
-    /* Prevent black flash when entering fullscreen */
     :fullscreen, ::backdrop {
       background-color: #f8fafc !important;
     }
@@ -45,12 +44,13 @@
       </div>
     </div>
     
+    <!-- USER PROFILE & SIGN OUT BUTTONS -->
     <div class="flex items-center gap-2.5">
       <div id="userProfileBadge" class="hidden flex items-center gap-2 bg-indigo-50/80 border border-indigo-200/80 px-3 py-1.5 rounded-full shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
         <span id="navUserName" class="text-xs font-black text-indigo-900">Student</span>
       </div>
-      <button onclick="handleSignOut()" id="btnSignOut" class="hidden px-3.5 py-1.5 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-extrabold transition shadow-sm">
+      <button onclick="openSignOutModal()" id="btnSignOut" class="hidden px-3.5 py-1.5 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-extrabold transition shadow-sm">
         Sign Out 🚪
       </button>
       <button onclick="openAuthModal('signin')" id="btnHeaderSignIn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-black shadow-md transition">
@@ -311,7 +311,6 @@
               <button onclick="prevCbtQ()" id="btnPrev" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
                 Previous
               </button>
-              <!-- DYNAMIC BUTTON: SAVE & NEXT OR SAVE & SUBMIT -->
               <button onclick="handleSaveAndNextOrSubmit()" id="btnNextOrSubmit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-md shadow-indigo-200 transition">
                 Save & Next
               </button>
@@ -459,7 +458,30 @@
       </div>
     </div>
 
-    <!-- MODAL 5: WELCOME POPUP MODAL -->
+    <!-- MODAL 5: SIGN OUT CONFIRMATION MODAL (YES / NO) -->
+    <div id="signOutConfirmModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl p-7 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
+        <div class="w-16 h-16 rounded-3xl bg-rose-50 text-rose-600 border border-rose-200 flex items-center justify-center text-3xl mx-auto shadow-sm">
+          🚪
+        </div>
+        <h3 class="text-xl sm:text-2xl font-black text-slate-900">
+          Do you want to sign out Testchakra?
+        </h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-medium">
+          Aapka login session band ho jayega aur aap wapas Home (UPSC) portal par chale jayenge.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="cancelSignOutModal()" class="flex-1 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition">
+            No
+          </button>
+          <button onclick="confirmSignOutExecution()" class="flex-1 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 font-black text-xs text-white shadow-md shadow-rose-200 transition">
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 6: WELCOME POPUP MODAL -->
     <div id="welcomeSuccessModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
       <div class="bg-white rounded-3xl p-7 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
         <div class="w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-3xl mx-auto shadow-sm">
@@ -664,7 +686,7 @@
     </div>
   </div>
 
-  <script src="questions.js?v=testchakra_smooth_cbt_v3"></script>
+  <script src="questions.js?v=testchakra_signout_redirect_v1"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -699,7 +721,7 @@
       setupFullscreenChangeListener();
     }
 
-    // FULLSCREEN HANDLERS WITH SMOOTH BACKGROUND PRESERVATION
+    // FULLSCREEN HANDLERS
     function setupFullscreenChangeListener() {
       document.addEventListener("fullscreenchange", updateFullscreenButtonUI);
       document.addEventListener("webkitfullscreenchange", updateFullscreenButtonUI);
@@ -888,12 +910,29 @@
       }
     }
 
-    function handleSignOut() {
-      if (confirm("Kya aap sach me Sign Out karna chahte hain?")) {
-        localStorage.removeItem('testchakra_logged_user');
-        currentUser = null;
-        updateAuthUIForGuest();
-      }
+    // SIGN OUT MODAL LOGIC (DO YOU WANT TO SIGN OUT TESTCHAKRA? -> YES/NO)
+    function openSignOutModal() {
+      document.getElementById('signOutConfirmModal').classList.remove('hidden');
+    }
+
+    function cancelSignOutModal() {
+      document.getElementById('signOutConfirmModal').classList.add('hidden');
+    }
+
+    function confirmSignOutExecution() {
+      document.getElementById('signOutConfirmModal').classList.add('hidden');
+      localStorage.removeItem('testchakra_logged_user');
+      currentUser = null;
+      updateAuthUIForGuest();
+
+      // Exit fullscreen if active and reset views to Home (UPSC)
+      exitFullScreenMode();
+      clearInterval(timerTimer);
+      userAnswers = {};
+
+      // Automatically switch to UPSC CSE tab
+      setExam('upsc');
+      showView('subjects');
     }
 
     // WEBSITE EXIT CONFIRMATION MODAL LOGIC
@@ -1199,6 +1238,7 @@
       }
     }
 
+    // CHECK LOGIN BEFORE OPENING TEST INSTRUCTIONS
     function handleStartTestClick(testId) {
       if (!currentUser) {
         pendingTestIdToLaunch = testId;
@@ -1257,7 +1297,6 @@
 
     function beginTestExecution() {
       closeInstructionsModal();
-      // Smooth fullscreen entry without screen flash
       setTimeout(() => {
         enterFullScreenMode();
       }, 50);
@@ -1341,7 +1380,7 @@
 
       document.getElementById('btnPrev').disabled = (cbtIndex === 0);
 
-      // DYNAMIC ACTION BUTTON: LAST QUESTION = SAVE & SUBMIT
+      // LAST QUESTION: SAVE & SUBMIT
       const btnNextOrSubmit = document.getElementById('btnNextOrSubmit');
       if (cbtIndex === totalQ - 1) {
         btnNextOrSubmit.innerText = "Save & Submit 🚀";
@@ -1357,7 +1396,6 @@
     function handleSaveAndNextOrSubmit() {
       const totalQ = currentTest.data.length;
       if (cbtIndex === totalQ - 1) {
-        // Last question: open final submit dialog
         openSubmitModal();
       } else {
         nextCbtQ();
