@@ -38,9 +38,13 @@
     <span class="cursor-pointer text-indigo-600 font-bold hover:underline" onclick="showView('subjects')">Home</span>
     <span>/</span>
     <span id="bcExam" class="uppercase font-semibold text-slate-700">Exam</span>
+    <span id="bcYearWrap" class="hidden flex items-center gap-2">
+      <span>/</span>
+      <span id="bcYear" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="showView('caYears')">Year</span>
+    </span>
     <span id="bcSubjectWrap" class="hidden flex items-center gap-2">
       <span>/</span>
-      <span id="bcSubject" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="showView('subjectTests')">Subject</span>
+      <span id="bcSubject" class="cursor-pointer text-indigo-600 font-semibold hover:underline" onclick="handleBreadcrumbSubject()">Subject</span>
     </span>
     <span id="bcTestWrap" class="hidden flex items-center gap-2">
       <span>/</span>
@@ -51,7 +55,7 @@
   <!-- MAIN CONTAINER -->
   <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6">
 
-    <!-- 1. SUBJECTS VIEW -->
+    <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/80 rounded-2xl w-fit">
         <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition">
@@ -73,26 +77,73 @@
 
       <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 id="examTitle" class="text-xl font-extrabold text-slate-900">Civil Services Portal</h2>
-          <p id="examDesc" class="text-xs text-slate-500 mt-1">Select subject or month to proceed</p>
+          <h2 id="examTitle" class="text-xl font-extrabold text-slate-900">Portal</h2>
+          <p id="examDesc" class="text-xs text-slate-500 mt-1">Select an option to start practicing</p>
         </div>
         <span id="examPenaltyBadge" class="text-xs font-bold px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg">
-          Negative Penalty: 1/3rd
+          Negative Penalty
         </span>
       </div>
 
-      <div id="subjectsList" class="space-y-8"></div>
+      <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+
+    <!-- 1.1 CA YEAR SELECTION VIEW (Only for Current Affairs) -->
+    <div id="viewCaYears" class="hidden space-y-6">
+      <div class="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <button onclick="showView('subjects')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2">
+          ← Back
+        </button>
+        <h3 class="font-extrabold text-slate-800 text-sm sm:text-base">Current Affairs Selection</h3>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- 2026 CARD -->
+        <div onclick="openCaYear('2026')" class="bg-white p-8 rounded-3xl border-2 border-indigo-100 hover:border-indigo-600 shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col justify-between group">
+          <div>
+            <span class="text-4xl">🔥</span>
+            <h3 class="text-2xl font-black text-slate-900 mt-4 group-hover:text-indigo-600 transition">Current Affairs 2026</h3>
+            <p class="text-xs text-slate-500 mt-2">January 2026 to December 2026 Monthly Bank (Includes October Full Test)</p>
+          </div>
+          <button class="mt-6 w-full py-3 bg-indigo-600 text-white font-bold text-xs rounded-xl shadow group-hover:bg-indigo-700 transition">
+            Open 2026 Months →
+          </button>
+        </div>
+
+        <!-- 2025 CARD -->
+        <div onclick="openCaYear('2025')" class="bg-white p-8 rounded-3xl border-2 border-slate-100 hover:border-indigo-600 shadow-sm hover:shadow-lg transition cursor-pointer flex flex-col justify-between group">
+          <div>
+            <span class="text-4xl">📚</span>
+            <h3 class="text-2xl font-black text-slate-900 mt-4 group-hover:text-indigo-600 transition">Current Affairs 2025</h3>
+            <p class="text-xs text-slate-500 mt-2">January 2025 to December 2025 Annual Archive</p>
+          </div>
+          <button class="mt-6 w-full py-3 bg-slate-100 text-slate-700 font-bold text-xs rounded-xl hover:bg-indigo-50 hover:text-indigo-700 transition">
+            Open 2025 Months →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.2 CA MONTHS LIST VIEW -->
+    <div id="viewCaMonths" class="hidden space-y-6">
+      <div class="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <button onclick="showView('caYears')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2">
+          ← Back
+        </button>
+        <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Current Affairs Months</h3>
+      </div>
+      <div id="caMonthsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
     <!-- 2. SUBJECT DETAIL & TESTS LIST -->
     <div id="viewSubjectTests" class="hidden space-y-6">
-      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
-        <div>
-          <button onclick="showView('subjects')" class="text-xs font-bold text-indigo-600 hover:underline mb-2 block">
-            ← Back to Categories
-          </button>
-          <h2 id="subjectHeading" class="text-2xl font-black text-slate-900">Subject Name</h2>
-          <p id="subjectSubHeading" class="text-xs text-slate-500 mt-1">Available Mock Test Modules</p>
+      <div class="flex items-center justify-between bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm">
+        <button onclick="handleBackFromSubjectTests()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2">
+          ← Back
+        </button>
+        <div class="text-right">
+          <h2 id="subjectHeading" class="text-lg sm:text-xl font-black text-slate-900">Subject Name</h2>
+          <p id="subjectSubHeading" class="text-xs text-slate-500">Test Modules</p>
         </div>
       </div>
 
@@ -101,13 +152,13 @@
 
     <!-- 3. EXPLORE ALL QUESTIONS WITH SOLUTIONS -->
     <div id="viewExplore" class="hidden space-y-6">
-      <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
+      <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap items-center justify-between gap-4">
         <div>
-          <button onclick="showView('subjectTests')" class="text-xs font-bold text-indigo-600 hover:underline mb-2 block">
-            ← Back to Tests
+          <button onclick="showView('subjectTests')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 mb-3">
+            ← Back
           </button>
-          <h2 id="exploreTitle" class="text-2xl font-black text-slate-900">Test Explorer</h2>
-          <p id="exploreDesc" class="text-xs text-slate-500 mt-1">Questions with verified official solutions & explanations</p>
+          <h2 id="exploreTitle" class="text-xl sm:text-2xl font-black text-slate-900">Test Explorer</h2>
+          <p id="exploreDesc" class="text-xs text-slate-500 mt-1">Study mode with detailed solutions</p>
         </div>
         <button onclick="startCbt()" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs shadow-md">
           🚀 Take Timed CBT Exam
@@ -127,7 +178,7 @@
               <span class="px-3 py-1 rounded-md bg-indigo-100 text-indigo-800 text-xs font-black">
                 Q. <span id="cbtCurrentNum">1</span> / <span id="cbtTotalNum">0</span>
               </span>
-              <span id="cbtMarkingScheme" class="text-xs font-semibold text-slate-500">Marks: +1.00 | Negative: -0.33</span>
+              <span id="cbtMarkingScheme" class="text-xs font-semibold text-slate-500">Marks: +1.00 | Penalty: -0.33</span>
             </div>
             
             <p id="cbtQuestionPrompt" class="text-sm sm:text-base font-bold text-slate-900 whitespace-pre-line leading-relaxed mb-6"></p>
@@ -231,18 +282,19 @@
         </div>
       </div>
 
-      <button onclick="showView('subjectTests')" class="w-full py-3 bg-white border border-slate-300 text-slate-800 font-bold text-xs rounded-xl hover:bg-slate-50 shadow-sm">
-        ← Back to Tests
+      <button onclick="handleBackFromSubjectTests()" class="w-full py-3 bg-white border border-slate-300 text-slate-800 font-bold text-xs sm:text-sm rounded-xl hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2">
+        ← Back
       </button>
     </div>
 
   </main>
 
-  <script src="questions.js?v=left_align_ca2025_2026"></script>
+  <script src="questions.js?v=nav_comingsoon_oct2026"></script>
 
   <!-- CONTROLLER -->
   <script>
-    let currentExamKey = 'ca';
+    let currentExamKey = 'upsc';
+    let currentCaYear = null;
     let currentSubjectId = null;
     let currentTest = null;
     let cbtIndex = 0;
@@ -252,16 +304,27 @@
     let timerTimer = null;
 
     function init() {
-      setExam('ca');
+      setExam('upsc');
     }
 
     function showView(viewId) {
-      ['viewSubjects', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
+      ['viewSubjects', 'viewCaYears', 'viewCaMonths', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
 
       if (viewId === 'subjects') {
         document.getElementById('viewSubjects').classList.remove('hidden');
+        document.getElementById('bcYearWrap').classList.add('hidden');
+        document.getElementById('bcSubjectWrap').classList.add('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
+      } else if (viewId === 'caYears') {
+        document.getElementById('viewCaYears').classList.remove('hidden');
+        document.getElementById('bcYearWrap').classList.add('hidden');
+        document.getElementById('bcSubjectWrap').classList.add('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
+      } else if (viewId === 'caMonths') {
+        document.getElementById('viewCaMonths').classList.remove('hidden');
+        document.getElementById('bcYearWrap').classList.remove('hidden');
         document.getElementById('bcSubjectWrap').classList.add('hidden');
         document.getElementById('bcTestWrap').classList.add('hidden');
       } else if (viewId === 'subjectTests') {
@@ -299,126 +362,149 @@
       document.getElementById('examDesc').innerText = exam.desc;
       document.getElementById('examPenaltyBadge').innerText = exam.penaltyText;
 
-      const container = document.getElementById('subjectsList');
-      container.innerHTML = "";
-
-      // Rendering groups if available (e.g. Current Affairs 2026 and 2025)
-      if (exam.groups) {
-        exam.groups.forEach(grp => {
-          const section = document.createElement('div');
-          section.className = "space-y-4";
-          section.innerHTML = `
-            <div class="border-b border-slate-200 pb-2 flex items-center justify-between">
-              <h3 class="text-lg font-black text-slate-800 flex items-center gap-2">
-                <span>${grp.icon}</span> ${grp.groupTitle}
-              </h3>
-              <span class="text-xs font-bold text-slate-500">${grp.subjects.length} Months</span>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="grp-${grp.groupId}"></div>
-          `;
-          container.appendChild(section);
-          
-          const grid = section.querySelector(`#grp-${grp.groupId}`);
-          grp.subjects.forEach(sub => {
-            grid.appendChild(createSubjectCard(sub));
-          });
-        });
-      } else {
-        const grid = document.createElement('div');
-        grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5";
-        exam.subjects.forEach(sub => {
-          grid.appendChild(createSubjectCard(sub));
-        });
-        container.appendChild(grid);
+      // Special handling for Current Affairs tab -> Open CA Years view directly
+      if (examKey === 'ca') {
+        showView('caYears');
+        return;
       }
+
+      const list = document.getElementById('subjectsList');
+      list.innerHTML = "";
+      exam.subjects.forEach(sub => {
+        const div = document.createElement('div');
+        div.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition cursor-pointer flex flex-col justify-between";
+        div.onclick = () => openSubject(sub.id);
+        div.innerHTML = `
+          <div>
+            <span class="text-3xl">${sub.icon}</span>
+            <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
+            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Ready</p>
+          </div>
+          <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
+            View Tests →
+          </button>
+        `;
+        list.appendChild(div);
+      });
 
       showView('subjects');
     }
 
-    function createSubjectCard(sub) {
-      const div = document.createElement('div');
-      div.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition cursor-pointer flex flex-col justify-between";
-      div.onclick = () => openSubject(sub.id);
-      div.innerHTML = `
-        <div>
-          <span class="text-3xl">${sub.icon}</span>
-          <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
-          <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Ready</p>
-        </div>
-        <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
-          View Tests →
-        </button>
-      `;
-      return div;
+    // CURRENT AFFAIRS YEAR SELECTION (2025 vs 2026)
+    function openCaYear(year) {
+      currentCaYear = year;
+      document.getElementById('bcYear').innerText = `CA ${year}`;
+      document.getElementById('caMonthsHeading').innerText = `Current Affairs ${year} – Monthly Bank`;
+
+      const grid = document.getElementById('caMonthsGrid');
+      grid.innerHTML = "";
+
+      const subjects = EXAMS_DATA.ca.years[year];
+      subjects.forEach(sub => {
+        const div = document.createElement('div');
+        div.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition cursor-pointer flex flex-col justify-between";
+        div.onclick = () => openSubject(sub.id);
+        div.innerHTML = `
+          <div>
+            <span class="text-3xl">${sub.icon}</span>
+            <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
+            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Available</p>
+          </div>
+          <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
+            Open Month →
+          </button>
+        `;
+        grid.appendChild(div);
+      });
+
+      showView('caMonths');
     }
 
     function openSubject(subjectId) {
       currentSubjectId = subjectId;
-      const exam = EXAMS_DATA[currentExamKey];
-      
       let subject = null;
-      if (exam.groups) {
-        for (let grp of exam.groups) {
-          subject = grp.subjects.find(s => s.id === subjectId);
-          if (subject) break;
-        }
+
+      if (currentExamKey === 'ca') {
+        subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === subjectId);
       } else {
-        subject = exam.subjects.find(s => s.id === subjectId);
+        subject = EXAMS_DATA[currentExamKey].subjects.find(s => s.id === subjectId);
       }
 
       document.getElementById('bcSubject').innerText = subject.name;
       document.getElementById('subjectHeading').innerText = subject.name;
-      document.getElementById('subjectSubHeading').innerText = `${exam.name} Series`;
+      document.getElementById('subjectSubHeading').innerText = `${EXAMS_DATA[currentExamKey].name} Module`;
 
       const testsGrid = document.getElementById('testsGrid');
       testsGrid.innerHTML = "";
-      subject.tests.forEach((test, idx) => {
-        // ALWAYS LEFT-SIDE TEST NUMBER FORMAT: e.g. "Test 01: [Title]"
-        const padIdx = (idx + 1) < 10 ? `0${idx + 1}` : `${idx + 1}`;
-        let cleanTitle = test.title;
-        if (cleanTitle.toLowerCase().startsWith("test")) {
-          // If already has Test, preserve standard format
-        } else {
-          cleanTitle = `Test ${padIdx}: ${cleanTitle}`;
-        }
 
-        const card = document.createElement('div');
-        card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4";
-        card.innerHTML = `
-          <div>
-            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md">Mock Test</span>
-            <h4 class="text-lg font-black text-slate-900 mt-2">${cleanTitle}</h4>
-            <p class="text-xs text-slate-500 mt-1">${test.desc}</p>
-            <div class="flex gap-4 mt-3 text-xs text-slate-600 font-medium">
-              <span>⏱️ ${test.timeMins} Mins</span>
-              <span>📝 ${test.data.length} Questions</span>
-            </div>
-          </div>
-          <div class="flex gap-2 pt-2 border-t border-slate-100">
-            <button onclick="openExplorer('${test.id}')" class="flex-1 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50">
-              Study Solutions
-            </button>
-            <button onclick="launchCbtDirect('${test.id}')" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow">
-              Take CBT Exam
-            </button>
+      // IF NO TESTS ARE AVAILABLE -> SHOW "Coming Soon 😍"
+      if (!subject.tests || subject.tests.length === 0) {
+        testsGrid.className = "col-span-full";
+        testsGrid.innerHTML = `
+          <div class="bg-white p-10 sm:p-14 rounded-3xl border border-slate-200 shadow-sm text-center max-w-lg mx-auto space-y-3">
+            <span class="text-5xl">😍</span>
+            <h3 class="text-2xl font-black text-slate-900">Coming Soon 😍</h3>
+            <p class="text-xs text-slate-500 leading-relaxed">
+              Is section ke tests abhi upload kiye ja rahe hain. Jald hi naye questions yahan live ho jayenge!
+            </p>
           </div>
         `;
-        testsGrid.appendChild(card);
-      });
+      } else {
+        testsGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-5";
+        subject.tests.forEach((test, idx) => {
+          const padIdx = (idx + 1) < 10 ? `0${idx + 1}` : `${idx + 1}`;
+          let cleanTitle = test.title;
+          if (!cleanTitle.toLowerCase().startsWith("test")) {
+            cleanTitle = `Test ${padIdx}: ${cleanTitle}`;
+          }
+
+          const card = document.createElement('div');
+          card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4";
+          card.innerHTML = `
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md">Mock Test</span>
+              <h4 class="text-lg font-black text-slate-900 mt-2">${cleanTitle}</h4>
+              <p class="text-xs text-slate-500 mt-1">${test.desc}</p>
+              <div class="flex gap-4 mt-3 text-xs text-slate-600 font-medium">
+                <span>⏱️ ${test.timeMins} Mins</span>
+                <span>📝 ${test.data.length} Questions</span>
+              </div>
+            </div>
+            <div class="flex gap-2 pt-2 border-t border-slate-100">
+              <button onclick="openExplorer('${test.id}')" class="flex-1 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50">
+                Study Solutions
+              </button>
+              <button onclick="launchCbtDirect('${test.id}')" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow">
+                Take CBT Exam
+              </button>
+            </div>
+          `;
+          testsGrid.appendChild(card);
+        });
+      }
 
       showView('subjectTests');
     }
 
-    function openExplorer(testId) {
-      const exam = EXAMS_DATA[currentExamKey];
-      let subject = null;
-      if (exam.groups) {
-        for (let grp of exam.groups) {
-          subject = grp.subjects.find(s => s.id === currentSubjectId);
-          if (subject) break;
-        }
+    // BACK NAVIGATION HANDLERS
+    function handleBackFromSubjectTests() {
+      if (currentExamKey === 'ca') {
+        showView('caMonths');
       } else {
-        subject = exam.subjects.find(s => s.id === currentSubjectId);
+        showView('subjects');
+      }
+    }
+
+    function handleBreadcrumbSubject() {
+      showView('subjectTests');
+    }
+
+    function openExplorer(testId) {
+      let subject = null;
+      if (currentExamKey === 'ca') {
+        subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
+      } else {
+        subject = EXAMS_DATA[currentExamKey].subjects.find(s => s.id === currentSubjectId);
       }
 
       currentTest = subject.tests.find(t => t.id === testId);
@@ -456,15 +542,11 @@
     }
 
     function launchCbtDirect(testId) {
-      const exam = EXAMS_DATA[currentExamKey];
       let subject = null;
-      if (exam.groups) {
-        for (let grp of exam.groups) {
-          subject = grp.subjects.find(s => s.id === currentSubjectId);
-          if (subject) break;
-        }
+      if (currentExamKey === 'ca') {
+        subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
       } else {
-        subject = exam.subjects.find(s => s.id === currentSubjectId);
+        subject = EXAMS_DATA[currentExamKey].subjects.find(s => s.id === currentSubjectId);
       }
 
       currentTest = subject.tests.find(t => t.id === testId);
@@ -566,7 +648,6 @@
       });
     }
 
-    // MODAL
     function openSubmitModal() {
       document.getElementById('submitModal').classList.remove('hidden');
     }
