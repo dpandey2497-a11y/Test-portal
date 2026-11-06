@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TestChakra | Modern Civil Services & State Exam Simulator</title>
+  <title>TestChakra | Modern Civil Services & Govt Exam Simulator</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
       background-attachment: fixed;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -73,27 +73,27 @@
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
       
-      <!-- EXAM TABS (Ab SSC Exams aur Bihar SI shamil hai) -->
+      <!-- EXAM TABS (WITH SSC & BIHAR SI ADDED) -->
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
-        <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">
+        <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">
           🏛️ UPSC CSE
         </button>
-        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           🎯 BPSC
         </button>
-        <button onclick="setExam('ugc')" id="tab-ugc" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+        <button onclick="setExam('ugc')" id="tab-ugc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           🎓 UGC NET / JRF
         </button>
-        <button onclick="setExam('ssc')" id="tab-ssc" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+        <button onclick="setExam('ssc')" id="tab-ssc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           ⚡ SSC Exams
         </button>
-        <button onclick="setExam('biharsi')" id="tab-biharsi" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          👮 Bihar SI
+        <button onclick="setExam('biharsi')" id="tab-biharsi" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          👮 Bihar SI (Daroga)
         </button>
-        <button onclick="setExam('ca')" id="tab-ca" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+        <button onclick="setExam('ca')" id="tab-ca" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           🔥 Current Affairs
         </button>
-        <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+        <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
           📚 PYQ Archives
         </button>
       </div>
@@ -115,11 +115,57 @@
         </div>
       </div>
 
-      <!-- SUBJECTS / CA SELECTION CONTAINER -->
+      <!-- SUBJECTS GRID -->
       <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+
+    <!-- 1.1 CA YEAR SELECTION VIEW (NOW HAS VIBRANT GRADIENT HERO BANNER) -->
+    <div id="viewCaYears" class="hidden space-y-6">
       
-      <!-- CURRENT AFFAIRS YEAR CARDS (Rendered inside main view with colorful banner) -->
-      <div id="caYearCards" class="hidden grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <!-- EXAM TABS IN CA VIEW -->
+      <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
+        <button onclick="setExam('upsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          🏛️ UPSC CSE
+        </button>
+        <button onclick="setExam('bpsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          🎯 BPSC
+        </button>
+        <button onclick="setExam('ugc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          🎓 UGC NET / JRF
+        </button>
+        <button onclick="setExam('ssc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          ⚡ SSC Exams
+        </button>
+        <button onclick="setExam('biharsi')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          👮 Bihar SI (Daroga)
+        </button>
+        <button onclick="setExam('ca')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">
+          🔥 Current Affairs
+        </button>
+        <button onclick="setExam('pyq')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
+          📚 PYQ Archives
+        </button>
+      </div>
+
+      <!-- VIBRANT CURRENT AFFAIRS HERO BANNER -->
+      <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-rose-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
+        <div class="absolute -right-12 -top-12 w-48 h-48 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/30 text-rose-300 text-xs font-bold mb-2">
+            <span>🔥 Monthly & Annual Roundups</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white uppercase">CURRENT AFFAIRS</h2>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">National, International & State Current Affairs Bank for all competitive exams.</p>
+        </div>
+        <div class="relative z-10">
+          <span class="text-xs font-bold px-4 py-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-xl shadow-inner">
+            Standard 1/3rd Marking
+          </span>
+        </div>
+      </div>
+
+      <!-- YEAR CARDS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <!-- 2026 CARD -->
         <div onclick="openCaYear('2026')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition"></div>
@@ -150,13 +196,12 @@
           </button>
         </div>
       </div>
-
     </div>
 
-    <!-- 1.1 CA MONTHS LIST VIEW -->
+    <!-- 1.2 CA MONTHS LIST VIEW -->
     <div id="viewCaMonths" class="hidden space-y-6">
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
-        <button onclick="setExam('ca')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
+        <button onclick="showView('caYears')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
           ← Back
         </button>
         <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Monthly Modules</h3>
@@ -289,6 +334,7 @@
         </div>
       </div>
 
+      <!-- METRICS GRID -->
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
         <div class="glass-card p-4 rounded-2xl border border-emerald-100 shadow-sm text-center">
           <p class="text-xs font-bold text-emerald-600">Correct</p>
@@ -319,7 +365,7 @@
 
   </main>
 
-  <script src="questions.js?v=testchakra_ssc_biharsi_v2"></script>
+  <script src="questions.js?v=testchakra_ssc_biharsi"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -334,12 +380,12 @@
     let timerTimer = null;
 
     const COLOR_CLASSES = [
-      { bg: "bg-indigo-50/70", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
-      { bg: "bg-rose-50/70", border: "border-rose-100", hover: "hover:border-rose-500", text: "text-rose-700", btn: "bg-rose-50 text-rose-700 hover:bg-rose-100" },
-      { bg: "bg-amber-50/70", border: "border-amber-100", hover: "hover:border-amber-500", text: "text-amber-700", btn: "bg-amber-50 text-amber-700 hover:bg-amber-100" },
-      { bg: "bg-emerald-50/70", border: "border-emerald-100", hover: "hover:border-emerald-500", text: "text-emerald-700", btn: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100" },
-      { bg: "bg-sky-50/70", border: "border-sky-100", hover: "hover:border-sky-500", text: "text-sky-700", btn: "bg-sky-50 text-sky-700 hover:bg-sky-100" },
-      { bg: "bg-purple-50/70", border: "border-purple-100", hover: "hover:border-purple-500", text: "text-purple-700", btn: "bg-purple-50 text-purple-700 hover:bg-purple-100" }
+      { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
+      { bg: "bg-rose-50/60", border: "border-rose-100", hover: "hover:border-rose-500", text: "text-rose-700", btn: "bg-rose-50 text-rose-700 hover:bg-rose-100" },
+      { bg: "bg-amber-50/60", border: "border-amber-100", hover: "hover:border-amber-500", text: "text-amber-700", btn: "bg-amber-50 text-amber-700 hover:bg-amber-100" },
+      { bg: "bg-emerald-50/60", border: "border-emerald-100", hover: "hover:border-emerald-500", text: "text-emerald-700", btn: "bg-emerald-50 text-emerald-700 hover:bg-emerald-100" },
+      { bg: "bg-sky-50/60", border: "border-sky-100", hover: "hover:border-sky-500", text: "text-sky-700", btn: "bg-sky-50 text-sky-700 hover:bg-sky-100" },
+      { bg: "bg-purple-50/60", border: "border-purple-100", hover: "hover:border-purple-500", text: "text-purple-700", btn: "bg-purple-50 text-purple-700 hover:bg-purple-100" }
     ];
 
     function init() {
@@ -347,12 +393,17 @@
     }
 
     function showView(viewId) {
-      ['viewSubjects', 'viewCaMonths', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
+      ['viewSubjects', 'viewCaYears', 'viewCaMonths', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
 
       if (viewId === 'subjects') {
         document.getElementById('viewSubjects').classList.remove('hidden');
+        document.getElementById('bcYearWrap').classList.add('hidden');
+        document.getElementById('bcSubjectWrap').classList.add('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
+      } else if (viewId === 'caYears') {
+        document.getElementById('viewCaYears').classList.remove('hidden');
         document.getElementById('bcYearWrap').classList.add('hidden');
         document.getElementById('bcSubjectWrap').classList.add('hidden');
         document.getElementById('bcTestWrap').classList.add('hidden');
@@ -380,14 +431,13 @@
       currentExamKey = examKey;
       const exam = EXAMS_DATA[examKey];
 
-      // Tab highlighting for all 7 exam categories
       ['upsc', 'bpsc', 'ugc', 'ssc', 'biharsi', 'ca', 'pyq'].forEach(k => {
         const btn = document.getElementById('tab-' + k);
         if (btn) {
           if (k === examKey) {
-            btn.className = "px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all";
+            btn.className = "px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all";
           } else {
-            btn.className = "px-4 sm:px-4.5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all";
+            btn.className = "px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all";
           }
         }
       });
@@ -397,22 +447,13 @@
       document.getElementById('examDesc').innerText = exam.desc;
       document.getElementById('examPenaltyBadge').innerText = exam.penaltyText;
 
-      const subjectsList = document.getElementById('subjectsList');
-      const caYearCards = document.getElementById('caYearCards');
-
-      // CURRENT AFFAIRS: Keep colorful hero heading, hide subjectsList, show CA Year cards!
       if (examKey === 'ca') {
-        subjectsList.classList.add('hidden');
-        caYearCards.classList.remove('hidden');
-        showView('subjects');
+        showView('caYears');
         return;
       }
 
-      // OTHER EXAMS: show subjectsList, hide caYearCards
-      caYearCards.classList.add('hidden');
-      subjectsList.classList.remove('hidden');
-      subjectsList.innerHTML = "";
-
+      const list = document.getElementById('subjectsList');
+      list.innerHTML = "";
       exam.subjects.forEach((sub, i) => {
         const theme = COLOR_CLASSES[i % COLOR_CLASSES.length];
         const div = document.createElement('div');
@@ -430,7 +471,7 @@
             View Tests →
           </button>
         `;
-        subjectsList.appendChild(div);
+        list.appendChild(div);
       });
 
       showView('subjects');
@@ -485,7 +526,6 @@
       const testsGrid = document.getElementById('testsGrid');
       testsGrid.innerHTML = "";
 
-      // IF NO TESTS ARE AVAILABLE -> AESTHETIC "Coming Soon 😍"
       if (!subject.tests || subject.tests.length === 0) {
         testsGrid.className = "col-span-full";
         testsGrid.innerHTML = `
