@@ -334,7 +334,7 @@
       </div>
     </div>
 
-    <!-- MODAL 2: LEAVE TEST OPTIONS (SAVE & EXIT, EXIT, CONTINUE) -->
+    <!-- MODAL 2: LEAVE TEST OPTIONS -->
     <div id="leaveModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
         <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center text-2xl mx-auto border border-rose-200">
@@ -347,15 +347,12 @@
           Aap test ko bich me chhod rahe hain. Kripya apna vikalp chunein:
         </p>
         <div class="flex flex-col gap-2.5 pt-2">
-          <!-- Save & Exit -->
           <button onclick="confirmSubmitTest()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-black text-xs text-white shadow-md transition">
             💾 Save & Exit (Submit Responses)
           </button>
-          <!-- Exit without Save -->
           <button onclick="exitTestWithoutSaving()" class="w-full py-3 rounded-xl bg-rose-50 border border-rose-200 hover:bg-rose-100 font-bold text-xs text-rose-700 transition">
             ⚠️ Exit (Discard Test)
           </button>
-          <!-- Continue Test -->
           <button onclick="closeLeaveModal()" class="w-full py-2.5 rounded-xl border border-slate-300 font-bold text-xs text-slate-600 hover:bg-slate-50 transition">
             Continue Test
           </button>
@@ -432,7 +429,8 @@
 
   </main>
 
-  <script src="questions.js?v=testchakra_cbt_enhanced_v2"></script>
+  <!-- UPDATED SCRIPT TAG WITH DIRECT CACHE BUSTING -->
+  <script src="questions.js?v=testchakra_full_100q_ready"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -445,7 +443,7 @@
     let initialTotalSeconds = 0;
     let timerSeconds = 0;
     let timerTimer = null;
-    let currentLang = 'hi'; // 'hi' or 'en'
+    let currentLang = 'hi';
 
     const COLOR_CLASSES = [
       { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
@@ -658,7 +656,6 @@
       showView('subjectTests');
     }
 
-    // INSTRUCTIONS MODAL HANDLERS
     function openInstructionsModal(testId) {
       let subject = null;
       if (currentExamKey === 'ca') {
@@ -725,7 +722,6 @@
       }
     }
 
-    // LANGUAGE TOGGLE FUNCTIONALITY
     function toggleExamLanguage() {
       currentLang = (currentLang === 'hi') ? 'en' : 'hi';
       updateLangButtonLabel();
@@ -743,7 +739,6 @@
       const q = currentTest.data[cbtIndex];
       document.getElementById('cbtCurrentNum').innerText = cbtIndex + 1;
 
-      // Select language version if available
       const questionText = (currentLang === 'en' && q.q_en) ? q.q_en : q.q;
       const optionsArray = (currentLang === 'en' && q.opts_en) ? q.opts_en : q.opts;
 
@@ -808,7 +803,6 @@
       });
     }
 
-    // LEAVE TEST MODAL HANDLERS
     function openLeaveModal() {
       document.getElementById('leaveModal').classList.remove('hidden');
     }
@@ -824,7 +818,6 @@
       showView('subjectTests');
     }
 
-    // SUBMIT MODAL HANDLERS
     function openSubmitModal() {
       document.getElementById('submitModal').classList.remove('hidden');
     }
