@@ -41,10 +41,18 @@
       </div>
     </div>
     
-    <div class="flex items-center gap-2">
-      <span class="text-xs font-bold px-3.5 py-1.5 bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-700 border border-indigo-200/80 rounded-full shadow-sm">
-        ✨ CBT Engine Live
-      </span>
+    <!-- USER PROFILE & SIGN OUT BUTTONS -->
+    <div class="flex items-center gap-2.5">
+      <div id="userProfileBadge" class="hidden flex items-center gap-2 bg-indigo-50/80 border border-indigo-200/80 px-3 py-1.5 rounded-full shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span id="navUserName" class="text-xs font-black text-indigo-900">Student</span>
+      </div>
+      <button onclick="handleSignOut()" id="btnSignOut" class="hidden px-3.5 py-1.5 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-extrabold transition shadow-sm">
+        Sign Out 🚪
+      </button>
+      <button onclick="openAuthModal('signin')" id="btnHeaderSignIn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-black shadow-md transition">
+        Sign In 🔐
+      </button>
     </div>
   </header>
 
@@ -67,8 +75,8 @@
     </span>
   </nav>
 
-  <!-- MAIN CONTAINER -->
-  <main class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+  <!-- MAIN CONTAINER (LOCKED UNTIL USER SIGNS IN) -->
+  <main id="portalMainContent" class="flex-1 max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8">
 
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
@@ -103,10 +111,8 @@
       <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
-    <!-- 1.1 CURRENT AFFAIRS HUB (WITH BACK BUTTON) -->
+    <!-- 1.1 CURRENT AFFAIRS HUB -->
     <div id="viewCaHub" class="hidden space-y-6">
-      
-      <!-- Top Bar with Back Button in CA Tab -->
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
         <button onclick="showView('subjects')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
           ← Back
@@ -159,7 +165,7 @@
       </div>
     </div>
 
-    <!-- 1.2 DAILY CA VIEW (PAST 7 DAYS & DATE PICKER) -->
+    <!-- 1.2 DAILY CA VIEW -->
     <div id="viewCaDaily" class="hidden space-y-6">
       <div class="flex flex-wrap items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm gap-4">
         <button onclick="showView('caHub')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
@@ -182,7 +188,7 @@
       <div id="caDailyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
-    <!-- 1.3 MONTHLY CA YEARS (2026 & 2025) -->
+    <!-- 1.3 MONTHLY CA YEARS -->
     <div id="viewCaYears" class="hidden space-y-6">
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
         <button onclick="showView('caHub')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
@@ -220,7 +226,7 @@
     <div id="viewCaMonths" class="hidden space-y-6">
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
         <button onclick="showView('caYears')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
-          ← Back
+          ← Back to Years
         </button>
         <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Monthly Modules</h3>
       </div>
@@ -495,7 +501,105 @@
 
   </main>
 
-  <script src="questions.js?v=testchakra_exit_modal_v1"></script>
+  <!-- AUTHENTICATION MODAL (SIGN IN / CREATE ACCOUNT) -->
+  <div id="authModal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 text-left my-8 animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Header -->
+      <div class="text-center pb-4 border-b border-slate-100">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white text-2xl mx-auto shadow-md">
+          🎯
+        </div>
+        <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3 tracking-tight">Welcome to TestChakra</h3>
+        <p class="text-xs text-slate-500 font-medium mt-1">Pehle Sign In ya Create Account karein portal access karne ke liye.</p>
+        
+        <!-- Tab Switcher -->
+        <div class="flex p-1 bg-slate-100 rounded-xl mt-4 border border-slate-200/80">
+          <button onclick="switchAuthTab('signin')" id="tabBtnSignIn" class="flex-1 py-2 rounded-lg font-bold text-xs bg-white text-indigo-700 shadow-sm transition">
+            Sign In
+          </button>
+          <button onclick="switchAuthTab('signup')" id="tabBtnSignUp" class="flex-1 py-2 rounded-lg font-bold text-xs text-slate-600 hover:text-slate-900 transition">
+            Create Account
+          </button>
+        </div>
+      </div>
+
+      <!-- FORM 1: SIGN IN -->
+      <form id="formSignIn" onsubmit="executeSignIn(event)" class="space-y-4 pt-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Email ID</label>
+          <input type="email" id="loginEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+          <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+        <div id="loginErrorMsg" class="hidden text-xs font-bold text-rose-600 bg-rose-50 p-2.5 rounded-xl border border-rose-200"></div>
+        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-indigo-200 transition">
+          Sign In to TestChakra 🚀
+        </button>
+        <p class="text-center text-xs text-slate-500 font-medium">
+          Account nahi hai? <a href="javascript:void(0)" onclick="switchAuthTab('signup')" class="text-indigo-600 font-bold hover:underline">Create Account</a>
+        </p>
+      </form>
+
+      <!-- FORM 2: CREATE ACCOUNT -->
+      <form id="formSignUp" onsubmit="executeSignUp(event)" class="hidden space-y-3.5 pt-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Full Name</label>
+          <input type="text" id="regName" required placeholder="Dilip Pandey" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Gender</label>
+            <select id="regGender" required class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition bg-white">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Mobile No</label>
+            <input type="tel" id="regMobile" required placeholder="9876543210" pattern="[0-9]{10}" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Email ID</label>
+          <input type="email" id="regEmail" required placeholder="name@example.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Create Password</label>
+          <input type="password" id="regPassword" required minlength="6" placeholder="At least 6 characters" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">City</label>
+            <input type="text" id="regCity" required placeholder="Patna / Ara" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">State</label>
+            <input type="text" id="regState" required placeholder="Bihar" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-xs text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500 transition">
+          </div>
+        </div>
+
+        <div id="signUpErrorMsg" class="hidden text-xs font-bold text-rose-600 bg-rose-50 p-2.5 rounded-xl border border-rose-200"></div>
+
+        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-emerald-200 transition">
+          Create Account & Sign In ✨
+        </button>
+        <p class="text-center text-xs text-slate-500 font-medium">
+          Already registered? <a href="javascript:void(0)" onclick="switchAuthTab('signin')" class="text-indigo-600 font-bold hover:underline">Sign In</a>
+        </p>
+      </form>
+
+    </div>
+  </div>
+
+  <script src="questions.js?v=testchakra_auth_v1"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -511,6 +615,7 @@
     let currentLang = 'hi';
     let currentCaMode = 'monthly';
     let isExitingAllowed = false;
+    let currentUser = null;
 
     const COLOR_CLASSES = [
       { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
@@ -522,24 +627,144 @@
     ];
 
     function init() {
+      checkAuthSession();
       setExam('upsc');
       setupHistoryNavigationGuard();
     }
 
+    // AUTHENTICATION SYSTEM (LOCAL STORAGE BASED)
+    function checkAuthSession() {
+      const stored = localStorage.getItem('testchakra_logged_user');
+      if (stored) {
+        try {
+          currentUser = JSON.parse(stored);
+          onUserLoggedIn(currentUser);
+        } catch (e) {
+          currentUser = null;
+          showAuthGate();
+        }
+      } else {
+        showAuthGate();
+      }
+    }
+
+    function showAuthGate() {
+      document.getElementById('userProfileBadge').classList.add('hidden');
+      document.getElementById('btnSignOut').classList.add('hidden');
+      document.getElementById('btnHeaderSignIn').classList.remove('hidden');
+      openAuthModal('signin');
+    }
+
+    function onUserLoggedIn(user) {
+      document.getElementById('navUserName').innerText = user.name || 'Student';
+      document.getElementById('userProfileBadge').classList.remove('hidden');
+      document.getElementById('btnSignOut').classList.remove('hidden');
+      document.getElementById('btnHeaderSignIn').classList.add('hidden');
+      closeAuthModal();
+    }
+
+    function openAuthModal(mode) {
+      document.getElementById('authModal').classList.remove('hidden');
+      switchAuthTab(mode || 'signin');
+    }
+
+    function closeAuthModal() {
+      if (currentUser) {
+        document.getElementById('authModal').classList.add('hidden');
+      }
+    }
+
+    function switchAuthTab(tab) {
+      const formIn = document.getElementById('formSignIn');
+      const formUp = document.getElementById('formSignUp');
+      const btnIn = document.getElementById('tabBtnSignIn');
+      const btnUp = document.getElementById('tabBtnSignUp');
+      document.getElementById('loginErrorMsg').classList.add('hidden');
+      document.getElementById('signUpErrorMsg').classList.add('hidden');
+
+      if (tab === 'signin') {
+        formIn.classList.remove('hidden');
+        formUp.classList.add('hidden');
+        btnIn.className = "flex-1 py-2 rounded-lg font-bold text-xs bg-white text-indigo-700 shadow-sm transition";
+        btnUp.className = "flex-1 py-2 rounded-lg font-bold text-xs text-slate-600 hover:text-slate-900 transition";
+      } else {
+        formIn.classList.add('hidden');
+        formUp.classList.remove('hidden');
+        btnUp.className = "flex-1 py-2 rounded-lg font-bold text-xs bg-white text-indigo-700 shadow-sm transition";
+        btnIn.className = "flex-1 py-2 rounded-lg font-bold text-xs text-slate-600 hover:text-slate-900 transition";
+      }
+    }
+
+    function executeSignUp(e) {
+      e.preventDefault();
+      const errBox = document.getElementById('signUpErrorMsg');
+      errBox.classList.add('hidden');
+
+      const name = document.getElementById('regName').value.trim();
+      const gender = document.getElementById('regGender').value;
+      const mobile = document.getElementById('regMobile').value.trim();
+      const email = document.getElementById('regEmail').value.trim().toLowerCase();
+      const password = document.getElementById('regPassword').value;
+      const city = document.getElementById('regCity').value.trim();
+      const state = document.getElementById('regState').value.trim();
+
+      let users = JSON.parse(localStorage.getItem('testchakra_registered_users') || '[]');
+
+      // Check if email already registered
+      if (users.find(u => u.email === email)) {
+        errBox.innerText = "Yeh Email ID pehle se registered hai. Kripya Sign In karein.";
+        errBox.classList.remove('hidden');
+        return;
+      }
+
+      const newUser = { name, gender, mobile, email, password, city, state, registeredAt: new Date().toISOString() };
+      users.push(newUser);
+      localStorage.setItem('testchakra_registered_users', JSON.stringify(users));
+      localStorage.setItem('testchakra_logged_user', JSON.stringify(newUser));
+
+      currentUser = newUser;
+      onUserLoggedIn(newUser);
+    }
+
+    function executeSignIn(e) {
+      e.preventDefault();
+      const errBox = document.getElementById('loginErrorMsg');
+      errBox.classList.add('hidden');
+
+      const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const password = document.getElementById('loginPassword').value;
+
+      let users = JSON.parse(localStorage.getItem('testchakra_registered_users') || '[]');
+      const matched = users.find(u => u.email === email && u.password === password);
+
+      if (matched) {
+        currentUser = matched;
+        localStorage.setItem('testchakra_logged_user', JSON.stringify(matched));
+        onUserLoggedIn(matched);
+      } else {
+        errBox.innerText = "Email ID ya Password galat hai. Kripya dobara check karein.";
+        errBox.classList.remove('hidden');
+      }
+    }
+
+    function handleSignOut() {
+      if (confirm("Kya aap sach me Sign Out karna chahte hain?")) {
+        localStorage.removeItem('testchakra_logged_user');
+        currentUser = null;
+        showAuthGate();
+      }
+    }
+
     // WEBSITE EXIT CONFIRMATION MODAL LOGIC
     function setupHistoryNavigationGuard() {
-      // Push state so back button can be intercepted
       window.history.pushState({ page: 'home' }, '');
-
-      window.addEventListener('popstate', function (event) {
+      window.addEventListener('popstate', function () {
         if (!isExitingAllowed) {
-          // Prevent back and show custom modal
           window.history.pushState({ page: 'home' }, '');
           openSiteExitModal();
         }
       });
 
-      // Browser tab close / reload prompt
       window.addEventListener('beforeunload', function (e) {
         if (!isExitingAllowed) {
           e.preventDefault();
@@ -850,6 +1075,11 @@
     }
 
     function openInstructionsModal(testId) {
+      if (!currentUser) {
+        openAuthModal('signin');
+        return;
+      }
+
       let subject = null;
       if (currentExamKey === 'ca') {
         if (currentCaMode === 'daily') {
