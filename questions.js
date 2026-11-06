@@ -1,4 +1,4 @@
-// questions.js — Current Affairs (2025 & 2026), UPSC, BPSC, UGC NET & PYQ
+// questions.js — TestChakra Database (UPSC, BPSC, UGC NET, SSC, Bihar SI, CA 2025/2026, PYQ)
 
 // OCTOBER 2026 TEST 01 (100 High-Yield Questions, 80 Minutes)
 var CA_OCT_2026_T1 = [
@@ -604,7 +604,6 @@ var CA_OCT_2026_T1 = [
   }
 ];
 
-// Helper for Generating 12 Months
 function generateMonths(year, icon) {
   const months = [
     "January", "February", "March", "April", "May", "June",
@@ -624,7 +623,7 @@ function generateMonths(year, icon) {
           timeMins: 80,
           data: CA_OCT_2026_T1
         }
-      ] : [] // Khali rehne par Coming Soon 😍 dikhega
+      ] : []
     };
   });
 }
@@ -681,7 +680,41 @@ var EXAMS_DATA = {
       { id: "ugc_paper2", name: "Paper 2: Political Science", icon: "🏛️", tests: [] }
     ]
   },
-  // CURRENT AFFAIRS WITH 2 SEPARATE YEARS (2025 & 2026)
+  // SSC EXAMS
+  ssc: {
+    id: "ssc",
+    name: "SSC Exams",
+    title: "Staff Selection Commission (CGL / CPO / CHSL)",
+    desc: "Tier-1 CBT Simulator • General Awareness, Reasoning, Quant & English",
+    penaltyText: "Negative Penalty: 0.50 Marks",
+    correctMarks: 2.0,
+    negativePenalty: 0.50,
+    subjects: [
+      { id: "ssc_ga", name: "General Awareness (GS & GK)", icon: "🌐", tests: [] },
+      { id: "ssc_reasoning", name: "General Intelligence & Reasoning", icon: "🧩", tests: [] },
+      { id: "ssc_quant", name: "Quantitative Aptitude (Maths)", icon: "📐", tests: [] },
+      { id: "ssc_english", name: "English Comprehension", icon: "📝", tests: [] }
+    ]
+  },
+  // BIHAR SI (DAROGA)
+  biharsi: {
+    id: "biharsi",
+    name: "Bihar SI (Daroga)",
+    title: "Bihar Police Sub-Inspector (BPSSC)",
+    desc: "Prelims & Mains GS Simulator • Negative Penalty: 0.20 Marks",
+    penaltyText: "Negative Penalty: 0.20 Marks",
+    correctMarks: 2.0,
+    negativePenalty: 0.20,
+    subjects: [
+      { id: "si_gs", name: "General Studies & Current Events", icon: "👮", tests: [] },
+      { id: "si_history", name: "Indian History & Culture", icon: "📜", tests: [] },
+      { id: "si_geography", name: "Geography of India & World", icon: "🌍", tests: [] },
+      { id: "si_polity", name: "Indian Polity & Constitution", icon: "⚖️", tests: [] },
+      { id: "si_science", name: "General Science (Phy, Chem, Bio)", icon: "🔬", tests: [] },
+      { id: "si_bihar", name: "Bihar Special GK", icon: "🎯", tests: [] }
+    ]
+  },
+  // CURRENT AFFAIRS
   ca: {
     id: "ca",
     name: "Current Affairs",
