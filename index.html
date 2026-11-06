@@ -37,7 +37,7 @@
         <h1 class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-indigo-700 via-purple-600 to-rose-600 bg-clip-text text-transparent">
           TESTCHAKRA
         </h1>
-        <p class="text-[11px] text-slate-500 font-bold tracking-wide">UPSC • BPSC • UGC NET • SSC • BIHAR EXAMS • RRB • CA • PYQ</p>
+        <p class="text-[11px] text-slate-500 font-bold tracking-wide">UPSC • BPSC • UGC NET • SSC • BIHAR EXAMS • RRB • CA • NCERT • PYQ</p>
       </div>
     </div>
     
@@ -53,9 +53,9 @@
     <span class="cursor-pointer text-indigo-600 hover:text-indigo-800 transition" onclick="showView('subjects')">Home</span>
     <span class="text-slate-300">/</span>
     <span id="bcExam" class="uppercase text-slate-700">Exam</span>
-    <span id="bcYearWrap" class="hidden flex items-center gap-2">
+    <span id="bcSubHubWrap" class="hidden flex items-center gap-2">
       <span class="text-slate-300">/</span>
-      <span id="bcYear" class="cursor-pointer text-indigo-600 hover:underline" onclick="showView('caYears')">Year</span>
+      <span id="bcSubHub" class="cursor-pointer text-indigo-600 hover:underline" onclick="showView('caHub')">Hub</span>
     </span>
     <span id="bcSubjectWrap" class="hidden flex items-center gap-2">
       <span class="text-slate-300">/</span>
@@ -72,7 +72,9 @@
 
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
-      <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
+      
+      <!-- EXAM TABS (WITH NCERT ADDED) -->
+      <div id="examTabsBar" class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
         <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">🏛️ UPSC CSE</button>
         <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 BPSC</button>
         <button onclick="setExam('ugc')" id="tab-ugc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎓 UGC NET / JRF</button>
@@ -80,9 +82,11 @@
         <button onclick="setExam('bihar_exams')" id="tab-bihar_exams" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 Bihar Exams</button>
         <button onclick="setExam('rrb')" id="tab-rrb" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🚆 RRB Exams</button>
         <button onclick="setExam('ca')" id="tab-ca" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🔥 Current Affairs</button>
+        <button onclick="setExam('ncert')" id="tab-ncert" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">📘 NCERT</button>
         <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">📚 PYQ Archives</button>
       </div>
 
+      <!-- HERO GRADIENT BANNER -->
       <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-indigo-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10">
@@ -99,30 +103,20 @@
         </div>
       </div>
 
+      <!-- SUBJECTS GRID -->
       <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
-    <!-- 1.1 CA YEAR SELECTION VIEW -->
-    <div id="viewCaYears" class="hidden space-y-6">
-      <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
-        <button onclick="setExam('upsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🏛️ UPSC CSE</button>
-        <button onclick="setExam('bpsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 BPSC</button>
-        <button onclick="setExam('ugc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎓 UGC NET / JRF</button>
-        <button onclick="setExam('ssc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">⚡ SSC Exams</button>
-        <button onclick="setExam('bihar_exams')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 Bihar Exams</button>
-        <button onclick="setExam('rrb')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🚆 RRB Exams</button>
-        <button onclick="setExam('ca')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">🔥 Current Affairs</button>
-        <button onclick="setExam('pyq')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">📚 PYQ Archives</button>
-      </div>
-
+    <!-- 1.1 CURRENT AFFAIRS HUB (DAILY CA vs MONTHLY CA) -->
+    <div id="viewCaHub" class="hidden space-y-6">
       <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-rose-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/20 border border-rose-400/30 text-rose-300 text-xs font-bold mb-2">
-            <span>🔥 Monthly & Annual Roundups</span>
+            <span>🔥 Daily & Monthly Roundups</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-black tracking-tight text-white uppercase">CURRENT AFFAIRS</h2>
-          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">National, International & State Current Affairs Bank for all competitive exams.</p>
+          <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-xl">Daily Tests with Date Customization & Comprehensive Month-wise Archives.</p>
         </div>
         <div class="relative z-10">
           <span class="text-xs font-bold px-4 py-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-xl shadow-inner">
@@ -131,38 +125,99 @@
         </div>
       </div>
 
+      <!-- 2 SECTIONS: DAILY CA vs MONTHLY CA -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div onclick="openCaYear('2026')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
+        <!-- Daily Current Affairs Card -->
+        <div onclick="openCaDailyView()" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-rose-200 hover:border-rose-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
+          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition"></div>
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center text-3xl shadow-sm">📅</div>
+            <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-rose-600 transition">Daily Current Affairs</h3>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Pichhle 7 Dino ke direct tests aur Date customize karke kisi bhi din ka test dene ki suvidha.</p>
+          </div>
+          <button class="mt-8 w-full py-3.5 bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-rose-200 transition">
+            Open Daily Tests →
+          </button>
+        </div>
+
+        <!-- Monthly Current Affairs Card -->
+        <div onclick="openCaMonthlyYearsView()" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition"></div>
+          <div>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-3xl shadow-sm">📚</div>
+            <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-indigo-600 transition">Monthly Current Affairs</h3>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January se December tak ke complete monthly test series (2026 aur 2025 ke sabhi 12 months).</p>
+          </div>
+          <button class="mt-8 w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-indigo-200 transition">
+            Open Monthly Archives →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.2 DAILY CA VIEW (PAST 7 DAYS & DATE PICKER) -->
+    <div id="viewCaDaily" class="hidden space-y-6">
+      <div class="flex flex-wrap items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm gap-4">
+        <button onclick="showView('caHub')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
+          ← Back to Hub
+        </button>
+        
+        <!-- DATE CUSTOMIZATION BOX -->
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-1.5 rounded-xl shadow-inner">
+          <span class="text-xs font-black text-slate-600">🗓️ Select Date:</span>
+          <input type="date" id="caCustomDatePicker" class="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500" onchange="handleCustomDateSelect(this.value)">
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="text-lg font-black text-slate-800 flex items-center gap-2">
+          <span>⚡</span> Recent 7 Days Current Affairs
+        </h3>
+        <p class="text-xs text-slate-500">Niche pichhle 7 dino ke daily test sets diye gaye hain:</p>
+      </div>
+
+      <div id="caDailyGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+    </div>
+
+    <!-- 1.3 MONTHLY CA YEARS (2026 & 2025) -->
+    <div id="viewCaYears" class="hidden space-y-6">
+      <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <button onclick="showView('caHub')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
+          ← Back to Hub
+        </button>
+        <h3 class="font-black text-slate-800 text-base sm:text-lg">Monthly Current Affairs Archives</h3>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div onclick="openCaYear('2026')" class="glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div>
             <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-3xl shadow-sm">🔥</div>
             <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-indigo-600 transition">Current Affairs 2026</h3>
-            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2026 to December 2026 Monthly Bank. Includes October 2026 Full Length 100 Q Test (80 Mins).</p>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2026 to December 2026 (Includes October 2026 100 Q Full Test).</p>
           </div>
-          <button class="mt-8 w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-indigo-200 transition">
+          <button class="mt-8 w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-indigo-200 transition">
             Explore 2026 Months →
           </button>
         </div>
 
-        <div onclick="openCaYear('2025')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-slate-200 hover:border-violet-500 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
-          <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition"></div>
+        <div onclick="openCaYear('2025')" class="glass-card p-8 rounded-3xl border-2 border-slate-200 hover:border-violet-500 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div>
-            <div class="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-3xl shadow-sm">📚</div>
+            <div class="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-3xl shadow-sm">📁</div>
             <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-purple-600 transition">Current Affairs 2025</h3>
-            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2025 to December 2025 Annual Comprehensive Current Affairs Archive.</p>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2025 to December 2025 Annual Archives.</p>
           </div>
-          <button class="mt-8 w-full py-3.5 bg-white hover:bg-purple-50 border border-slate-200 text-slate-800 group-hover:text-purple-700 font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition">
+          <button class="mt-8 w-full py-3.5 bg-white border border-slate-200 text-slate-800 group-hover:text-purple-700 font-extrabold text-xs sm:text-sm rounded-xl shadow-sm transition">
             Explore 2025 Months →
           </button>
         </div>
       </div>
     </div>
 
-    <!-- 1.2 CA MONTHS LIST VIEW -->
+    <!-- 1.4 CA MONTHS LIST VIEW -->
     <div id="viewCaMonths" class="hidden space-y-6">
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
         <button onclick="showView('caYears')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
-          ← Back
+          ← Back to Years
         </button>
         <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Monthly Modules</h3>
       </div>
@@ -415,7 +470,8 @@
 
   </main>
 
-  <script src="questions.js?v=testchakra_sol_wrong_color_v1"></script>
+  <!-- DATABASE CONNECTION -->
+  <script src="questions.js?v=testchakra_daily_ncert_v1"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -429,6 +485,7 @@
     let timerSeconds = 0;
     let timerTimer = null;
     let currentLang = 'hi';
+    let currentCaMode = 'monthly'; // 'monthly' or 'daily'
 
     const COLOR_CLASSES = [
       { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
@@ -444,23 +501,35 @@
     }
 
     function showView(viewId) {
-      ['viewSubjects', 'viewCaYears', 'viewCaMonths', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
+      ['viewSubjects', 'viewCaHub', 'viewCaDaily', 'viewCaYears', 'viewCaMonths', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
 
       if (viewId === 'subjects') {
         document.getElementById('viewSubjects').classList.remove('hidden');
-        document.getElementById('bcYearWrap').classList.add('hidden');
+        document.getElementById('bcSubHubWrap').classList.add('hidden');
+        document.getElementById('bcSubjectWrap').classList.add('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
+      } else if (viewId === 'caHub') {
+        document.getElementById('viewCaHub').classList.remove('hidden');
+        document.getElementById('bcSubHubWrap').classList.add('hidden');
+        document.getElementById('bcSubjectWrap').classList.add('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
+      } else if (viewId === 'caDaily') {
+        document.getElementById('viewCaDaily').classList.remove('hidden');
+        document.getElementById('bcSubHubWrap').classList.remove('hidden');
+        document.getElementById('bcSubHub').innerText = "Daily CA";
         document.getElementById('bcSubjectWrap').classList.add('hidden');
         document.getElementById('bcTestWrap').classList.add('hidden');
       } else if (viewId === 'caYears') {
         document.getElementById('viewCaYears').classList.remove('hidden');
-        document.getElementById('bcYearWrap').classList.add('hidden');
+        document.getElementById('bcSubHubWrap').classList.remove('hidden');
+        document.getElementById('bcSubHub').innerText = "Monthly CA";
         document.getElementById('bcSubjectWrap').classList.add('hidden');
         document.getElementById('bcTestWrap').classList.add('hidden');
       } else if (viewId === 'caMonths') {
         document.getElementById('viewCaMonths').classList.remove('hidden');
-        document.getElementById('bcYearWrap').classList.remove('hidden');
+        document.getElementById('bcSubHubWrap').classList.remove('hidden');
         document.getElementById('bcSubjectWrap').classList.add('hidden');
         document.getElementById('bcTestWrap').classList.add('hidden');
       } else if (viewId === 'subjectTests') {
@@ -482,7 +551,7 @@
       currentExamKey = examKey;
       const exam = EXAMS_DATA[examKey];
 
-      ['upsc', 'bpsc', 'ugc', 'ssc', 'bihar_exams', 'rrb', 'ca', 'pyq'].forEach(k => {
+      ['upsc', 'bpsc', 'ugc', 'ssc', 'bihar_exams', 'rrb', 'ca', 'ncert', 'pyq'].forEach(k => {
         const btn = document.getElementById('tab-' + k);
         if (btn) {
           if (k === examKey) {
@@ -499,7 +568,7 @@
       document.getElementById('examPenaltyBadge').innerText = exam.penaltyText;
 
       if (examKey === 'ca') {
-        showView('caYears');
+        showView('caHub');
         return;
       }
 
@@ -528,9 +597,85 @@
       showView('subjects');
     }
 
+    // CURRENT AFFAIRS ROUTING (DAILY vs MONTHLY)
+    function openCaDailyView() {
+      currentCaMode = 'daily';
+      renderRecent7DaysCa();
+      showView('caDaily');
+    }
+
+    function openCaMonthlyYearsView() {
+      currentCaMode = 'monthly';
+      showView('caYears');
+    }
+
+    function renderRecent7DaysCa() {
+      const grid = document.getElementById('caDailyGrid');
+      grid.innerHTML = "";
+
+      const dailyItems = EXAMS_DATA.ca.daily || [];
+      // Slice past 7 days
+      const last7Days = dailyItems.slice(0, 7);
+
+      last7Days.forEach((item, i) => {
+        const theme = COLOR_CLASSES[i % COLOR_CLASSES.length];
+        const div = document.createElement('div');
+        div.className = `glass-card p-6 rounded-3xl border ${theme.border} shadow-sm ${theme.hover} hover:shadow-xl hover:-translate-y-1 transition-all duration-200 cursor-pointer flex flex-col justify-between`;
+        div.onclick = () => openDailySubject(item.id);
+        div.innerHTML = `
+          <div>
+            <div class="w-12 h-12 rounded-2xl ${theme.bg} flex items-center justify-center text-2xl shadow-sm border ${theme.border}">
+              ${item.icon}
+            </div>
+            <h3 class="text-lg font-black text-slate-900 mt-4">${item.name}</h3>
+            <p class="text-xs text-slate-500 mt-1 font-medium">${item.tests.length} Daily Test Available</p>
+          </div>
+          <button class="mt-6 w-full py-2.5 ${theme.btn} font-extrabold text-xs rounded-xl shadow-sm transition">
+            Start Daily Test →
+          </button>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    function handleCustomDateSelect(dateVal) {
+      if (!dateVal) return;
+      currentCaMode = 'daily';
+      const customId = `daily_${dateVal}`;
+      
+      // Check if test exists for that custom date
+      let subject = (EXAMS_DATA.ca.daily || []).find(d => d.date === dateVal);
+      if (!subject) {
+        // Create empty container so "Coming Soon 😍" is cleanly shown
+        subject = {
+          id: customId,
+          name: `Daily CA: ${dateVal}`,
+          icon: "📅",
+          tests: []
+        };
+      }
+      openDailySubjectInstance(subject);
+    }
+
+    function openDailySubject(subjectId) {
+      const subject = (EXAMS_DATA.ca.daily || []).find(d => d.id === subjectId);
+      if (subject) openDailySubjectInstance(subject);
+    }
+
+    function openDailySubjectInstance(subject) {
+      currentSubjectId = subject.id;
+      document.getElementById('bcSubject').innerText = subject.name;
+      document.getElementById('subjectHeading').innerText = subject.name;
+      document.getElementById('subjectSubHeading').innerText = "Daily Current Affairs Test Module";
+
+      renderTestsInGrid(subject.tests);
+      showView('subjectTests');
+    }
+
     function openCaYear(year) {
+      currentCaMode = 'monthly';
       currentCaYear = year;
-      document.getElementById('bcYear').innerText = `CA ${year}`;
+      document.getElementById('bcSubHub').innerText = `CA ${year}`;
       document.getElementById('caMonthsHeading').innerText = `Current Affairs ${year} – Monthly Bank`;
 
       const grid = document.getElementById('caMonthsGrid');
@@ -574,10 +719,15 @@
       document.getElementById('subjectHeading').innerText = subject.name;
       document.getElementById('subjectSubHeading').innerText = `${EXAMS_DATA[currentExamKey].name} Module`;
 
+      renderTestsInGrid(subject.tests);
+      showView('subjectTests');
+    }
+
+    function renderTestsInGrid(tests) {
       const testsGrid = document.getElementById('testsGrid');
       testsGrid.innerHTML = "";
 
-      if (!subject.tests || subject.tests.length === 0) {
+      if (!tests || tests.length === 0) {
         testsGrid.className = "col-span-full";
         testsGrid.innerHTML = `
           <div class="relative overflow-hidden glass-card p-10 sm:p-14 rounded-3xl border border-slate-200 shadow-md text-center max-w-lg mx-auto space-y-4">
@@ -592,14 +742,13 @@
         `;
       } else {
         testsGrid.className = "grid grid-cols-1 md:grid-cols-2 gap-5";
-        subject.tests.forEach((test, idx) => {
+        tests.forEach((test, idx) => {
           const padIdx = (idx + 1) < 10 ? `0${idx + 1}` : `${idx + 1}`;
           let cleanTitle = test.title;
           if (!cleanTitle.toLowerCase().startsWith("test")) {
             cleanTitle = `Test ${padIdx}: ${cleanTitle}`;
           }
 
-          // FULL WIDTH START TEST BUTTON (Study Solutions removed from card)
           const card = document.createElement('div');
           card.className = "glass-card p-6 sm:p-7 rounded-3xl border border-indigo-100 hover:border-indigo-400 shadow-sm hover:shadow-xl transition-all duration-200 space-y-4 flex flex-col justify-between";
           card.innerHTML = `
@@ -623,13 +772,15 @@
           testsGrid.appendChild(card);
         });
       }
-
-      showView('subjectTests');
     }
 
     function handleBackFromSubjectTests() {
       if (currentExamKey === 'ca') {
-        showView('caMonths');
+        if (currentCaMode === 'daily') {
+          showView('caDaily');
+        } else {
+          showView('caMonths');
+        }
       } else {
         showView('subjects');
       }
@@ -642,7 +793,11 @@
     function openInstructionsModal(testId) {
       let subject = null;
       if (currentExamKey === 'ca') {
-        subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
+        if (currentCaMode === 'daily') {
+          subject = (EXAMS_DATA.ca.daily || []).find(s => s.id === currentSubjectId);
+        } else {
+          subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
+        }
       } else {
         subject = EXAMS_DATA[currentExamKey].subjects.find(s => s.id === currentSubjectId);
       }
@@ -855,7 +1010,6 @@
       showView('score');
     }
 
-    // FUNCTION: REVIEW SOLUTIONS WITH HIGHLIGHTED WRONG & CORRECT OPTIONS
     function openReviewSolutions() {
       document.getElementById('exploreTitle').innerText = currentTest.title + " (Solutions)";
 
@@ -893,11 +1047,9 @@
               let labelBadge = "";
 
               if (i === q.ans) {
-                // Correct answer is always Green
                 optStyle = "border-emerald-500 bg-emerald-50/90 font-bold text-emerald-950 shadow-sm";
                 labelBadge = `<span class="text-[11px] font-black text-emerald-700 ml-2 bg-emerald-100/80 px-2 py-0.5 rounded-md">✓ Correct Answer</span>`;
               } else if (userChoice === i && !isCorrect) {
-                // User's wrong answer highlighted in Red
                 optStyle = "border-rose-500 bg-rose-50 font-bold text-rose-950 shadow-sm";
                 labelBadge = `<span class="text-[11px] font-black text-rose-700 ml-2 bg-rose-100 px-2 py-0.5 rounded-md">✗ Your Choice (Wrong)</span>`;
               }
