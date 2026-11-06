@@ -22,7 +22,7 @@
       </div>
       <div>
         <h1 class="font-black text-lg tracking-tight text-indigo-700">APEX TEST SERIES</h1>
-        <p class="text-[11px] text-slate-500 font-semibold">UPSC CSE • BPSC 70th/71st • UGC NET</p>
+        <p class="text-[11px] text-slate-500 font-semibold">UPSC CSE • BPSC • UGC NET</p>
       </div>
     </div>
     
@@ -60,7 +60,7 @@
           🏛️ UPSC CSE
         </button>
         <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900">
-          🎯 BPSC (70th/71st)
+          🎯 BPSC
         </button>
         <button onclick="setExam('ugc')" id="tab-ugc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900">
           🎓 UGC NET / JRF
@@ -73,7 +73,7 @@
           <h2 id="examTitle" class="text-xl font-extrabold text-slate-900">UPSC Civil Services Examination</h2>
           <p id="examDesc" class="text-xs text-slate-500 mt-1">General Studies Prelims • Negative Marking: 1/3 (-0.66)</p>
         </div>
-        <span class="text-xs font-bold px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg">
+        <span id="examPenaltyBadge" class="text-xs font-bold px-3 py-1.5 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg">
           Negative Penalty: 1/3rd
         </span>
       </div>
@@ -317,6 +317,25 @@
         }
       });
       document.getElementById('bcExam').innerText = examKey.toUpperCase();
+      
+      var titleEl = document.getElementById('examTitle');
+      var descEl = document.getElementById('examDesc');
+      var badgeEl = document.getElementById('examPenaltyBadge');
+
+      if (examKey === 'upsc') {
+        titleEl.innerText = "UPSC Civil Services Examination";
+        descEl.innerText = "General Studies Prelims • Negative Marking: 1/3 (-0.66)";
+        badgeEl.innerText = "Negative Penalty: 1/3rd";
+      } else if (examKey === 'bpsc') {
+        titleEl.innerText = "BPSC (Bihar Public Service Commission)";
+        descEl.innerText = "Integrated Combined Competitive Examination • Negative Marking: 1/3rd";
+        badgeEl.innerText = "Negative Penalty: 1/3rd";
+      } else if (examKey === 'ugc') {
+        titleEl.innerText = "UGC NET / JRF Examination";
+        descEl.innerText = "Paper 1 & Paper 2 (Political Science) • No Negative Marking";
+        badgeEl.innerText = "No Negative Marking";
+      }
+
       renderSubjects();
     }
 
@@ -340,10 +359,19 @@
             <span class="text-xs font-semibold text-slate-400 mt-4 block">Coming Next</span>
           </div>
         `;
+      } else if (currentExam === 'bpsc') {
+        container.innerHTML = `
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+            <span class="text-3xl">🏛️</span>
+            <h3 class="text-lg font-black text-slate-900 mt-3">Bihar Special & State Polity</h3>
+            <p class="text-xs text-slate-500 mt-1">Bihar Administration, History & Governance Modules</p>
+            <span class="text-xs font-semibold text-indigo-600 mt-4 block">Ready for Next Material Upload</span>
+          </div>
+        `;
       } else {
         container.innerHTML = `
           <div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200">
-            <p class="text-sm font-bold text-slate-600">Is category ke modules jald upload honge.</p>
+            <p class="text-sm font-bold text-slate-600">UGC NET modules will be added here.</p>
           </div>
         `;
       }
@@ -519,4 +547,3 @@
   </script>
 </body>
 </html>
-
