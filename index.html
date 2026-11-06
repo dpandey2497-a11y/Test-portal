@@ -19,7 +19,7 @@
       background-attachment: fixed;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
@@ -72,8 +72,6 @@
 
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
-      
-      <!-- EXAM TABS (WITH SSC, BIHAR EXAMS & RRB EXAMS) -->
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
         <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">
           🏛️ UPSC CSE
@@ -101,7 +99,6 @@
         </button>
       </div>
 
-      <!-- HERO GRADIENT BANNER -->
       <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-indigo-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10">
@@ -118,40 +115,22 @@
         </div>
       </div>
 
-      <!-- SUBJECTS GRID -->
       <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
     <!-- 1.1 CA YEAR SELECTION VIEW -->
     <div id="viewCaYears" class="hidden space-y-6">
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
-        <button onclick="setExam('upsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          🏛️ UPSC CSE
-        </button>
-        <button onclick="setExam('bpsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          🎯 BPSC
-        </button>
-        <button onclick="setExam('ugc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          🎓 UGC NET / JRF
-        </button>
-        <button onclick="setExam('ssc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          ⚡ SSC Exams
-        </button>
-        <button onclick="setExam('bihar_exams')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          🎯 Bihar Exams
-        </button>
-        <button onclick="setExam('rrb')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          🚆 RRB Exams
-        </button>
-        <button onclick="setExam('ca')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">
-          🔥 Current Affairs
-        </button>
-        <button onclick="setExam('pyq')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">
-          📚 PYQ Archives
-        </button>
+        <button onclick="setExam('upsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🏛️ UPSC CSE</button>
+        <button onclick="setExam('bpsc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 BPSC</button>
+        <button onclick="setExam('ugc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎓 UGC NET / JRF</button>
+        <button onclick="setExam('ssc')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">⚡ SSC Exams</button>
+        <button onclick="setExam('bihar_exams')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 Bihar Exams</button>
+        <button onclick="setExam('rrb')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🚆 RRB Exams</button>
+        <button onclick="setExam('ca')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">🔥 Current Affairs</button>
+        <button onclick="setExam('pyq')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">📚 PYQ Archives</button>
       </div>
 
-      <!-- CURRENT AFFAIRS HERO BANNER -->
       <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-rose-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10">
@@ -168,14 +147,11 @@
         </div>
       </div>
 
-      <!-- YEAR CARDS -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div onclick="openCaYear('2026')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition"></div>
           <div>
-            <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-3xl shadow-sm">
-              🔥
-            </div>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-3xl shadow-sm">🔥</div>
             <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-indigo-600 transition">Current Affairs 2026</h3>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2026 to December 2026 Monthly Bank. Includes October 2026 Full Length 100 Q Test (80 Mins).</p>
           </div>
@@ -187,9 +163,7 @@
         <div onclick="openCaYear('2025')" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-slate-200 hover:border-violet-500 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition"></div>
           <div>
-            <div class="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-3xl shadow-sm">
-              📚
-            </div>
+            <div class="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-3xl shadow-sm">📚</div>
             <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-purple-600 transition">Current Affairs 2025</h3>
             <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2025 to December 2025 Annual Comprehensive Current Affairs Archive.</p>
           </div>
@@ -236,25 +210,33 @@
           <h2 id="exploreTitle" class="text-xl sm:text-2xl font-black text-slate-900">Study Solutions</h2>
           <p id="exploreDesc" class="text-xs text-slate-500 mt-1">Review questions with verified explanations</p>
         </div>
-        <button onclick="startCbt()" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-indigo-200 transition">
-          🚀 Take Timed CBT Exam
+        <button onclick="openInstructionsModal(currentTest.id)" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm shadow-md shadow-indigo-200 transition">
+          🚀 Start Test
         </button>
       </div>
 
       <div id="exploreList" class="space-y-6"></div>
     </div>
 
-    <!-- 4. LIVE CBT EXAM -->
+    <!-- 4. LIVE CBT EXAM VIEW -->
     <div id="viewCbt" class="hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <div class="lg:col-span-8 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between min-h-[540px]">
+        <div class="lg:col-span-8 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between min-h-[560px]">
           <div>
-            <div class="flex items-center justify-between border-b border-slate-200/70 pb-3 mb-5">
-              <span class="px-3.5 py-1.5 rounded-lg bg-indigo-50 border border-indigo-200/80 text-indigo-800 text-xs font-black">
-                Question <span id="cbtCurrentNum">1</span> / <span id="cbtTotalNum">0</span>
-              </span>
-              <span id="cbtMarkingScheme" class="text-xs font-bold text-slate-500">Marks: +1.00 | Penalty: -0.33</span>
+            <!-- Question Top Bar with Language Toggle -->
+            <div class="flex flex-wrap items-center justify-between border-b border-slate-200/70 pb-3.5 mb-5 gap-3">
+              <div class="flex items-center gap-2.5">
+                <span class="px-3.5 py-1.5 rounded-lg bg-indigo-50 border border-indigo-200/80 text-indigo-800 text-xs font-black">
+                  Question <span id="cbtCurrentNum">1</span> / <span id="cbtTotalNum">0</span>
+                </span>
+                <span id="cbtMarkingScheme" class="text-xs font-bold text-slate-500 hidden sm:inline">Marks: +1.00 | Penalty: -0.33</span>
+              </div>
+              
+              <!-- Language Switcher Button -->
+              <button onclick="toggleExamLanguage()" id="btnLangToggle" class="px-3.5 py-1.5 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-indigo-700 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition">
+                🌐 <span id="langLabel">English</span>
+              </button>
             </div>
             
             <p id="cbtQuestionPrompt" class="text-base sm:text-lg font-bold text-slate-900 whitespace-pre-line leading-relaxed mb-6"></p>
@@ -262,10 +244,16 @@
             <div id="cbtOptionsList" class="space-y-3"></div>
           </div>
 
+          <!-- Bottom Navigation & Leave Test Button -->
           <div class="pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-between gap-3 mt-6">
-            <button onclick="clearCurrentAnswer()" class="px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">
-              Clear Response
-            </button>
+            <div class="flex items-center gap-2">
+              <button onclick="clearCurrentAnswer()" class="px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-600 hover:bg-slate-50 transition">
+                Clear Response
+              </button>
+              <button onclick="openLeaveModal()" class="px-3.5 py-2.5 rounded-xl border border-rose-200 bg-rose-50/80 text-rose-700 hover:bg-rose-100 text-xs font-bold transition flex items-center gap-1">
+                🚪 Leave Test
+              </button>
+            </div>
             <div class="flex gap-2.5">
               <button onclick="prevCbtQ()" id="btnPrev" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
                 Previous
@@ -297,7 +285,85 @@
       </div>
     </div>
 
-    <!-- 5. FINAL SUBMISSION MODAL POPUP -->
+    <!-- MODAL 1: PRE-TEST INSTRUCTIONS BLOCK (OPENED ON START TEST) -->
+    <div id="instructionsModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 text-left space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2.5">
+            <span class="text-2xl">📋</span>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900">Exam Instructions & Summary</h3>
+          </div>
+          <button onclick="closeInstructionsModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-sm">✕</button>
+        </div>
+
+        <div>
+          <h4 id="instTestTitle" class="text-base sm:text-lg font-black text-indigo-700">Test Title</h4>
+          <p id="instTestDesc" class="text-xs text-slate-500 mt-1 font-medium">Test Description</p>
+        </div>
+
+        <!-- 3 SUMMARY BLOCKS: QUESTIONS, TIME, TOTAL MARKS -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="p-3.5 rounded-2xl bg-indigo-50/70 border border-indigo-100 text-center">
+            <p class="text-[11px] font-extrabold text-indigo-600 uppercase">Total Qs</p>
+            <p id="instTotalQ" class="text-xl sm:text-2xl font-black text-indigo-900 mt-1">100</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-100 text-center">
+            <p class="text-[11px] font-extrabold text-amber-600 uppercase">Total Time</p>
+            <p id="instTotalTime" class="text-xl sm:text-2xl font-black text-amber-900 mt-1">80 Min</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-emerald-50/70 border border-emerald-100 text-center">
+            <p class="text-[11px] font-extrabold text-emerald-600 uppercase">Total Marks</p>
+            <p id="instTotalMarks" class="text-xl sm:text-2xl font-black text-emerald-900 mt-1">100</p>
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 space-y-1.5 leading-relaxed font-medium">
+          <p>• <b>Marking Scheme:</b> <span id="instMarkingDetail" class="text-slate-800 font-bold">+1.00 for correct, -0.33 for wrong answer.</span></p>
+          <p>• <b>Bilingual Support:</b> Test screen par aap kisi bhi samay Hindi ya English bhasha badal sakte hain.</p>
+          <p>• <b>Leave Test Option:</b> Test ke dauran aap bich me hi Save & Exit ya Cancel kar sakte hain.</p>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="closeInstructionsModal()" class="flex-1 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-600 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button onclick="beginTestExecution()" class="flex-1 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 font-black text-xs text-white shadow-md shadow-indigo-200 transition">
+            Proceed to Test 🚀
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2: LEAVE TEST OPTIONS (SAVE & EXIT, EXIT, CONTINUE) -->
+    <div id="leaveModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
+        <div class="w-14 h-14 bg-rose-50 text-rose-500 rounded-2xl flex items-center justify-center text-2xl mx-auto border border-rose-200">
+          🚪
+        </div>
+        <h3 class="text-lg sm:text-xl font-black text-slate-900">
+          Leave Exam Session?
+        </h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-medium">
+          Aap test ko bich me chhod rahe hain. Kripya apna vikalp chunein:
+        </p>
+        <div class="flex flex-col gap-2.5 pt-2">
+          <!-- Save & Exit -->
+          <button onclick="confirmSubmitTest()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 font-black text-xs text-white shadow-md transition">
+            💾 Save & Exit (Submit Responses)
+          </button>
+          <!-- Exit without Save -->
+          <button onclick="exitTestWithoutSaving()" class="w-full py-3 rounded-xl bg-rose-50 border border-rose-200 hover:bg-rose-100 font-bold text-xs text-rose-700 transition">
+            ⚠️ Exit (Discard Test)
+          </button>
+          <!-- Continue Test -->
+          <button onclick="closeLeaveModal()" class="w-full py-2.5 rounded-xl border border-slate-300 font-bold text-xs text-slate-600 hover:bg-slate-50 transition">
+            Continue Test
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: FINAL SUBMISSION POPUP -->
     <div id="submitModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
       <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
         <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mx-auto border border-amber-200">
@@ -306,7 +372,7 @@
         <h3 class="text-lg sm:text-xl font-black text-slate-900">
           Are you sure you want to submit your final test?
         </h3>
-        <p class="text-xs text-slate-500 leading-relaxed">
+        <p class="text-xs text-slate-500 leading-relaxed font-medium">
           Once submitted, your answers will be locked, and your final score, accuracy percentage, and time taken will be calculated immediately.
         </p>
         <div class="flex items-center gap-3 pt-2">
@@ -320,7 +386,7 @@
       </div>
     </div>
 
-    <!-- 6. SCORECARD VIEW -->
+    <!-- 5. SCORECARD VIEW -->
     <div id="viewScore" class="hidden space-y-6">
       <div class="relative overflow-hidden bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-8 -top-8 w-40 h-40 bg-purple-500/20 rounded-full blur-2xl pointer-events-none"></div>
@@ -336,7 +402,6 @@
         </div>
       </div>
 
-      <!-- METRICS GRID -->
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5">
         <div class="glass-card p-4 rounded-2xl border border-emerald-100 shadow-sm text-center">
           <p class="text-xs font-bold text-emerald-600">Correct</p>
@@ -361,13 +426,13 @@
       </div>
 
       <button onclick="handleBackFromSubjectTests()" class="w-full py-3.5 bg-white border border-slate-300 text-slate-800 font-bold text-xs sm:text-sm rounded-2xl hover:bg-slate-50 shadow-sm flex items-center justify-center gap-2 transition">
-        ← Back
+        ← Back to Tests
       </button>
     </div>
 
   </main>
 
-  <script src="questions.js?v=testchakra_rrb_ssc_bihar_v1"></script>
+  <script src="questions.js?v=testchakra_cbt_enhanced_v2"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -380,6 +445,7 @@
     let initialTotalSeconds = 0;
     let timerSeconds = 0;
     let timerTimer = null;
+    let currentLang = 'hi'; // 'hi' or 'en'
 
     const COLOR_CLASSES = [
       { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
@@ -568,8 +634,8 @@
               <button onclick="openExplorer('${test.id}')" class="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 shadow-sm transition">
                 Study Solutions
               </button>
-              <button onclick="launchCbtDirect('${test.id}')" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-black shadow-md shadow-indigo-200 transition">
-                Take CBT Exam
+              <button onclick="openInstructionsModal('${test.id}')" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white text-xs font-black shadow-md shadow-indigo-200 transition">
+                Start Test 🚀
               </button>
             </div>
           `;
@@ -592,7 +658,8 @@
       showView('subjectTests');
     }
 
-    function openExplorer(testId) {
+    // INSTRUCTIONS MODAL HANDLERS
+    function openInstructionsModal(testId) {
       let subject = null;
       if (currentExamKey === 'ca') {
         subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
@@ -601,48 +668,26 @@
       }
 
       currentTest = subject.tests.find(t => t.id === testId);
+      const exam = EXAMS_DATA[currentExamKey];
 
-      document.getElementById('bcTest').innerText = currentTest.title;
-      document.getElementById('exploreTitle').innerText = currentTest.title;
+      document.getElementById('instTestTitle').innerText = currentTest.title;
+      document.getElementById('instTestDesc').innerText = currentTest.desc;
+      document.getElementById('instTotalQ').innerText = currentTest.data.length;
+      document.getElementById('instTotalTime').innerText = `${currentTest.timeMins} Min`;
 
-      const list = document.getElementById('exploreList');
-      list.innerHTML = "";
+      const totalMarks = (currentTest.data.length * exam.correctMarks).toFixed(0);
+      document.getElementById('instTotalMarks').innerText = totalMarks;
+      document.getElementById('instMarkingDetail').innerText = `+${exam.correctMarks} for correct, -${exam.negativePenalty} for wrong answer.`;
 
-      currentTest.data.forEach((q, idx) => {
-        const card = document.createElement('div');
-        card.className = "glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-3.5";
-        card.innerHTML = `
-          <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
-            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Question ${idx + 1}</span>
-            <span class="text-xs text-emerald-700 font-extrabold bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">Correct Option: (${String.fromCharCode(65 + q.ans)})</span>
-          </div>
-          <p class="text-sm sm:text-base font-bold text-slate-900 whitespace-pre-line leading-relaxed">${q.q}</p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-            ${q.opts.map((opt, i) => `
-              <div class="p-3 rounded-xl border ${i === q.ans ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900 shadow-sm' : 'border-slate-200 text-slate-700 bg-white'} text-xs leading-relaxed">
-                <span class="font-bold mr-1">(${String.fromCharCode(65 + i)})</span> ${opt}
-              </div>
-            `).join('')}
-          </div>
-          <div class="mt-3.5 p-4 bg-slate-50/90 rounded-2xl text-xs text-slate-700 whitespace-pre-line border border-slate-200/80 leading-relaxed">
-            <b class="text-slate-900 text-sm block mb-1">💡 Detailed Explanation:</b>${q.exp}
-          </div>
-        `;
-        list.appendChild(card);
-      });
-
-      showView('explore');
+      document.getElementById('instructionsModal').classList.remove('hidden');
     }
 
-    function launchCbtDirect(testId) {
-      let subject = null;
-      if (currentExamKey === 'ca') {
-        subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
-      } else {
-        subject = EXAMS_DATA[currentExamKey].subjects.find(s => s.id === currentSubjectId);
-      }
+    function closeInstructionsModal() {
+      document.getElementById('instructionsModal').classList.add('hidden');
+    }
 
-      currentTest = subject.tests.find(t => t.id === testId);
+    function beginTestExecution() {
+      closeInstructionsModal();
       startCbt();
     }
 
@@ -654,6 +699,9 @@
 
       cbtIndex = 0;
       userAnswers = {};
+      currentLang = 'hi';
+      updateLangButtonLabel();
+
       initialTotalSeconds = currentTest.timeMins * 60;
       timerSeconds = initialTotalSeconds;
 
@@ -677,15 +725,34 @@
       }
     }
 
+    // LANGUAGE TOGGLE FUNCTIONALITY
+    function toggleExamLanguage() {
+      currentLang = (currentLang === 'hi') ? 'en' : 'hi';
+      updateLangButtonLabel();
+      renderCbtQuestion();
+    }
+
+    function updateLangButtonLabel() {
+      const label = document.getElementById('langLabel');
+      if (label) {
+        label.innerText = (currentLang === 'hi') ? 'English' : 'Hindi';
+      }
+    }
+
     function renderCbtQuestion() {
       const q = currentTest.data[cbtIndex];
       document.getElementById('cbtCurrentNum').innerText = cbtIndex + 1;
-      document.getElementById('cbtQuestionPrompt').innerText = q.q;
+
+      // Select language version if available
+      const questionText = (currentLang === 'en' && q.q_en) ? q.q_en : q.q;
+      const optionsArray = (currentLang === 'en' && q.opts_en) ? q.opts_en : q.opts;
+
+      document.getElementById('cbtQuestionPrompt').innerText = questionText;
 
       const optsContainer = document.getElementById('cbtOptionsList');
       optsContainer.innerHTML = "";
 
-      q.opts.forEach((opt, idx) => {
+      optionsArray.forEach((opt, idx) => {
         const isChosen = userAnswers[cbtIndex] === idx;
         const row = document.createElement('div');
         row.className = `p-4 rounded-2xl border-2 transition-all cursor-pointer flex items-center gap-3.5 text-xs sm:text-sm font-semibold ${isChosen ? 'border-indigo-600 bg-indigo-50/80 text-indigo-900 shadow-sm' : 'border-slate-200/90 bg-white hover:border-slate-300 text-slate-700'}`;
@@ -741,6 +808,23 @@
       });
     }
 
+    // LEAVE TEST MODAL HANDLERS
+    function openLeaveModal() {
+      document.getElementById('leaveModal').classList.remove('hidden');
+    }
+
+    function closeLeaveModal() {
+      document.getElementById('leaveModal').classList.add('hidden');
+    }
+
+    function exitTestWithoutSaving() {
+      closeLeaveModal();
+      clearInterval(timerTimer);
+      userAnswers = {};
+      showView('subjectTests');
+    }
+
+    // SUBMIT MODAL HANDLERS
     function openSubmitModal() {
       document.getElementById('submitModal').classList.remove('hidden');
     }
@@ -751,6 +835,7 @@
 
     function confirmSubmitTest() {
       closeSubmitModal();
+      closeLeaveModal();
       clearInterval(timerTimer);
 
       const exam = EXAMS_DATA[currentExamKey];
@@ -792,6 +877,48 @@
       document.getElementById('scoreTimeTaken').innerText = timeTakenFormatted;
 
       showView('score');
+    }
+
+    function openExplorer(testId) {
+      let subject = null;
+      if (currentExamKey === 'ca') {
+        subject = EXAMS_DATA.ca.years[currentCaYear].find(s => s.id === currentSubjectId);
+      } else {
+        subject = EXAMS_DATA[currentExamKey].subjects.find(s => s.id === currentSubjectId);
+      }
+
+      currentTest = subject.tests.find(t => t.id === testId);
+
+      document.getElementById('bcTest').innerText = currentTest.title;
+      document.getElementById('exploreTitle').innerText = currentTest.title;
+
+      const list = document.getElementById('exploreList');
+      list.innerHTML = "";
+
+      currentTest.data.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = "glass-card p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-3.5";
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md">Question ${idx + 1}</span>
+            <span class="text-xs text-emerald-700 font-extrabold bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">Correct Option: (${String.fromCharCode(65 + q.ans)})</span>
+          </div>
+          <p class="text-sm sm:text-base font-bold text-slate-900 whitespace-pre-line leading-relaxed">${q.q}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+            ${q.opts.map((opt, i) => `
+              <div class="p-3 rounded-xl border ${i === q.ans ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900 shadow-sm' : 'border-slate-200 text-slate-700 bg-white'} text-xs leading-relaxed">
+                <span class="font-bold mr-1">(${String.fromCharCode(65 + i)})</span> ${opt}
+              </div>
+            `).join('')}
+          </div>
+          <div class="mt-3.5 p-4 bg-slate-50/90 rounded-2xl text-xs text-slate-700 whitespace-pre-line border border-slate-200/80 leading-relaxed">
+            <b class="text-slate-900 text-sm block mb-1">💡 Detailed Explanation:</b>${q.exp}
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
+      showView('explore');
     }
 
     window.onload = init;
