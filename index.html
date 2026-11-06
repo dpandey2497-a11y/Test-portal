@@ -360,7 +360,7 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
             ${q.opts.map((opt, i) => `
               <div class="p-2.5 rounded-lg border ${i === q.ans ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-slate-200 text-slate-700'} text-xs">
-                (${String.fromCharCode(65 + i)}) ${opt}
+                (${String.fromCharCode(65 + i)})${opt}
               </div>
             `).join('')}
           </div>
