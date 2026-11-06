@@ -19,9 +19,13 @@
       background-attachment: fixed;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+    }
+    /* Prevent black flash when entering fullscreen */
+    :fullscreen, ::backdrop {
+      background-color: #f8fafc !important;
     }
   </style>
 </head>
@@ -41,7 +45,6 @@
       </div>
     </div>
     
-    <!-- USER PROFILE & SIGN OUT BUTTONS -->
     <div class="flex items-center gap-2.5">
       <div id="userProfileBadge" class="hidden flex items-center gap-2 bg-indigo-50/80 border border-indigo-200/80 px-3 py-1.5 rounded-full shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -266,7 +269,7 @@
       <div id="exploreList" class="space-y-6"></div>
     </div>
 
-    <!-- 4. LIVE CBT EXAM VIEW (FULL SCREEN MODE SUPPORT) -->
+    <!-- 4. LIVE CBT EXAM VIEW -->
     <div id="viewCbt" class="hidden space-y-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
@@ -284,7 +287,7 @@
                 <button onclick="toggleExamLanguage()" id="btnLangToggle" class="px-3.5 py-1.5 rounded-xl border border-indigo-200 bg-indigo-50/70 hover:bg-indigo-100 text-indigo-700 text-xs font-extrabold flex items-center gap-1.5 shadow-sm transition">
                   🌐 <span id="langLabel">English</span>
                 </button>
-                <button onclick="toggleFullScreenManually()" title="Toggle Fullscreen" class="px-3 py-1.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-black shadow-sm">
+                <button onclick="toggleFullScreenManually()" id="btnFullscreenToggle" title="Toggle Fullscreen" class="px-3 py-1.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-black shadow-sm flex items-center gap-1">
                   ⛶ Fullscreen
                 </button>
               </div>
@@ -308,7 +311,8 @@
               <button onclick="prevCbtQ()" id="btnPrev" class="px-5 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50 transition">
                 Previous
               </button>
-              <button onclick="nextCbtQ()" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-md shadow-indigo-200 transition">
+              <!-- DYNAMIC BUTTON: SAVE & NEXT OR SAVE & SUBMIT -->
+              <button onclick="handleSaveAndNextOrSubmit()" id="btnNextOrSubmit" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-md shadow-indigo-200 transition">
                 Save & Next
               </button>
             </div>
@@ -368,7 +372,7 @@
 
         <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs text-slate-600 space-y-1.5 leading-relaxed font-medium">
           <p>• <b>Marking Scheme:</b> <span id="instMarkingDetail" class="text-slate-800 font-bold">+1.00 for correct, -0.33 for wrong answer.</span></p>
-          <p>• <b>Full Screen Mode:</b> Test start hone ke baad browser automatically Fullscreen mode me chala jayega.</p>
+          <p>• <b>Full Screen Mode:</b> Test start hone ke baad browser distraction-free Fullscreen mode me switch ho jayega.</p>
           <p>• <b>Bilingual Support:</b> Test screen par aap kisi bhi samay Hindi ya English switch kar sakte hain.</p>
         </div>
 
@@ -455,7 +459,7 @@
       </div>
     </div>
 
-    <!-- MODAL 5: WELCOME POPUP MODAL (SHOWS WELCOME [NAME]) -->
+    <!-- MODAL 5: WELCOME POPUP MODAL -->
     <div id="welcomeSuccessModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-md flex items-center justify-center p-4">
       <div class="bg-white rounded-3xl p-7 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
         <div class="w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center text-3xl mx-auto shadow-sm">
@@ -524,14 +528,12 @@
 
   </main>
 
-  <!-- AUTHENTICATION MODAL (SIGN IN / CREATE ACCOUNT) -->
+  <!-- AUTHENTICATION MODAL -->
   <div id="authModal" class="hidden fixed inset-0 z-50 bg-slate-900/75 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl border border-slate-100 text-left my-8 animate-in fade-in zoom-in-95 duration-200 relative">
       
-      <!-- Close button on Auth Modal -->
       <button onclick="closeAuthModal()" class="absolute right-5 top-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 font-bold text-sm">✕</button>
 
-      <!-- Modal Header -->
       <div class="text-center pb-4 border-b border-slate-100">
         <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center text-white text-2xl mx-auto shadow-md">
           🎯
@@ -539,7 +541,6 @@
         <h3 class="text-xl sm:text-2xl font-black text-slate-900 mt-3 tracking-tight">Welcome to TestChakra</h3>
         <p class="text-xs text-slate-500 font-medium mt-1">Test shuru karne ke liye pehle Sign In ya Create Account karein.</p>
         
-        <!-- Tab Switcher -->
         <div class="flex p-1 bg-slate-100 rounded-xl mt-4 border border-slate-200/80">
           <button onclick="switchAuthTab('signin')" id="tabBtnSignIn" class="flex-1 py-2 rounded-lg font-bold text-xs bg-white text-indigo-700 shadow-sm transition">
             Sign In
@@ -663,7 +664,7 @@
     </div>
   </div>
 
-  <script src="questions.js?v=testchakra_welcome_state_v2"></script>
+  <script src="questions.js?v=testchakra_smooth_cbt_v3"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -695,34 +696,62 @@
       checkAuthSession();
       setExam('upsc');
       setupHistoryNavigationGuard();
+      setupFullscreenChangeListener();
     }
 
-    // FULLSCREEN HANDLERS FOR CBT TEST
+    // FULLSCREEN HANDLERS WITH SMOOTH BACKGROUND PRESERVATION
+    function setupFullscreenChangeListener() {
+      document.addEventListener("fullscreenchange", updateFullscreenButtonUI);
+      document.addEventListener("webkitfullscreenchange", updateFullscreenButtonUI);
+      document.addEventListener("mozfullscreenchange", updateFullscreenButtonUI);
+      document.addEventListener("MSFullscreenChange", updateFullscreenButtonUI);
+    }
+
+    function isScreenInFullscreen() {
+      return Boolean(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+    }
+
+    function updateFullscreenButtonUI() {
+      const btn = document.getElementById('btnFullscreenToggle');
+      if (!btn) return;
+      if (isScreenInFullscreen()) {
+        btn.innerHTML = `🗗 Exit Fullscreen`;
+        btn.classList.add('bg-indigo-50', 'text-indigo-700', 'border-indigo-300');
+      } else {
+        btn.innerHTML = `⛶ Fullscreen`;
+        btn.classList.remove('bg-indigo-50', 'text-indigo-700', 'border-indigo-300');
+      }
+    }
+
     function enterFullScreenMode() {
       const elem = document.documentElement;
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(() => {});
-      } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-      }
+      try {
+        if (elem.requestFullscreen) {
+          elem.requestFullscreen().catch(() => {});
+        } else if (elem.webkitRequestFullscreen) {
+          elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          elem.msRequestFullscreen();
+        }
+      } catch (err) {}
     }
 
     function exitFullScreenMode() {
-      if (document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-        if (document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
+      try {
+        if (isScreenInFullscreen()) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
         }
-      }
+      } catch (err) {}
     }
 
     function toggleFullScreenManually() {
-      if (!document.fullscreenElement) {
+      if (!isScreenInFullscreen()) {
         enterFullScreenMode();
       } else {
         exitFullScreenMode();
@@ -1170,7 +1199,6 @@
       }
     }
 
-    // CHECK LOGIN BEFORE OPENING TEST INSTRUCTIONS
     function handleStartTestClick(testId) {
       if (!currentUser) {
         pendingTestIdToLaunch = testId;
@@ -1229,7 +1257,10 @@
 
     function beginTestExecution() {
       closeInstructionsModal();
-      enterFullScreenMode(); // Trigger full screen on test start
+      // Smooth fullscreen entry without screen flash
+      setTimeout(() => {
+        enterFullScreenMode();
+      }, 50);
       startCbt();
     }
 
@@ -1243,6 +1274,7 @@
       userAnswers = {};
       currentLang = 'hi';
       updateLangButtonLabel();
+      updateFullscreenButtonUI();
 
       initialTotalSeconds = currentTest.timeMins * 60;
       timerSeconds = initialTotalSeconds;
@@ -1282,6 +1314,7 @@
 
     function renderCbtQuestion() {
       const q = currentTest.data[cbtIndex];
+      const totalQ = currentTest.data.length;
       document.getElementById('cbtCurrentNum').innerText = cbtIndex + 1;
 
       const questionText = (currentLang === 'en' && q.q_en) ? q.q_en : q.q;
@@ -1307,7 +1340,28 @@
       });
 
       document.getElementById('btnPrev').disabled = (cbtIndex === 0);
+
+      // DYNAMIC ACTION BUTTON: LAST QUESTION = SAVE & SUBMIT
+      const btnNextOrSubmit = document.getElementById('btnNextOrSubmit');
+      if (cbtIndex === totalQ - 1) {
+        btnNextOrSubmit.innerText = "Save & Submit 🚀";
+        btnNextOrSubmit.className = "px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-black shadow-md shadow-emerald-200 transition";
+      } else {
+        btnNextOrSubmit.innerText = "Save & Next";
+        btnNextOrSubmit.className = "px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-extrabold shadow-md shadow-indigo-200 transition";
+      }
+
       renderPalette();
+    }
+
+    function handleSaveAndNextOrSubmit() {
+      const totalQ = currentTest.data.length;
+      if (cbtIndex === totalQ - 1) {
+        // Last question: open final submit dialog
+        openSubmitModal();
+      } else {
+        nextCbtQ();
+      }
     }
 
     function selectOption(idx) {
