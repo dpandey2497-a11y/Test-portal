@@ -55,13 +55,13 @@
     <div id="viewSubjects" class="space-y-6">
       <!-- EXAM TABS -->
       <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/80 rounded-2xl w-fit">
-        <button onclick="setExam('upsc')" id="tab-upsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm">
+        <button onclick="setExam('upsc')" id="tab-upsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm transition">
           🏛️ UPSC CSE
         </button>
-        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900">
+        <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
           🎯 BPSC
         </button>
-        <button onclick="setExam('ugc')" id="tab-ugc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900">
+        <button onclick="setExam('ugc')" id="tab-ugc" class="px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition">
           🎓 UGC NET / JRF
         </button>
       </div>
@@ -208,762 +208,298 @@
 
   </main>
 
+  <!-- बाहरी डेटाबेस फ़ाइल -->
+  <script src="questions.js"></script>
+
+  <!-- मुख्य कंट्रोलर लॉजिक -->
   <script>
-    // --- DATABASE ---
-    var UPSC_POLITY_T1 = [
-      {
-        q: "जवाहरलाल नेहरू द्वारा प्रस्तुत 'उद्देश्य प्रस्ताव' (Objectives Resolution) और उद्देशिका के विकास के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:\n1. जवाहरलाल नेहरू ने 13 दिसंबर, 1946 को संविधान सभा में उद्देश्य प्रस्ताव रखा, जिसे सभा ने 22 जनवरी, 1947 को सर्वसम्मति से स्वीकार किया।\n2. मूल उद्देश्य प्रस्ताव में अवशिष्ट शक्तियां (residuary powers) केंद्र/संघ के पास रखने का प्रावधान था।\n3. संविधान सभा द्वारा प्रस्तावना को सबसे अंत में 17 अक्टूबर, 1949 को पारित किया गया ताकि वह पूरे संविधान के अनुरूप रहे।\n\nउपर्युक्त में से कौन-सा/से कथन सही है/हैं?",
-        opts: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3"],
-        ans: 2,
-        exp: "• कथन 1 सही है: 13 दिसंबर, 1946 को पंडित जवाहरलाल नेहरू ने संविधान सभा में ऐतिहासिक 'उद्देश्य प्रस्ताव' प्रस्तुत किया। इसे 22 जनवरी, 1947 को संविधान सभा ने सर्वसम्मति से पारित किया।\n• कथन 2 गलत है: मूल उद्देश्य प्रस्ताव में अवशिष्ट शक्तियां राज्यों/इकाइयों के पास रखने का प्रावधान था, न कि केंद्र के पास। बाद में विभाजन के बाद इसे बदला गया।\n• कथन 3 सही है: सभा ने प्रस्तावना को सबसे अंत में 17 अक्टूबर, 1949 को पारित किया।"
-      },
-      {
-        q: "संविधान की प्रस्तावना में निहित 'संप्रभुता' (Sovereignty) एवं 'लोकप्रिय संप्रभुता' की संकल्पना के संदर्भ में निम्नलिखित कथनों पर विचार कीजिए:\n1. 'हम, भारत के लोग' शब्द लोकप्रिय संप्रभुता को दर्शाते हैं, जिसका अर्थ है कि सत्ता का अंतिम स्रोत संसद नहीं, बल्कि जनता है।\n2. भारत की राष्ट्रमंडल (Commonwealth) एवं संयुक्त राष्ट्र (UN) की सदस्यता उसकी संप्रभुता को आंशिक रूप से सीमित करती है।\n3. संप्रभु राज्य होने के नाते भारत किसी विदेशी क्षेत्र को अधिग्रहित कर सकता है अथवा अपना कोई क्षेत्र किसी अन्य देश को सौंप सकता है।\n\nउपर्युक्त में से कौन-से कथन सही हैं?",
-        opts: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3"],
-        ans: 2,
-        exp: "• कथन 1 सही है: 'हम, भारत के लोग' लोकप्रिय संप्रभुता का प्रतीक है।\n• कथन 2 गलत है: राष्ट्रमंडल या संयुक्त राष्ट्र संघ की सदस्यता स्वैच्छिक है और भारत की संप्रभुता पर कोई आंच नहीं लाती।\n• कथन 3 सही है: संप्रभु राष्ट्र होने के नाते भारत किसी भी विदेशी क्षेत्र का अधिग्रहण कर सकता है।"
-      },
-      {
-        q: "भारतीय समाजवाद की प्रकृति और 42वें संविधान संशोधन (1976) के संदर्भ में निम्नलिखित में से कौन-सा कथन असत्य है?",
-        opts: [
-          "भारत का समाजवाद एक लोकतांत्रिक समाजवाद है जिसमें मिश्रित अर्थव्यवस्था को अपनाया गया है।",
-          "कांग्रेस ने आवडी अधिवेशन (1955) में 'समाजवादी ढंग के समाज' की स्थापना का संकल्प लिया था।",
-          "डी.एस. नकारा मामले (1982) में सुप्रीम कोर्ट ने कहा कि भारतीय समाजवाद केवल मार्क्सवादी साम्यवाद पर आधारित है।",
-          "डॉ. बलराम सिंह मामले (2024) में सुप्रीम कोर्ट ने स्पष्ट किया कि प्रस्तावना में 'समाजवादी' शब्द जोड़ना वैध था।"
-        ],
-        ans: 2,
-        exp: "• विकल्प (c) असत्य है: डी.एस. नकारा मामले (1982) में कोर्ट ने कहा था कि भारतीय समाजवाद मार्क्सवाद और गांधीवाद का मिश्रण है, जिसका स्पष्ट झुकाव गांधीवादी समाजवाद की ओर है।"
-      },
-      {
-        q: "भारतीय संविधान में 'पंथनिरपेक्षता' (Secularism) के स्वरूप के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. भारतीय पंथनिरपेक्षता 'सर्वधर्म समभाव' के सिद्धांत पर आधारित है।\n2. एस.आर. बोम्मई मामले (1994) में सुप्रीम कोर्ट ने पंथनिरपेक्षता को संविधान का 'मूल ढांचा' घोषित किया।\n3. संविधान के प्राधिकृत हिंदी पाठ में आधिकारिक रूप से 'पंथनिरपेक्ष' शब्द का प्रयोग किया गया है।\n\nउपर्युक्त में से कौन-से कथन सही हैं?",
-        opts: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1", "1, 2 और 3"],
-        ans: 3,
-        exp: "• तीनों कथन सही हैं: भारत सभी धर्मों को समान आदर देता है (सर्वधर्म समभाव)। एस.आर. बोम्मई वाद (1994) में इसे बेसिक स्ट्रक्चर माना गया और हिंदी पाठ में 'पंथनिरपेक्ष' शब्द ही प्रयोग किया गया है।"
-      },
-      {
-        q: "प्रस्तावना में उल्लिखित संवैधानिक लक्ष्यों (न्याय, स्वतंत्रता, समता) के वर्गीकरण पर विचार कीजिए:\n1. प्रस्तावना में न्याय के तीन रूपों (सामाजिक, आर्थिक, राजनीतिक) का उल्लेख है।\n2. इसमें पाँच प्रकार की स्वतंत्रताओं की गारंटी दी गई है।\n3. सामाजिक और आर्थिक न्याय के सम्मिलित रूप को 'वितरणात्मक न्याय' कहा जाता है।\n\nउपर्युक्त में से कौन-से कथन सत्य हैं?",
-        opts: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3"],
-        ans: 3,
-        exp: "• सभी कथन सही हैं: प्रस्तावना 3 न्याय, 5 स्वतंत्रताएँ तथा 2 समता (प्रतिष्ठा व अवसर) प्रदान करती है।"
-      },
-      {
-        q: "प्रस्तावना की संवैधानिक स्थिति के संबंध में निम्नलिखित कथनों पर विचार कीजिए:\n1. बेरुबारी संघ मामले (1960) में न्यायालय ने कहा कि प्रस्तावना संविधान का अंग नहीं है।\n2. केशवानंद भारती मामले (1973) में न्यायालय ने माना कि प्रस्तावना संविधान का अभिन्न अंग है।\n3. प्रस्तावना न्यायालय में प्रत्यक्षतः वाद-योग्य (Justiciable) है।\n\nउपर्युक्त में से कौन-से कथन सही हैं?",
-        opts: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3"],
-        ans: 0,
-        exp: "• कथन 1 और 2 सही हैं, लेकिन कथन 3 गलत है क्योंकि प्रस्तावना न्यायालय द्वारा अप्रवर्तनीय (Non-justiciable) है।"
-      },
-      {
-        q: "प्रस्तावना पर प्रमुख संविधानविदों के कथनों के संबंध में निम्नलिखित युग्मों पर विचार कीजिए:\n1. के.एम. मुंशी: 'हमारे संप्रभु लोकतांत्रिक गणराज्य की राजनीतिक जन्मकुंडली'।\n2. पं. ठाकुरदास भार्गव: 'संविधान की आत्मा और उसकी कुंजी'।\n3. प्रत्यक्ष लोकतंत्र की एकमात्र प्रत्यक्ष संस्था: 'ग्राम सभा'।\n\nउपर्युक्त में से कौन-से सही सुमेलित हैं?",
-        opts: ["केवल 1 और 2", "केवल 2 और 3", "केवल 1 और 3", "1, 2 और 3 सभी"],
-        ans: 3,
-        exp: "• सभी युग्म सही हैं: के.एम. मुंशी ने इसे होरोस्कोप कहा, भार्गव जी ने आत्मा और कुंजी, तथा ग्राम सभा प्रत्यक्ष लोकतंत्र की संस्था है।"
-      }
-    ];
+    let currentExamKey = 'upsc';
+    let currentSubjectId = null;
+    let currentTest = null;
+    let cbtIndex = 0;
+    let userAnswers = {};
+    let timerSeconds = 0;
+    let timerTimer = null;
 
-    var BPSC_POLITY_T1 = [
-      {
-        q: "प्रस्तावना को 'संविधान का परिचय-पत्र' (Identity Card of the Constitution) किसने कहा था?",
-        opts: ["के.एम. मुंशी", "एन.ए. पालकीवाला", "अर्नेस्ट बार्कर", "डॉ. बी.आर. अंबेडकर"],
-        ans: 1,
-        exp: "प्रख्यात न्यायविद एवं संवैधानिक विशेषज्ञ एन.ए. पालकीवाला ने प्रस्तावना को 'संविधान का परिचय-पत्र' (Identity Card) कहा था।"
-      },
-      {
-        q: "प्रस्तावना को संविधान का 'कुंजी-स्वर' (Key-Note) किसने माना था?",
-        opts: ["अर्नेस्ट बार्कर", "के.सी. व्हीयर", "आइवर जेनिंग्स", "अल्लादी कृष्णास्वामी अय्यर"],
-        ans: 0,
-        exp: "अंग्रेज राजनीतिशास्त्री सर अर्नेस्ट बार्कर ने प्रस्तावना को संविधान का 'कुंजी-स्वर' (Key-Note) कहा था।"
-      },
-      {
-        q: "अर्नेस्ट बार्कर ने अपनी किस सुप्रसिद्ध पुस्तक (1951) के आरंभ में भारतीय संविधान की प्रस्तावना को छापा था?",
-        opts: ["प्रिंसिपल्स ऑफ सोशल एंड पॉलिटिकल थ्योरी", "द मॉडर्न डेमोक्रेसीज", "द इंडियन कॉन्स्टिट्यूशन", "ग्रामर ऑफ पॉलिटिक्स"],
-        ans: 0,
-        exp: "अर्नेस्ट बार्कर ने अपनी पुस्तक 'प्रिंसिपल्स ऑफ सोशल एंड पॉलिटिकल थ्योरी' (1951) के आरंभ में भारतीय प्रस्तावना को प्रकाशित किया।"
-      },
-      {
-        q: "'प्रस्तावना उन बातों की अभिव्यक्ति है जिसे हमने इतने समय तक सोचा और जिसका सपना देखा' - यह कथन किसका है?",
-        opts: ["पंडित जवाहरलाल नेहरू", "सर अल्लादी कृष्णास्वामी अय्यर", "डॉ. राजेंद्र प्रसाद", "सर बी.एन. राव"],
-        ans: 1,
-        exp: "संविधान सभा के वरिष्ठ सदस्य सर अल्लादी कृष्णास्वामी अय्यर ने प्रस्तावना के संबंध में यह विचार व्यक्त किया था।"
-      },
-      {
-        q: "किस न्यायमूर्ति के अनुसार 'प्रस्तावना संविधान की आत्मा है, जिसे केवल क्रांति ही बदल सकती है'?",
-        opts: ["न्यायमूर्ति पी.एन. भगवती", "न्यायमूर्ति एम. हिदायतुल्ला", "न्यायमूर्ति जे.एस. वर्मा", "न्यायमूर्ति वी.आर. कृष्णा अय्यर"],
-        ans: 1,
-        exp: "भूतपूर्व मुख्य न्यायाधीश न्यायमूर्ति एम. हिदायतुल्ला ने कहा था कि यह संविधान की आत्मा है जिसे केवल क्रांति ही बदल सकती है।"
-      },
-      {
-        q: "संविधान का राजनीतिक दर्शन समाज में परिवर्तन किस ढंग से लाने का पक्षधर है?",
-        opts: ["सशस्त्र क्रांति द्वारा", "शांतिपूर्ण और लोकतांत्रिक ढंग से", "आर्थिक अधिनायकवाद द्वारा", "संसदीय निरंकुशता से"],
-        ans: 1,
-        exp: "संविधान का दर्शन चाहता है कि समाज में परिवर्तन शांतिपूर्ण और लोकतांत्रिक ढंग से आए।"
-      },
-      {
-        q: "भारतीय इतिहास में व्यक्ति की स्वतंत्रता के प्रति प्रतिबद्धता के तहत प्रेस पर प्रतिबंध का विरोध सबसे पहले किसने किया था?",
-        opts: ["बाल गंगाधर तिलक", "राजा राममोहन राय", "ईश्वरचंद्र विद्यासागर", "गोपाल कृष्ण गोखले"],
-        ans: 1,
-        exp: "राजा राममोहन राय ने 19वीं सदी के आरंभ में ही प्रेस पर लगाए गए ब्रिटिश प्रतिबंधों का कड़ा विरोध किया था।"
-      },
-      {
-        q: "मनमानी गिरफ्तारी की छूट देने वाले किस औपनिवेशिक कानून के विरुद्ध पूरे भारत में व्यापक जनांदोलन हुआ था?",
-        opts: ["वर्नाक्युलर प्रेस एक्ट", "रौलट एक्ट", "आर्म्स एक्ट", "इल्बर्ट बिल"],
-        ans: 1,
-        exp: "रौलट एक्ट (1919) के तहत पुलिस को बिना वारंट किसी को भी गिरफ्तार करने की छूट थी, जिसके विरुद्ध देशव्यापी आंदोलन हुआ था।"
-      },
-      {
-        q: "अमेरिका में 'सकारात्मक कार्रवाई' (Affirmative Action) की शुरुआत किस दशक के कानून से मानी जाती है?",
-        opts: ["1947 के बाद", "1964 के बाद", "1975 के बाद", "1989 के बाद"],
-        ans: 1,
-        exp: "अमेरिका में नागरिक अधिकार कानून 1964 के बाद सकारात्मक कार्रवाई आई, जबकि भारत ने इससे दो दशक पहले ही आरक्षण लागू कर दिया था।"
-      },
-      {
-        q: "भारतीय संविधान ने व्यक्तियों के अधिकारों के साथ-साथ 'समूहगत अधिकार' (Group Rights) किसे दिए हैं?",
-        opts: ["केवल राजनीतिक दलों को", "धार्मिक और भाषाई समुदायों को", "विदेशी राजनयिकों को", "व्यापारिक संघों को"],
-        ans: 1,
-        exp: "संविधान व्यक्तियों के साथ-साथ भाषाई एवं धार्मिक समुदायों को अपनी शिक्षण संस्थाएं चलाने का समूहगत अधिकार देता है।"
-      },
-      {
-        q: "पश्चिमी पंथनिरपेक्षता में धर्म और राज्य के बीच संबंध को किस रूप में परिभाषित किया जाता है?",
-        opts: ["सिद्धांतगत दूरी", "पारस्परिक निषेध (Strict Wall of Separation)", "सर्वधर्म समभाव", "सकारात्मक सहयोग"],
-        ans: 1,
-        exp: "पश्चिम (विशेषकर अमेरिका) में धर्म और राज्य के मध्य पारस्परिक निषेध (Strict Wall of Separation) का संबंध होता है।"
-      },
-      {
-        q: "भारतीय पंथनिरपेक्षता के संदर्भ में राज्य और धर्म के संबंधों के लिए किस अवधारणा का प्रयोग किया जाता है?",
-        opts: ["पूर्ण अलगाव", "सिद्धांतगत दूरी (Principled Distance)", "धार्मिक वरीयता", "नास्तिकता"],
-        ans: 1,
-        exp: "भारतीय पंथनिरपेक्षता 'सिद्धांतगत दूरी' (Principled Distance) पर आधारित है, जहाँ जरूरत पड़ने पर राज्य सुधार हेतु हस्तक्षेप कर सकता है।"
-      },
-      {
-        q: "भारतीय संघवाद की प्रकृति अमेरिकी संघवाद से किस प्रमुख मामले में भिन्न है?",
-        opts: ["भारत असममित/असमतोल (Asymmetric) संघवाद है", "भारत में कोई केंद्र नहीं है", "भारत में दोहरी नागरिकता है", "अमेरिका में राज्यपाल नियुक्त होते हैं"],
-        ans: 0,
-        exp: "अमेरिका में सभी राज्यों को समान दर्जा प्राप्त है, जबकि भारत में कुछ राज्यों को विशेष दर्जा प्राप्त है (असममित संघवाद)।"
-      },
-      {
-        q: "संविधान के किस अनुच्छेद के तहत नागालैंड को विशेष दर्जा और संरक्षण प्रदान किया गया है?",
-        opts: ["अनुच्छेद 370", "अनुच्छेद 371A", "अनुच्छेद 371J", "अनुच्छेद 372"],
-        ans: 1,
-        exp: "अनुच्छेद 371A के तहत नागालैंड राज्य की धार्मिक, सामाजिक प्रथाओं और भूमि अधिकारों को विशेष संवैधानिक दर्जा मिला है।"
-      },
-      {
-        q: "जम्मू-कश्मीर का अनुच्छेद 370 वाला विशेष दर्जा किस वर्ष संसद द्वारा निष्प्रभावी कर समाप्त किया गया?",
-        opts: ["2014", "2019", "2020", "2021"],
-        ans: 1,
-        exp: "अगस्त 2019 में संवैधानिक आदेश और पुनर्गठन अधिनियम के माध्यम से अनुच्छेद 370 के विशेष प्रावधानों को समाप्त किया गया।"
-      },
-      {
-        q: "संविधान सभा ने राष्ट्रीय पहचान तय करते समय धर्म के आधार पर किस व्यवस्था को सर्वसम्मति से अस्वीकार कर दिया था?",
-        opts: ["वयस्क मताधिकार", "पृथक निर्वाचन मंडल (Separate Electorates)", "संसदीय प्रणाली", "स्वतंत्र न्यायपालिका"],
-        ans: 1,
-        exp: "विभाजनकारी प्रवृत्तियों को रोकने के लिए सभा ने अंग्रेजों द्वारा चलाए गए पृथक निर्वाचन मंडल को सिरे से खारिज किया।"
-      },
-      {
-        q: "संविधान सभा की सबसे बड़ी प्रक्रियागत उपलब्धि क्या थी?",
-        opts: ["निर्णय केवल बहुमत के बल पर लेना", "निर्णय विचार-विमर्श और सर्वानुमति (Consensus) से लेना", "विदेशी विशेषज्ञों द्वारा निर्णय लेना", "जनमत संग्रह कराना"],
-        ans: 1,
-        exp: "सभा की बड़ी उपलब्धि यह थी कि निर्णय केवल संख्या बल से नहीं, बल्कि गहन विचार-विमर्श और सर्वानुमति (Consensus) से लिए गए।"
-      },
-      {
-        q: "संविधान के अनुच्छेद 343 के अनुसार संघ की आधिकारिक राजभाषा क्या है?",
-        opts: ["अंग्रेजी", "देवनागरी लिपि में लिखी हिंदी", "संस्कृत", "हिंदुस्तानी"],
-        ans: 1,
-        exp: "अनुच्छेद 343(1) के अनुसार संघ की राजभाषा देवनागरी लिपि में लिखी हिंदी होगी।"
-      },
-      {
-        q: "भारतीय संविधान में किसी भाषा को 'राष्ट्रभाषा' (National Language) घोषित न करने का मुख्य कारण क्या था?",
-        opts: ["संसाधनों की कमी", "देश की बहुभाषिक विविधता और सभी भाषाओं का सम्मान", "अंग्रेजी का दबाव", "संविधान सभा में हिंदी भाषी न होना"],
-        ans: 1,
-        exp: "भारत बहुभाषी देश है, अतः किसी एक भाषा को राष्ट्रभाषा घोषित न करके सभी भाषाओं का सम्मान बनाए रखा गया।"
-      },
-      {
-        q: "विश्व का सबसे संक्षिप्त लिखित संविधान किस देश का है जिसमें केवल 7 अनुच्छेद थे?",
-        opts: ["ब्रिटेन", "संयुक्त राज्य अमेरिका (USA)", "कनाडा", "फ्रांस"],
-        ans: 1,
-        exp: "अमेरिका का मूल संविधान केवल 7 अनुच्छेदों का अत्यंत संक्षिप्त लिखित दस्तावेज है।"
-      },
-      {
-        q: "भारतीय संविधान के अत्यधिक विस्तृत और लंबा होने के कारणों में निम्नलिखित में से कौन-सा शामिल है?",
-        opts: ["देश की भौगोलिक व सांस्कृतिक विविधता", "संघ और राज्यों दोनों के लिए एकल संविधान", "प्रशासनिक ब्योरे का भी विस्तार से शामिल होना", "उपर्युक्त सभी"],
-        ans: 3,
-        exp: "भारत के संविधान के विशाल आकार के पीछे विविधता, केंद्र-राज्य का एकल संविधान और विस्तृत प्रशासनिक प्रावधान मुख्य कारण हैं।"
-      },
-      {
-        q: "संविधानों को 'कठोर' (Rigid) और 'लचीले' (Flexible) वर्ग में वर्गीकृत करने वाले प्रमुख विचारक कौन थे?",
-        opts: ["लॉर्ड ब्राइस", "ए.वी. डायसी", "हेरोल्ड लास्की", "के.सी. व्हीयर"],
-        ans: 0,
-        exp: "लॉर्ड ब्राइस ने संविधानों को संशोधन की प्रक्रिया की सरलता या जटिलता के आधार पर कठोर और लचीले में बांटा था।"
-      },
-      {
-        q: "भारतीय संघवाद को 'अर्द्ध-संघीय' (Quasi-Federal) कहकर किसने संबोधित किया था?",
-        opts: ["आइवर जेनिंग्स", "के.सी. व्हीयर", "ग्रैनविले ऑस्टिन", "मॉरिस जोन्स"],
-        ans: 1,
-        exp: "प्रोफेसर के.सी. व्हीयर ने भारतीय संविधान की एकात्मक झुकाव वाली प्रकृति के कारण इसे 'अर्द्ध-संघीय' कहा था।"
-      },
-      {
-        q: "किस राज्य के पाठ्यपुस्तक बोर्ड ने लिखा कि 'सिद्धांत में संविधान का स्वरूप संघात्मक है, लेकिन व्यवहार में उसकी आत्मा एकात्मक है'?",
-        opts: ["उत्तर प्रदेश बोर्ड", "बिहार बोर्ड (कक्षा 9)", "मध्य प्रदेश बोर्ड", "राजस्थान बोर्ड"],
-        ans: 1,
-        exp: "बिहार बोर्ड वर्ग 9 की राजनीति विज्ञान पुस्तक में भारतीय संघवाद की आत्मा को एकात्मक बताया गया है।"
-      },
-      {
-        q: "संसदीय शासन प्रणाली में नाममात्र की कार्यपालिका का प्रमुख कौन होता है?",
-        opts: ["प्रधानमंत्री", "राष्ट्रपति", "लोकसभा अध्यक्ष", "मुख्य न्यायाधीश"],
-        ans: 1,
-        exp: "भारत में राष्ट्रपति राज्य का प्रमुख और औपचारिक/नाममात्र का कार्यपालिका प्रमुख होता है।"
-      },
-      {
-        q: "भारतीय संविधान के किस अनुच्छेद के तहत मंत्रिपरिषद सामूहिक रूप से लोकसभा के प्रति उत्तरदायी होती है?",
-        opts: ["अनुच्छेद 74(1)", "अनुच्छेद 75(3)", "अनुच्छेद 78", "अनुच्छेद 164(2)"],
-        ans: 1,
-        exp: "अनुच्छेद 75(3) में स्पष्ट प्रावधान है कि मंत्रिपरिषद सामूहिक रूप से लोकसभा के प्रति उत्तरदायी होगी।"
-      },
-      {
-        q: "ब्रिटेन की संसद और अमेरिकी न्यायपालिका की सर्वोच्चता के बीच भारतीय संविधान ने क्या स्थापित किया है?",
-        opts: ["संसदीय निरंकुशता", "न्यायिक अधिनायकवाद", "संसदीय संप्रभुता और न्यायिक सर्वोच्चता के बीच संतुलन", "सैनिक नियंत्रण"],
-        ans: 2,
-        exp: "भारत में संसद संशोधन कर सकती है, लेकिन न्यायालय संविधान के मूल ढांचे का उल्लंघन करने वाले कानून रद्द कर सकता है।"
-      },
-      {
-        q: "अमेरिका की दोहरी न्याय व्यवस्था के विपरीत भारत में किस प्रकार की न्यायिक व्यवस्था अपनाई गई है?",
-        opts: ["एकीकृत और स्वतंत्र न्यायपालिका", "राज्य-आधारित पृथक न्यायपालिका", "सैन्य न्यायपालिका", "प्रशासनिक ट्रिब्यूनल प्रणाली"],
-        ans: 0,
-        exp: "भारत में सर्वोच्च न्यायालय से लेकर अधीनस्थ न्यायालयों तक एक ही एकीकृत न्यायिक श्रृंखला है।"
-      },
-      {
-        q: "संविधान के भाग III के मौलिक अधिकार और भाग IV के नीति निदेशक तत्वों में विधिक अंतर क्या है?",
-        opts: ["मौलिक अधिकार न्यायालय द्वारा लागू कराए जा सकते हैं (वाद-योग्य)", "नीति निदेशक तत्व न्यायालय द्वारा लागू कराए जा सकते हैं", "दोनों न्यायालय द्वारा लागू नहीं होते", "दोनों पूर्णतः अप्रवर्तनीय हैं"],
-        ans: 0,
-        exp: "मौलिक अधिकार वाद-योग्य हैं, जबकि भाग IV के नीति निदेशक तत्व न्यायालय द्वारा सीधे लागू नहीं कराए जा सकते।"
-      },
-      {
-        q: "42वें संविधान संशोधन (1976) द्वारा संविधान में कितने मौलिक कर्तव्य जोड़े गए थे?",
-        opts: ["8", "10", "11", "12"],
-        ans: 1,
-        exp: "42वें संविधान संशोधन 1976 द्वारा स्वर्ण सिंह समिति की सिफारिश पर 10 मौलिक कर्तव्य जोड़े गए थे।"
-      },
-      {
-        q: "86वें संविधान संशोधन (2002) के बाद भारतीय संविधान में मौलिक कर्तव्यों की कुल संख्या कितनी हो गई?",
-        opts: ["10", "11", "12", "14"],
-        ans: 1,
-        exp: "86वें संशोधन 2002 द्वारा 6 से 14 वर्ष के बच्चों की शिक्षा का अवसर देने संबंधी 11वां कर्तव्य जोड़ा गया।"
-      },
-      {
-        q: "संविधान के किस अनुच्छेद के अनुसार 18 वर्ष का प्रत्येक नागरिक बिना संपत्ति, कर या शिक्षा की शर्त के मतदाता है?",
-        opts: ["अनुच्छेद 324", "अनुच्छेद 325", "अनुच्छेद 326", "अनुच्छेद 327"],
-        ans: 2,
-        exp: "अनुच्छेद 326 वयस्क मताधिकार की गारंटी देता है जिसमें जाति, वर्ग, लिंग, कर या शिक्षा का कोई प्रतिबंध नहीं है।"
-      },
-      {
-        q: "भारत ने सार्वभौमिक वयस्क मताधिकार (Universal Adult Franchise) किस वर्ष से ही पूर्णतः लागू कर दिया था?",
-        opts: ["1947", "1951-52 के पहले आम चुनाव से", "1962 के चुनाव से", "1971 के चुनाव से"],
-        ans: 1,
-        exp: "भारत ने अपने प्रथम आम चुनाव (1951-52) से ही बिना किसी भेदभाव के सभी वयस्कों को मतदान का अधिकार दिया।"
-      },
-      {
-        q: "ब्रिटेन में महिलाओं को पुरुषों के समान वयस्क मताधिकार हासिल करने में लगभग कितने वर्ष लग गए?",
-        opts: ["लगभग 25 वर्ष", "लगभग 50 वर्ष", "लगभग 100 वर्ष (1832-1928)", "लगभग 200 वर्ष"],
-        ans: 2,
-        exp: "ब्रिटेन में 1832 के प्रथम सुधार अधिनियम से 1928 के पूर्ण मताधिकार कानून तक लगभग 100 वर्ष का लंबा संघर्ष चला।"
-      },
-      {
-        q: "स्विट्जरलैंड में महिलाओं को राष्ट्रीय स्तर पर मताधिकार किस वर्ष प्रदान किया गया था?",
-        opts: ["1947", "1950", "1971", "1991"],
-        ans: 2,
-        exp: "अत्यंत विकसित लोकतंत्र होने के बावजूद स्विट्जरलैंड में महिलाओं को मताधिकार वर्ष 1971 में प्राप्त हुआ।"
-      },
-      {
-        q: "मतदान की न्यूनतम आयु 21 वर्ष से घटाकर 18 वर्ष किस संविधान संशोधन द्वारा की गई थी?",
-        opts: ["42वां संशोधन", "44वां संशोधन", "61वां संशोधन (1988)", "73वां संशोधन"],
-        ans: 2,
-        exp: "61वें संविधान संशोधन अधिनियम 1988 द्वारा आयु 21 से घटाकर 18 वर्ष की गई।"
-      },
-      {
-        q: "61वां संविधान संशोधन अधिनियम किस वर्ष से प्रभावी/लागू हुआ था?",
-        opts: ["1988", "1989", "1990", "1991"],
-        ans: 1,
-        exp: "यह अधिनियम 28 मार्च 1989 से विधिवत रूप से लागू हुआ था।"
-      },
-      {
-        q: "भारतीय लोकतंत्र के 'प्रहरी' (Watchdogs) माने जाने वाले स्वतंत्र निकायों में कौन शामिल हैं?",
-        opts: ["निर्वाचन आयोग (ECI)", "नियंत्रक एवं महालेखा परीक्षक (CAG)", "संघ एवं राज्य लोक सेवा आयोग (UPSC/SPSC)", "उपर्युक्त सभी"],
-        ans: 3,
-        exp: "संविधान ने निष्पक्ष चुनाव, वित्तीय पारदर्शिता और योग्यता आधारित भर्ती के लिए ECI, CAG और UPSC को स्वतंत्र दर्जा दिया है।"
-      },
-      {
-        q: "73वें और 74वें संविधान संशोधन (1992) के माध्यम से भारत में शासन को कितने स्तरों पर स्थापित किया गया?",
-        opts: ["दो स्तरों पर", "तीन स्तरों पर (केंद्र, राज्य और स्थानीय निकाय)", "चार स्तरों पर", "एकल स्तर पर"],
-        ans: 1,
-        exp: "इन संशोधनों ने पंचायती राज और नगरपालिकाओं को संवैधानिक दर्जा देकर त्रिस्तरीय शासन प्रणाली स्थापित की।"
-      },
-      {
-        q: "सहकारी समितियों (Cooperative Societies) को किस संविधान संशोधन द्वारा संवैधानिक दर्जा प्रदान किया गया?",
-        opts: ["86वां संशोधन", "91वां संशोधन", "97वां संशोधन (2011)", "101वां संशोधन"],
-        ans: 2,
-        exp: "97वें संविधान संशोधन 2011 द्वारा सहकारी समितियों को भाग IX-B और अनुच्छेद 19(1)(c) में शामिल किया गया।"
-      },
-      {
-        q: "NCERT के अनुसार भारतीय संविधान की तीन प्रमुख आलोचनाओं में निम्नलिखित में से कौन-सी शामिल है?",
-        opts: ["संविधान अस्त-व्यस्त और वृहद है", "यह सबका प्रतिनिधि नहीं है क्योंकि सीमित मताधिकार से बनी सभा थी", "यह विदेशी प्रावधानों का 'उधार का थैला' है", "उपर्युक्त तीनों"],
-        ans: 3,
-        exp: "NCERT वर्ग 11 के अनुसार अस्त-व्यस्तता, अपूर्ण प्रतिनिधित्व और विदेशी नकल ये तीन प्रमुख आलोचनाएं की जाती हैं।"
-      },
-      {
-        q: "संविधान की सीमाओं (Limitations) के संबंध में कौन-सा कथन सत्य है?",
-        opts: ["राष्ट्रीय एकता की धारणा बहुत केंद्रीकृत है", "परिवार के भीतर लैंगिक न्याय के प्रश्नों की उपेक्षा हुई", "कुछ बुनियादी सामाजिक-आर्थिक अधिकार नीति निर्देशक तत्वों में रखे गए", "उपर्युक्त सभी"],
-        ans: 3,
-        exp: "संविधान समीक्षक राष्ट्रीय एकता के अति-केंद्रीकरण, लैंगिक न्याय तथा नीति निदेशक तत्वों की गैर-प्रवर्तनीयता को इसकी सीमाएं मानते हैं।"
-      },
-      {
-        q: "किस ब्रिटिश संविधानविद ने भारतीय संविधान को '1935 के अधिनियम की कार्बन कॉपी' कहा था?",
-        opts: ["सर आइवर जेनिंग्स", "लॉर्ड माउंटबेटन", "क्लीमेंट एटली", "ए.वी. डायसी"],
-        ans: 0,
-        exp: "सर आइवर जेनिंग्स ने लिखा कि भारतीय संविधान सीधे 1935 के भारत शासन अधिनियम से निकला है और उसके अनेक प्रावधान शब्दशः लिए गए हैं।"
-      },
-      {
-        q: "संविधान सभा में किसने संविधान को 'पश्चिम का दासवत् अनुकरण' (Slavish Imitation) बताया था?",
-        opts: ["लोकनाथ मिश्र", "एच.वी. कामथ", "के. संथानम", "मौलाना हसरत मोहानी"],
-        ans: 0,
-        exp: "संविधान सभा सदस्य लोकनाथ मिश्र ने आरोप लगाया था कि यह संविधान पश्चिम का दासवत् अनुकरण है।"
-      },
-      {
-        q: "संविधान सभा के किस सदस्य ने व्यंग्य किया था कि 'सभा का प्रतीक हाथी था, शायद इसीलिए संविधान भी हाथी जैसा बना'?",
-        opts: ["एच.वी. कामथ", "डॉ. राजेंद्र प्रसाद", "टी.टी. कृष्णामचारी", "सर बी.एन. राव"],
-        ans: 0,
-        exp: "एच.वी. कामथ ने संविधान के अत्यधिक विशाल आकार पर टिप्पणी करते हुए यह व्यंग्य किया था।"
-      },
-      {
-        q: "किस सदस्य ने आशंका जताई थी कि संविधान की अत्यधिक कानूनी और जटिल भाषा 'मुकदमेबाजी' (Litigation) को बढ़ावा देगी?",
-        opts: ["एच.के. माहेश्वरी", "सच्चिदानंद सिन्हा", "जयपाल सिंह", "के.एम. मुंशी"],
-        ans: 0,
-        exp: "एच.के. माहेश्वरी ने सभा में चेतावनी दी थी कि यह भाषा वकीलों का स्वर्ग और मुकदमेबाजी को बढ़ाने वाली सिद्ध होगी।"
-      },
-      {
-        q: "भारतीय राष्ट्रीय ध्वज की लंबाई और चौड़ाई का आधिकारिक अनुपात कितना निर्धारित है?",
-        opts: ["2:3", "3:2", "4:3", "1:2"],
-        ans: 1,
-        exp: "राष्ट्रीय ध्वज की लंबाई और चौड़ाई का अनुपात 3:2 (Length : Width) है।"
-      },
-      {
-        q: "भारतीय राष्ट्रीय ध्वज को संविधान सभा द्वारा किस तिथि को आधिकारिक रूप से अपनाया गया था?",
-        opts: ["15 अगस्त, 1947", "22 जुलाई, 1947", "26 जनवरी, 1950", "24 जनवरी, 1950"],
-        ans: 1,
-        exp: "संविधान सभा ने 22 जुलाई, 1947 को तिरंगे को भारत के राष्ट्रीय ध्वज के रूप में स्वीकार किया था।"
-      },
-      {
-        q: "राष्ट्रीय ध्वज के चक्र में 24 तीलियां हैं। इसकी मूल अभिकल्पना 1921 में किसने तैयार की थी?",
-        opts: ["बंकिम चंद्र चटर्जी", "पिंगली वेंकैया", "मैडम भीकाजी कामा", "सुरैया तैयबजी"],
-        ans: 1,
-        exp: "आंध्र प्रदेश के स्वतंत्रता सेनानी पिंगली वेंकैया ने 1921 में राष्ट्रीय ध्वज की मूल रूपरेखा तैयार की थी।"
-      },
-      {
-        q: "भारत के राजचिह्न (सारनाथ का अशोक सिंह-स्तंभ) को आधिकारिक रूप से कब अपनाया गया था?",
-        opts: ["15 अगस्त, 1947", "26 जनवरी, 1950", "22 जुलाई, 1947", "24 जनवरी, 1950"],
-        ans: 1,
-        exp: "गणतंत्र की स्थापना के दिन 26 जनवरी, 1950 को सारनाथ के सिंह-स्तंभ को राज्य चिह्न के रूप में अपनाया गया।"
-      },
-      {
-        q: "राजचिह्न के नीचे देवनागरी लिपि में अंकित 'सत्यमेव जयते' किस उपनिषद से लिया गया है?",
-        opts: ["कठोपनिषद", "छांदोग्योपनिषद", "मुंडकोपनिषद", "मांडूक्योपनिषद"],
-        ans: 2,
-        exp: "'सत्यमेव जयते' (सत्य की ही विजय होती है) मुंडकोपनिषद से उद्धृत है।"
-      },
-      {
-        q: "रवींद्रनाथ टैगोर द्वारा रचित 'जन गण मन' को संविधान सभा ने किस तिथि को राष्ट्रगान के रूप में अपनाया?",
-        opts: ["24 जनवरी, 1950", "26 जनवरी, 1950", "15 अगस्त, 1947", "27 दिसंबर, 1911"],
-        ans: 0,
-        exp: "संविधान सभा ने 24 जनवरी, 1950 को 'जन गण मन' को आधिकारिक राष्ट्रगान घोषित किया।"
-      },
-      {
-        q: "राष्ट्रगान के पूर्ण पाठ के गायन की आधिकारिक निर्धारित अवधि कितनी है?",
-        opts: ["48 सेकंड", "52 सेकंड", "65 सेकंड", "60 सेकंड"],
-        ans: 1,
-        exp: "राष्ट्रगान के गायन का आधिकारिक समय ठीक 52 सेकंड निर्धारित है।"
-      },
-      {
-        q: "गृह मंत्रालय के निर्देशानुसार राष्ट्रगीत 'वंदे मातरम्' का आधिकारिक रूप कितने पदों का है?",
-        opts: ["दो पदों का", "चार पदों का", "छह पदों का (लगभग 3 मिनट 10 सेकंड)", "पूरे उपन्यास का"],
-        ans: 2,
-        exp: "गृह मंत्रालय के अनुसार 'वंदे मातरम्' का पूर्ण आधिकारिक रूप छह पदों का है, जिसकी गायन अवधि लगभग 3 मिनट 10 सेकंड है।"
-      },
-      {
-        q: "भारत के राष्ट्रीय पंचांग के रूप में शक संवत् को किस तिथि को आधिकारिक रूप से अपनाया गया था?",
-        opts: ["26 जनवरी, 1950", "22 मार्च, 1957", "15 अगस्त, 1947", "1 जनवरी, 1950"],
-        ans: 1,
-        exp: "भारत सरकार ने 22 मार्च, 1957 को शक संवत् को राष्ट्रीय पंचांग घोषित किया, जिसका पहला माह चैत्र और अंतिम माह फाल्गुन होता है।"
-      }
-    ];
-
-    var currentExam = 'upsc';
-    var activeTestList = UPSC_POLITY_T1;
-    var activeTestName = "Test 1: Preamble & Objective Resolution";
-    var currentSubjectType = 'polity';
-    var userAns = {};
-    var currentQ = 0;
-    var timerSeconds = 900;
-    var timerInterval = null;
-    var currentMarkPerQ = 2.0;
-    var currentNegPerQ = 0.66;
-
-    // SUBJECT REGISTRY
-    var SUBJECTS_DATA = {
-      upsc: [
-        { id: "polity", icon: "⚖️", title: "Indian Polity & Governance", desc: "Constitution, Preamble, Rights, Governance", activeTests: 1 },
-        { id: "history", icon: "🏛️", title: "Indian & World History", desc: "Ancient, Medieval, Modern & Art-Culture", activeTests: 0 },
-        { id: "science", icon: "🔬", title: "General Science & Tech", desc: "Physics, Chem, Biology, Space, AI & Biotech", activeTests: 0 },
-        { id: "economy", icon: "📈", title: "Indian Economy", desc: "Macroeconomics, Budget, Banking, Inclusive Growth", activeTests: 0 },
-        { id: "environment", icon: "🌿", title: "Environment & Ecology", desc: "Biodiversity, Climate Change, Treaties, Wildlife", activeTests: 0 },
-        { id: "geography", icon: "🌍", title: "Geography (Physical & World)", desc: "Geomorphology, Climate, Indian Geography, Resources", activeTests: 0 },
-        { id: "current_affairs", icon: "📰", title: "Current Affairs & Schemes", desc: "National & Global Events, Government Initiatives", activeTests: 0 },
-        { id: "pyq", icon: "📜", title: "UPSC CSE PYQs (Previous Years)", desc: "Past 10 Years General Studies Prelims Papers", activeTests: 0, isPyq: true }
-      ],
-      bpsc: [
-        { id: "polity", icon: "⚖️", title: "Indian Polity & Constitution", desc: "Samvidhan Visheshtayein, Sansad, Vidhanmandal", activeTests: 1 },
-        { id: "bihar_special", icon: "🏛️", title: "Bihar Special (बिहार विशेष)", desc: "Bihar History, Geography, Economy, Schemes & Culture", activeTests: 0, isSpecial: true },
-        { id: "history", icon: "📜", title: "History & Art/Culture", desc: "Prachin, Madhyakalin, Adhunik Bharat & Bihar Ka Yogdan", activeTests: 0 },
-        { id: "science", icon: "🔬", title: "General Science (सामान्य विज्ञान)", desc: "Daily Science, Physics, Chemistry, Biology Facts", activeTests: 0 },
-        { id: "economy", icon: "📊", title: "Economy & Bihar Budget", desc: "Indian Economy, Bihar Economic Survey & Budget", activeTests: 0 },
-        { id: "environment", icon: "🌱", title: "Environment & Ecology", desc: "Van Sarvekshan, Paryavaran Niyam, Bio Reserves", activeTests: 0 },
-        { id: "geography", icon: "🗺️", title: "Geography (Bhugol)", desc: "Indian, Physical & Bihar River Systems & Soils", activeTests: 0 },
-        { id: "current_affairs", icon: "⚡", title: "Current Affairs (National & Bihar)", desc: "Rashtriya, Antarrashtriya va Bihar Ghatnakram", activeTests: 0 },
-        { id: "pyq", icon: "📜", title: "BPSC PYQs (Previous Years)", desc: "BPSC CCE Previous Year Questions with Explanations", activeTests: 0, isPyq: true }
-      ],
-      ugc: [
-        { id: "paper1", icon: "🎓", title: "Paper 1: General Paper on Teaching & Research", desc: "Teaching, Research Aptitude, Higher Education", activeTests: 0 },
-        { id: "political_science", icon: "⚖️", title: "Paper 2: Political Science", desc: "Political Theory, Thought, Comparative Politics, IR", activeTests: 0 },
-        { id: "pyq", icon: "📜", title: "UGC NET PYQs", desc: "Past Years Official Exam Papers", activeTests: 0, isPyq: true }
-      ]
-    };
+    function init() {
+      setExam('upsc');
+    }
 
     function showView(viewId) {
-      ['viewSubjects', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(function(id) {
+      ['viewSubjects', 'viewSubjectTests', 'viewExplore', 'viewCbt', 'viewScore'].forEach(id => {
         document.getElementById(id).classList.add('hidden');
       });
 
-      var bcSub = document.getElementById('bcSubjectWrap');
-      var bcTest = document.getElementById('bcTestWrap');
-
       if (viewId === 'subjects') {
         document.getElementById('viewSubjects').classList.remove('hidden');
-        bcSub.classList.add('hidden');
-        bcTest.classList.add('hidden');
-        renderSubjects();
+        document.getElementById('bcSubjectWrap').classList.add('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
       } else if (viewId === 'subjectTests') {
         document.getElementById('viewSubjectTests').classList.remove('hidden');
-        bcSub.classList.remove('hidden');
-        bcTest.classList.add('hidden');
-        renderTests();
+        document.getElementById('bcSubjectWrap').classList.remove('hidden');
+        document.getElementById('bcTestWrap').classList.add('hidden');
       } else if (viewId === 'explore') {
         document.getElementById('viewExplore').classList.remove('hidden');
-        bcSub.classList.remove('hidden');
-        bcTest.classList.remove('hidden');
-        document.getElementById('bcTest').innerText = activeTestName;
-        renderExploreList();
+        document.getElementById('bcTestWrap').classList.remove('hidden');
       } else if (viewId === 'cbt') {
         document.getElementById('viewCbt').classList.remove('hidden');
-        bcSub.classList.remove('hidden');
-        bcTest.classList.remove('hidden');
-        document.getElementById('bcTest').innerText = activeTestName;
-        renderCbt();
+        document.getElementById('bcTestWrap').classList.remove('hidden');
       } else if (viewId === 'score') {
         document.getElementById('viewScore').classList.remove('hidden');
       }
     }
 
     function setExam(examKey) {
-      currentExam = examKey;
-      ['upsc', 'bpsc', 'ugc'].forEach(function(k) {
-        var btn = document.getElementById('tab-' + k);
+      currentExamKey = examKey;
+      const exam = EXAMS_DATA[examKey];
+
+      ['upsc', 'bpsc', 'ugc'].forEach(k => {
+        const btn = document.getElementById('tab-' + k);
         if (k === examKey) {
           btn.className = "px-5 py-2 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow-sm";
         } else {
           btn.className = "px-5 py-2 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900";
         }
       });
-      document.getElementById('bcExam').innerText = examKey.toUpperCase();
-      
-      var titleEl = document.getElementById('examTitle');
-      var descEl = document.getElementById('examDesc');
-      var badgeEl = document.getElementById('examPenaltyBadge');
 
-      if (examKey === 'upsc') {
-        titleEl.innerText = "UPSC Civil Services Examination";
-        descEl.innerText = "General Studies Prelims • Standard Pattern • Negative Marking: 1/3 (-0.66)";
-        badgeEl.innerText = "Negative Penalty: 1/3rd";
-      } else if (examKey === 'bpsc') {
-        titleEl.innerText = "BPSC (Bihar Public Service Commission)";
-        descEl.innerText = "Integrated CCE Prelims • Negative Marking: 1/3 (-0.33) • 30s/Q Speed Tests";
-        badgeEl.innerText = "Negative Penalty: 1/3rd";
-      } else if (examKey === 'ugc') {
-        titleEl.innerText = "UGC NET / JRF Examination";
-        descEl.innerText = "Paper 1 & Paper 2 (Political Science) • No Negative Marking";
-        badgeEl.innerText = "No Negative Marking";
-      }
+      document.getElementById('bcExam').innerText = exam.name;
+      document.getElementById('examTitle').innerText = exam.title;
+      document.getElementById('examDesc').innerText = exam.desc;
+      document.getElementById('examPenaltyBadge').innerText = exam.penaltyText;
 
-      renderSubjects();
+      const list = document.getElementById('subjectsList');
+      list.innerHTML = "";
+      exam.subjects.forEach(sub => {
+        const div = document.createElement('div');
+        div.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md transition cursor-pointer flex flex-col justify-between";
+        div.onclick = () => openSubject(sub.id);
+        div.innerHTML = `
+          <div>
+            <span class="text-3xl">${sub.icon}</span>
+            <h3 class="text-lg font-bold text-slate-900 mt-3">${sub.name}</h3>
+            <p class="text-xs text-slate-500 mt-1">${sub.tests.length} Test Module(s) Available</p>
+          </div>
+          <button class="mt-4 w-full py-2 bg-indigo-50 text-indigo-700 font-bold text-xs rounded-xl hover:bg-indigo-100 transition">
+            View Tests →
+          </button>
+        `;
+        list.appendChild(div);
+      });
+
+      showView('subjects');
     }
 
-    function renderSubjects() {
-      var container = document.getElementById('subjectsList');
-      var list = SUBJECTS_DATA[currentExam] || [];
+    function openSubject(subjectId) {
+      currentSubjectId = subjectId;
+      const exam = EXAMS_DATA[currentExamKey];
+      const subject = exam.subjects.find(s => s.id === subjectId);
 
-      container.innerHTML = list.map(function(sub) {
-        var isLive = sub.activeTests > 0;
-        var borderStyle = sub.isPyq ? "border-amber-300 bg-amber-50/40" : (sub.isSpecial ? "border-emerald-300 bg-emerald-50/40" : "border-slate-200 bg-white");
-        
-        return `
-          <div onclick="selectSubject('${sub.id}', '${sub.title}')" class="${borderStyle} p-6 rounded-2xl border shadow-sm hover:border-indigo-500 cursor-pointer transition flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between">
-                <span class="text-3xl">${sub.icon}</span>
-                ${sub.isPyq ? '<span class="text-[10px] font-black px-2 py-0.5 bg-amber-100 text-amber-800 rounded uppercase">PYQ Section</span>' : (sub.isSpecial ? '<span class="text-[10px] font-black px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded uppercase">Special Subject</span>' : '')}
-              </div>
-              <h3 class="text-base font-black text-slate-900 mt-3">${sub.title}</h3>
-              <p class="text-xs text-slate-500 mt-1">${sub.desc}</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-slate-100 flex justify-between text-xs font-bold ${isLive ? 'text-indigo-600' : 'text-slate-400'}">
-              <span>${isLive ? sub.activeTests + ' Test Available' : 'Ready for Material'}</span>
-              <span>${isLive ? 'Open Tests →' : 'Upcoming'}</span>
+      document.getElementById('bcSubject').innerText = subject.name;
+      document.getElementById('subjectHeading').innerText = subject.name;
+      document.getElementById('subjectSubHeading').innerText = `${exam.name} Preparation Series`;
+
+      const testsGrid = document.getElementById('testsGrid');
+      testsGrid.innerHTML = "";
+      subject.tests.forEach(test => {
+        const card = document.createElement('div');
+        card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4";
+        card.innerHTML = `
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 bg-indigo-50 text-indigo-700 rounded-md">Mock Test</span>
+            <h4 class="text-lg font-black text-slate-900 mt-2">${test.title}</h4>
+            <p class="text-xs text-slate-500 mt-1">${test.desc}</p>
+            <div class="flex gap-4 mt-3 text-xs text-slate-600 font-medium">
+              <span>⏱️ ${test.timeMins} Mins</span>
+              <span>📝 ${test.data.length} Questions</span>
             </div>
           </div>
+          <div class="flex gap-2 pt-2 border-t border-slate-100">
+            <button onclick="openExplorer('${test.id}')" class="flex-1 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-50">
+              Study Solutions
+            </button>
+            <button onclick="launchCbtDirect('${test.id}')" class="flex-1 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold hover:bg-indigo-700 shadow">
+              Take CBT Exam
+            </button>
+          </div>
         `;
-      }).join('');
-    }
+        testsGrid.appendChild(card);
+      });
 
-    function selectSubject(subId, subTitle) {
-      currentSubjectType = subId;
-      document.getElementById('bcSubject').innerText = subTitle;
-      document.getElementById('subjectHeading').innerText = subTitle;
-      document.getElementById('subjectSubHeading').innerText = currentExam.toUpperCase() + " Module • Comprehensive Test Series";
       showView('subjectTests');
     }
 
-    function renderTests() {
-      var container = document.getElementById('testsGrid');
+    function openExplorer(testId) {
+      const exam = EXAMS_DATA[currentExamKey];
+      const subject = exam.subjects.find(s => s.id === currentSubjectId);
+      currentTest = subject.tests.find(t => t.id === testId);
 
-      if (currentExam === 'upsc' && currentSubjectType === 'polity') {
-        container.innerHTML = `
-          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black text-indigo-600 uppercase">Chapter 2 Special</span>
-              <span class="text-xs font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded">⏱️ 15 Mins</span>
-            </div>
-            <div>
-              <h4 class="text-base font-black text-slate-900">Test 1: Preamble & Objective Resolution</h4>
-              <p class="text-xs text-slate-500 mt-1">7 Deep Analytical Questions • Line-by-line coverage</p>
-            </div>
-            <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-3">
-              <button onclick="openExploreMode(UPSC_POLITY_T1, 'Test 1: Preamble & Objective Resolution', 900)" class="py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50">
-                📖 Explore Qs
-              </button>
-              <button onclick="startCbtWith(UPSC_POLITY_T1, 'Test 1: Preamble & Objective Resolution', 900, 2, 0.66)" class="py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow">
-                🚀 Start Test
-              </button>
-            </div>
-          </div>
-        `;
-      } else if (currentExam === 'bpsc' && currentSubjectType === 'polity') {
-        container.innerHTML = `
-          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-black text-indigo-600 uppercase">Chapter 2: Facts Mastery</span>
-              <span class="text-xs font-bold px-2 py-0.5 bg-rose-100 text-rose-800 rounded">⏱️ 27:30 Mins (30s/Q)</span>
-            </div>
-            <div>
-              <h4 class="text-base font-black text-slate-900">Test 1: संविधान की विशेषताएं एवं राष्ट्रीय प्रतीक</h4>
-              <p class="text-xs text-slate-500 mt-1">55 Micro-Fact Questions • Pages 14-15 Complete Coverage</p>
-            </div>
-            <div class="pt-3 border-t border-slate-100 grid grid-cols-2 gap-3">
-              <button onclick="openExploreMode(BPSC_POLITY_T1, 'Test 1: संविधान की विशेषताएं एवं राष्ट्रीय प्रतीक', 1650)" class="py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-700 hover:bg-slate-50">
-                📖 Explore Qs
-              </button>
-              <button onclick="startCbtWith(BPSC_POLITY_T1, 'Test 1: संविधान की विशेषताएं एवं राष्ट्रीय प्रतीक', 1650, 1, 0.33)" class="py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow">
-                🚀 Start CBT Exam
-              </button>
-            </div>
-          </div>
-        `;
-      } else if (currentSubjectType === 'pyq') {
-        container.innerHTML = `
-          <div class="col-span-full p-8 text-center bg-white rounded-2xl border border-amber-200">
-            <span class="text-4xl block mb-2">📜</span>
-            <h4 class="text-base font-black text-slate-800">Previous Year Questions Vault (${currentExam.toUpperCase()})</h4>
-            <p class="text-xs text-slate-500 mt-1">Yahan saal-dar-saal ke PYQ sets aur official questions add kiye jayenge.</p>
-          </div>
-        `;
-      } else {
-        container.innerHTML = `
-          <div class="col-span-full p-8 text-center bg-white rounded-2xl border border-slate-200">
-            <p class="text-sm font-bold text-slate-600">Is vishay ke modules ke liye source material bhejte hi test live kar diya jayega.</p>
-          </div>
-        `;
-      }
-    }
+      document.getElementById('bcTest').innerText = currentTest.title;
+      document.getElementById('exploreTitle').innerText = currentTest.title;
 
-    function openExploreMode(testList, testName, duration) {
-      activeTestList = testList;
-      activeTestName = testName;
-      timerSeconds = duration;
-      document.getElementById('exploreTitle').innerText = testName;
-      document.getElementById('exploreDesc').innerText = "Direct Study Mode • " + testList.length + " Questions with Detailed Explanations";
+      const list = document.getElementById('exploreList');
+      list.innerHTML = "";
+
+      currentTest.data.forEach((q, idx) => {
+        const card = document.createElement('div');
+        card.className = "bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3";
+        card.innerHTML = `
+          <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+            <span class="text-xs font-bold text-indigo-600">Question ${idx + 1}</span>
+            <span class="text-xs text-emerald-600 font-bold">Answer: Option (${String.fromCharCode(65 + q.ans)})</span>
+          </div>
+          <p class="text-sm font-bold text-slate-900 whitespace-pre-line">${q.q}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+            ${q.opts.map((opt, i) => `
+              <div class="p-2.5 rounded-lg border ${i === q.ans ? 'border-emerald-500 bg-emerald-50 font-bold text-emerald-900' : 'border-slate-200 text-slate-700'} text-xs">
+                (${String.fromCharCode(65 + i)}) ${opt}
+              </div>
+            `).join('')}
+          </div>
+          <div class="mt-3 p-3 bg-slate-50 rounded-xl text-xs text-slate-700 whitespace-pre-line border border-slate-100">
+            <b class="text-slate-900">विस्तृत व्याख्या:</b>\n${q.exp}
+          </div>
+        `;
+        list.appendChild(card);
+      });
+
       showView('explore');
     }
 
-    function renderExploreList() {
-      var container = document.getElementById('exploreList');
-      container.innerHTML = activeTestList.map(function(q, i) {
-        var optHtml = q.opts.map(function(opt, oIdx) {
-          var isCorrect = oIdx === q.ans;
-          return `
-            <div class="p-3 rounded-xl border text-xs font-semibold flex justify-between ${isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-900 font-bold' : 'bg-slate-50 border-slate-200 text-slate-700'}">
-              <span>${String.fromCharCode(65 + oIdx)}. ${opt}</span>
-              ${isCorrect ? '<span class="text-[10px] font-black bg-emerald-600 text-white px-2 py-0.5 rounded">CORRECT</span>' : ''}
-            </div>
-          `;
-        }).join('');
-
-        return `
-          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-            <div class="flex justify-between items-center text-xs font-black text-indigo-600">
-              <span>QUESTION ${i + 1 < 10 ? '0' + (i + 1) : (i + 1)}</span>
-              <span class="text-slate-400 font-semibold">Single Choice</span>
-            </div>
-            <p class="text-sm font-bold text-slate-900 whitespace-pre-line leading-relaxed">${q.q}</p>
-            <div class="space-y-2 pt-2">${optHtml}</div>
-            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-slate-800 leading-relaxed">
-              <b class="text-amber-800 block mb-1">💡 विस्तृत व्याख्या:</b>
-              <p class="whitespace-pre-line">${q.exp}</p>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function startCbtWith(testList, testName, duration, mark, neg) {
-      activeTestList = testList;
-      activeTestName = testName;
-      timerSeconds = duration;
-      currentMarkPerQ = mark;
-      currentNegPerQ = neg;
+    function launchCbtDirect(testId) {
+      const exam = EXAMS_DATA[currentExamKey];
+      const subject = exam.subjects.find(s => s.id === currentSubjectId);
+      currentTest = subject.tests.find(t => t.id === testId);
       startCbt();
     }
 
     function startCbt() {
-      currentQ = 0;
-      userAns = {};
-      clearInterval(timerInterval);
-      timerInterval = setInterval(runTimer, 1000);
-      document.getElementById('cbtTotalNum').innerText = activeTestList.length;
-      document.getElementById('cbtMarkingScheme').innerText = "Marks: +" + currentMarkPerQ.toFixed(2) + " | Negative: -" + currentNegPerQ.toFixed(2);
+      const exam = EXAMS_DATA[currentExamKey];
+      document.getElementById('bcTest').innerText = currentTest.title;
+      document.getElementById('cbtMarkingScheme').innerText = `Marks: +${exam.correctMarks} | Penalty: -${exam.negativePenalty}`;
+      document.getElementById('cbtTotalNum').innerText = currentTest.data.length;
+
+      cbtIndex = 0;
+      userAnswers = {};
+      timerSeconds = currentTest.timeMins * 60;
+
+      clearInterval(timerTimer);
+      timerTimer = setInterval(updateTimer, 1000);
+      updateTimer();
+
+      renderCbtQuestion();
+      renderPalette();
       showView('cbt');
     }
 
-    function runTimer() {
-      if (timerSeconds <= 0) {
-        clearInterval(timerInterval);
-        finishTest();
-        return;
-      }
+    function updateTimer() {
       timerSeconds--;
-      var m = Math.floor(timerSeconds / 60);
-      var s = timerSeconds % 60;
-      document.getElementById('timerClock').innerText = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+      let m = Math.floor(timerSeconds / 60);
+      let s = timerSeconds % 60;
+      document.getElementById('timerClock').innerText = `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+      if (timerSeconds <= 0) {
+        clearInterval(timerTimer);
+        finishTest();
+      }
     }
 
-    function renderCbt() {
-      var q = activeTestList[currentQ];
-      document.getElementById('cbtCurrentNum').innerText = currentQ + 1;
+    function renderCbtQuestion() {
+      const q = currentTest.data[cbtIndex];
+      document.getElementById('cbtCurrentNum').innerText = cbtIndex + 1;
       document.getElementById('cbtQuestionPrompt').innerText = q.q;
 
-      var optContainer = document.getElementById('cbtOptionsList');
-      optContainer.innerHTML = q.opts.map(function(opt, idx) {
-        var isSel = userAns[currentQ] === idx;
-        return `
-          <div onclick="selectCbtOpt(${idx})" class="p-3.5 rounded-xl border cursor-pointer text-xs font-semibold flex items-center gap-3 ${isSel ? 'border-indigo-600 bg-indigo-50 text-indigo-900 font-bold' : 'border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800'}">
-            <span class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs ${isSel ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-700'}">
-              ${String.fromCharCode(65 + idx)}
-            </span>
-            <span>${opt}</span>
-          </div>
-        `;
-      }).join('');
+      const optsContainer = document.getElementById('cbtOptionsList');
+      optsContainer.innerHTML = "";
 
-      var palContainer = document.getElementById('cbtPalette');
-      palContainer.innerHTML = activeTestList.map(function(_, idx) {
-        var hasAns = userAns[idx] !== undefined;
-        var isCur = idx === currentQ;
-        return `
-          <button onclick="gotoQ(${idx})" class="h-8 rounded-lg font-bold text-[11px] ${hasAns ? 'bg-emerald-500 text-white' : 'bg-slate-100 text-slate-700'} ${isCur ? 'ring-2 ring-indigo-600' : ''}">
-            ${idx + 1}
-          </button>
+      q.opts.forEach((opt, idx) => {
+        const isChosen = userAnswers[cbtIndex] === idx;
+        const row = document.createElement('div');
+        row.className = `p-3.5 rounded-xl border-2 transition cursor-pointer flex items-center gap-3 text-xs sm:text-sm font-semibold ${isChosen ? 'border-indigo-600 bg-indigo-50 text-indigo-900' : 'border-slate-200 hover:border-slate-300 text-slate-700'}`;
+        row.onclick = () => selectOption(idx);
+        row.innerHTML = `
+          <div class="w-5 h-5 rounded-full border-2 flex items-center justify-center ${isChosen ? 'border-indigo-600 bg-indigo-600 text-white' : 'border-slate-400'} text-[10px] font-bold">
+            ${isChosen ? '✓' : String.fromCharCode(65 + idx)}
+          </div>
+          <span>${opt}</span>
         `;
-      }).join('');
+        optsContainer.appendChild(row);
+      });
+
+      document.getElementById('btnPrev').disabled = (cbtIndex === 0);
+      renderPalette();
     }
 
-    function selectCbtOpt(idx) {
-      userAns[currentQ] = idx;
-      renderCbt();
+    function selectOption(idx) {
+      userAnswers[cbtIndex] = idx;
+      renderCbtQuestion();
     }
 
     function clearCurrentAnswer() {
-      delete userAns[currentQ];
-      renderCbt();
-    }
-
-    function nextCbtQ() {
-      if (currentQ < activeTestList.length - 1) {
-        currentQ++;
-        renderCbt();
-      }
+      delete userAnswers[cbtIndex];
+      renderCbtQuestion();
     }
 
     function prevCbtQ() {
-      if (currentQ > 0) {
-        currentQ--;
-        renderCbt();
+      if (cbtIndex > 0) {
+        cbtIndex--;
+        renderCbtQuestion();
       }
     }
 
-    function gotoQ(idx) {
-      currentQ = idx;
-      renderCbt();
+    function nextCbtQ() {
+      if (cbtIndex < currentTest.data.length - 1) {
+        cbtIndex++;
+        renderCbtQuestion();
+      }
+    }
+
+    function renderPalette() {
+      const pal = document.getElementById('cbtPalette');
+      pal.innerHTML = "";
+      currentTest.data.forEach((_, idx) => {
+        const isAnswered = userAnswers[idx] !== undefined;
+        const isCurrent = (idx === cbtIndex);
+        const btn = document.createElement('button');
+        btn.onclick = () => { cbtIndex = idx; renderCbtQuestion(); };
+        btn.innerText = idx + 1;
+        btn.className = `h-9 rounded-lg font-bold text-xs border ${isCurrent ? 'ring-2 ring-indigo-600' : ''} ${isAnswered ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-slate-100 text-slate-700 border-slate-200'}`;
+        pal.appendChild(btn);
+      });
     }
 
     function finishTest() {
-      clearInterval(timerInterval);
-      var cor = 0;
-      var wrg = 0;
-      var skp = 0;
-      var score = 0;
+      clearInterval(timerTimer);
+      const exam = EXAMS_DATA[currentExamKey];
+      let correct = 0;
+      let wrong = 0;
+      let skipped = 0;
 
-      activeTestList.forEach(function(q, idx) {
-        var ans = userAns[idx];
+      currentTest.data.forEach((q, idx) => {
+        const ans = userAnswers[idx];
         if (ans === undefined) {
-          skp++;
+          skipped++;
         } else if (ans === q.ans) {
-          cor++;
-          score += currentMarkPerQ;
+          correct++;
         } else {
-          wrg++;
-          score -= currentNegPerQ;
+          wrong++;
         }
       });
 
-      var maxScore = activeTestList.length * currentMarkPerQ;
-      document.getElementById('scoreTestTitle').innerText = activeTestName;
-      document.getElementById('scoreExamSub').innerText = currentExam.toUpperCase() + " • Performance Report";
-      document.getElementById('finalScoreVal').innerText = score.toFixed(2);
-      document.getElementById('finalScoreMax').innerText = "out of " + maxScore.toFixed(2);
-      document.getElementById('scoreCorrect').innerText = cor;
-      document.getElementById('scoreWrong').innerText = wrg;
-      document.getElementById('scoreSkipped').innerText = skp;
+      let netScore = (correct * exam.correctMarks) - (wrong * exam.negativePenalty);
+      netScore = netScore < 0 ? 0 : netScore.toFixed(2);
+      let maxScore = (currentTest.data.length * exam.correctMarks).toFixed(2);
+
+      document.getElementById('scoreTestTitle').innerText = currentTest.title;
+      document.getElementById('scoreExamSub').innerText = `${exam.name} • Final Evaluation`;
+      document.getElementById('finalScoreVal').innerText = netScore;
+      document.getElementById('finalScoreMax').innerText = `out of ${maxScore}`;
+      document.getElementById('scoreCorrect').innerText = correct;
+      document.getElementById('scoreWrong').innerText = wrong;
+      document.getElementById('scoreSkipped').innerText = skipped;
 
       showView('score');
     }
 
-    window.onload = function() {
-      showView('subjects');
-    };
+    window.onload = init;
   </script>
 </body>
 </html>
-
