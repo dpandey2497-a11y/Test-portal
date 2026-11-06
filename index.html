@@ -72,8 +72,6 @@
 
     <!-- 1. MAIN EXAMS & SUBJECTS VIEW -->
     <div id="viewSubjects" class="space-y-6">
-      
-      <!-- EXAM TABS (WITH NCERT ADDED) -->
       <div id="examTabsBar" class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 backdrop-blur rounded-2xl w-fit shadow-inner border border-slate-300/40">
         <button onclick="setExam('upsc')" id="tab-upsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-white text-indigo-700 shadow transition-all">🏛️ UPSC CSE</button>
         <button onclick="setExam('bpsc')" id="tab-bpsc" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">🎯 BPSC</button>
@@ -86,7 +84,6 @@
         <button onclick="setExam('pyq')" id="tab-pyq" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm text-slate-600 hover:text-slate-900 transition-all">📚 PYQ Archives</button>
       </div>
 
-      <!-- HERO GRADIENT BANNER -->
       <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-indigo-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10">
@@ -103,12 +100,22 @@
         </div>
       </div>
 
-      <!-- SUBJECTS GRID -->
       <div id="subjectsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </div>
 
-    <!-- 1.1 CURRENT AFFAIRS HUB (DAILY CA vs MONTHLY CA) -->
+    <!-- 1.1 CURRENT AFFAIRS HUB (WITH BACK BUTTON) -->
     <div id="viewCaHub" class="hidden space-y-6">
+      
+      <!-- Top Bar with Back Button in CA Tab -->
+      <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+        <button onclick="showView('subjects')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
+          ← Back
+        </button>
+        <span class="text-xs font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200/70 px-3 py-1 rounded-full">
+          Current Affairs Portal
+        </span>
+      </div>
+
       <div class="relative overflow-hidden p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-900 via-indigo-950 to-slate-900 text-white shadow-xl shadow-rose-950/10 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
         <div class="absolute -right-12 -top-12 w-48 h-48 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
         <div class="relative z-10">
@@ -125,9 +132,7 @@
         </div>
       </div>
 
-      <!-- 2 SECTIONS: DAILY CA vs MONTHLY CA -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <!-- Daily Current Affairs Card -->
         <div onclick="openCaDailyView()" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-rose-200 hover:border-rose-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition"></div>
           <div>
@@ -140,7 +145,6 @@
           </button>
         </div>
 
-        <!-- Monthly Current Affairs Card -->
         <div onclick="openCaMonthlyYearsView()" class="relative overflow-hidden glass-card p-8 rounded-3xl border-2 border-indigo-200 hover:border-indigo-600 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer flex flex-col justify-between group">
           <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition"></div>
           <div>
@@ -159,10 +163,9 @@
     <div id="viewCaDaily" class="hidden space-y-6">
       <div class="flex flex-wrap items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm gap-4">
         <button onclick="showView('caHub')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
-          ← Back to Hub
+          ← Back
         </button>
         
-        <!-- DATE CUSTOMIZATION BOX -->
         <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-1.5 rounded-xl shadow-inner">
           <span class="text-xs font-black text-slate-600">🗓️ Select Date:</span>
           <input type="date" id="caCustomDatePicker" class="bg-white border border-slate-300 rounded-lg px-2.5 py-1 text-xs font-bold text-slate-800 outline-none focus:ring-2 focus:ring-indigo-500" onchange="handleCustomDateSelect(this.value)">
@@ -183,7 +186,7 @@
     <div id="viewCaYears" class="hidden space-y-6">
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
         <button onclick="showView('caHub')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
-          ← Back to Hub
+          ← Back
         </button>
         <h3 class="font-black text-slate-800 text-base sm:text-lg">Monthly Current Affairs Archives</h3>
       </div>
@@ -217,7 +220,7 @@
     <div id="viewCaMonths" class="hidden space-y-6">
       <div class="flex items-center justify-between glass-card p-4 rounded-2xl border border-slate-200/80 shadow-sm">
         <button onclick="showView('caYears')" class="px-4 py-2 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl font-bold text-xs sm:text-sm text-slate-700 flex items-center gap-2 shadow-sm transition">
-          ← Back to Years
+          ← Back
         </button>
         <h3 id="caMonthsHeading" class="font-black text-slate-900 text-base sm:text-lg">Monthly Modules</h3>
       </div>
@@ -418,6 +421,29 @@
       </div>
     </div>
 
+    <!-- MODAL 4: WEBSITE EXIT / CUT CONFIRMATION POPUP -->
+    <div id="siteExitModal" class="hidden fixed inset-0 z-50 bg-slate-900/65 backdrop-blur-md flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in-95 duration-200">
+        <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-3xl mx-auto border border-indigo-100 shadow-sm">
+          🎯
+        </div>
+        <h3 class="text-lg sm:text-xl font-black text-slate-900">
+          Do you want to leave TestChakra?
+        </h3>
+        <p class="text-xs text-slate-500 leading-relaxed font-medium">
+          Are you sure you want to exit? Your current exam portal session will be closed.
+        </p>
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="cancelSiteExit()" class="flex-1 py-3 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition">
+            Cancel
+          </button>
+          <button onclick="confirmSiteExit()" class="flex-1 py-3 rounded-xl bg-rose-600 hover:bg-rose-700 font-black text-xs text-white shadow-md shadow-rose-200 transition">
+            Exit
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- 5. SCORECARD VIEW -->
     <div id="viewScore" class="hidden space-y-6">
       <div class="relative overflow-hidden bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-wrap items-center justify-between gap-4">
@@ -457,7 +483,6 @@
         </div>
       </div>
 
-      <!-- REVIEW SOLUTIONS & BACK BUTTONS -->
       <div class="flex flex-col sm:flex-row gap-3 pt-2">
         <button onclick="openReviewSolutions()" class="flex-1 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-extrabold text-xs sm:text-sm rounded-2xl shadow-md shadow-indigo-200 flex items-center justify-center gap-2 transition">
           📖 Review Solutions
@@ -470,8 +495,7 @@
 
   </main>
 
-  <!-- DATABASE CONNECTION -->
-  <script src="questions.js?v=testchakra_daily_ncert_v1"></script>
+  <script src="questions.js?v=testchakra_exit_modal_v1"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -485,7 +509,8 @@
     let timerSeconds = 0;
     let timerTimer = null;
     let currentLang = 'hi';
-    let currentCaMode = 'monthly'; // 'monthly' or 'daily'
+    let currentCaMode = 'monthly';
+    let isExitingAllowed = false;
 
     const COLOR_CLASSES = [
       { bg: "bg-indigo-50/60", border: "border-indigo-100", hover: "hover:border-indigo-500", text: "text-indigo-700", btn: "bg-indigo-50 text-indigo-700 hover:bg-indigo-100" },
@@ -498,6 +523,44 @@
 
     function init() {
       setExam('upsc');
+      setupHistoryNavigationGuard();
+    }
+
+    // WEBSITE EXIT CONFIRMATION MODAL LOGIC
+    function setupHistoryNavigationGuard() {
+      // Push state so back button can be intercepted
+      window.history.pushState({ page: 'home' }, '');
+
+      window.addEventListener('popstate', function (event) {
+        if (!isExitingAllowed) {
+          // Prevent back and show custom modal
+          window.history.pushState({ page: 'home' }, '');
+          openSiteExitModal();
+        }
+      });
+
+      // Browser tab close / reload prompt
+      window.addEventListener('beforeunload', function (e) {
+        if (!isExitingAllowed) {
+          e.preventDefault();
+          e.returnValue = 'Do you want to leave TestChakra?';
+          return 'Do you want to leave TestChakra?';
+        }
+      });
+    }
+
+    function openSiteExitModal() {
+      document.getElementById('siteExitModal').classList.remove('hidden');
+    }
+
+    function cancelSiteExit() {
+      document.getElementById('siteExitModal').classList.add('hidden');
+    }
+
+    function confirmSiteExit() {
+      isExitingAllowed = true;
+      document.getElementById('siteExitModal').classList.add('hidden');
+      window.history.back();
     }
 
     function showView(viewId) {
@@ -597,7 +660,6 @@
       showView('subjects');
     }
 
-    // CURRENT AFFAIRS ROUTING (DAILY vs MONTHLY)
     function openCaDailyView() {
       currentCaMode = 'daily';
       renderRecent7DaysCa();
@@ -614,7 +676,6 @@
       grid.innerHTML = "";
 
       const dailyItems = EXAMS_DATA.ca.daily || [];
-      // Slice past 7 days
       const last7Days = dailyItems.slice(0, 7);
 
       last7Days.forEach((item, i) => {
@@ -643,10 +704,8 @@
       currentCaMode = 'daily';
       const customId = `daily_${dateVal}`;
       
-      // Check if test exists for that custom date
       let subject = (EXAMS_DATA.ca.daily || []).find(d => d.date === dateVal);
       if (!subject) {
-        // Create empty container so "Coming Soon 😍" is cleanly shown
         subject = {
           id: customId,
           name: `Daily CA: ${dateVal}`,
