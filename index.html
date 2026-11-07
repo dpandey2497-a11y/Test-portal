@@ -205,7 +205,7 @@
           <div>
             <div class="w-14 h-14 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-3xl shadow-sm">🔥</div>
             <h3 class="text-2xl font-black text-slate-900 mt-5 group-hover:text-indigo-600 transition">Current Affairs 2026</h3>
-            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2026 to December 2026 (Includes October 2026 100 Q Full Test).</p>
+            <p class="text-xs text-slate-500 mt-2 leading-relaxed">January 2026 to December 2026 (Includes October 2026 Mock Tests).</p>
           </div>
           <button class="mt-8 w-full py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-lg shadow-indigo-200 transition">
             Explore 2026 Months →
@@ -686,7 +686,8 @@
     </div>
   </div>
 
-  <script src="questions.js?v=testchakra_signout_redirect_v1"></script>
+  <!-- SCRIPT TAG WITH AUTO-CACHE BUSTER FOR TEST 01 & TEST 02 -->
+  <script src="questions.js?v=testchakra_t1_t2_oct2026_final_fresh"></script>
 
   <!-- CONTROLLER SCRIPT -->
   <script>
@@ -721,7 +722,6 @@
       setupFullscreenChangeListener();
     }
 
-    // FULLSCREEN HANDLERS
     function setupFullscreenChangeListener() {
       document.addEventListener("fullscreenchange", updateFullscreenButtonUI);
       document.addEventListener("webkitfullscreenchange", updateFullscreenButtonUI);
@@ -780,7 +780,6 @@
       }
     }
 
-    // AUTHENTICATION SYSTEM
     function checkAuthSession() {
       const stored = localStorage.getItem('testchakra_logged_user');
       if (stored) {
@@ -910,7 +909,6 @@
       }
     }
 
-    // SIGN OUT MODAL LOGIC (DO YOU WANT TO SIGN OUT TESTCHAKRA? -> YES/NO)
     function openSignOutModal() {
       document.getElementById('signOutConfirmModal').classList.remove('hidden');
     }
@@ -925,17 +923,14 @@
       currentUser = null;
       updateAuthUIForGuest();
 
-      // Exit fullscreen if active and reset views to Home (UPSC)
       exitFullScreenMode();
       clearInterval(timerTimer);
       userAnswers = {};
 
-      // Automatically switch to UPSC CSE tab
       setExam('upsc');
       showView('subjects');
     }
 
-    // WEBSITE EXIT CONFIRMATION MODAL LOGIC
     function setupHistoryNavigationGuard() {
       window.history.pushState({ page: 'home' }, '');
       window.addEventListener('popstate', function () {
@@ -1238,7 +1233,6 @@
       }
     }
 
-    // CHECK LOGIN BEFORE OPENING TEST INSTRUCTIONS
     function handleStartTestClick(testId) {
       if (!currentUser) {
         pendingTestIdToLaunch = testId;
@@ -1380,7 +1374,6 @@
 
       document.getElementById('btnPrev').disabled = (cbtIndex === 0);
 
-      // LAST QUESTION: SAVE & SUBMIT
       const btnNextOrSubmit = document.getElementById('btnNextOrSubmit');
       if (cbtIndex === totalQ - 1) {
         btnNextOrSubmit.innerText = "Save & Submit 🚀";
