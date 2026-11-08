@@ -1,5 +1,5 @@
 // questions.js — TestChakra Master Database
-// Single Master File (October 2026 T1 & T2, BRICS, and G20 Section)
+// Single Master File (October 2026 T1 & T2, BPSC International Organizations: Test 01 BRICS, Test 02 G20)
 
 // ==========================================
 // TEST 01: OCTOBER 2026 (Q. 1 to 100)
@@ -87,7 +87,6 @@ var CA_OCT_2026_T1 = [
   }
 ];
 
-// Q11 se Q100 tak Test 01
 for (var i = 11; i <= 100; i++) {
   CA_OCT_2026_T1.push({
     q: i + ". अक्टूबर 2026 राष्ट्रीय एवं अंतरराष्ट्रीय समसामयिकी - अभ्यास प्रश्न " + i,
@@ -145,7 +144,6 @@ var CA_OCT_2026_T2 = [
   }
 ];
 
-// Q6 se Q100 tak Test 02
 for (var j = 6; j <= 100; j++) {
   CA_OCT_2026_T2.push({
     q: j + ". अक्टूबर 2026 समसामयिकी एवं नीतिगत परिदृश्य - टेस्ट 02 प्रश्न " + j,
@@ -158,7 +156,7 @@ for (var j = 6; j <= 100; j++) {
 }
 
 // ==========================================
-// BPSC: BRICS MASTER TEST (TOP 50 Qs)
+// BPSC: TEST 01 - BRICS MASTER TEST (TOP 50 Qs)
 // ==========================================
 var BRICS_50_DATA = [
   {
@@ -674,7 +672,7 @@ var BRICS_50_DATA = [
 ];
 
 // ==========================================
-// BPSC: G20 MASTER TEST (TOP 50 Qs WITH 3-4 LINES DEEP EXPLANATIONS)
+// BPSC: TEST 02 - G20 MASTER TEST (TOP 50 COMPLETE REAL Qs)
 // ==========================================
 var G20_50_DATA = [
   {
@@ -836,20 +834,258 @@ var G20_50_DATA = [
     opts_en: ["Bharat Mandapam (Pragati Maidan)", "Yashobhoomi (Dwarka)", "Vigyan Bhawan", "Hyderabad House"],
     ans: 0,
     exp: "18वें जी-20 शिखर सम्मेलन की मुख्य बैठकें नई दिल्ली के प्रगति मैदान में नवनिर्मित अंतरराष्ट्रीय प्रदर्शनी सह कन्वेंशन सेंटर 'भारत मंडपम' में आयोजित की गईं। इसके परिसर में 28 फीट ऊंची भगवान नटराज की अष्टधातु प्रतिमा स्थापित की गई थी, जो चोल साम्राज्य की कांस्य कला का प्रतीक थी।"
+  },
+  {
+    q: "21. जी-20 एंगेजमेंट ग्रुप 'B20' (Business 20) की अध्यक्षता 2023 में किसके द्वारा की गई थी?",
+    q_en: "21. Who served as the Chair of B20 India during the 2023 G20 presidency?",
+    opts: ["एन. चंद्रशेखरन (टाटा संस के चेयरमैन)", "मुकेश अंबानी", "आनंद महिंद्रा", "गौतम अडानी"],
+    opts_en: ["N. Chandrasekaran (Tata Sons Chairman)", "Mukesh Ambani", "Anand Mahindra", "Gautam Adani"],
+    ans: 0,
+    exp: "टाटा संस के चेयरमैन एन. चंद्रशेखरन ने B20 इंडिया के अध्यक्ष के रूप में कार्य किया। B20 वैश्विक व्यापारिक समुदाय का आधिकारिक संवाद मंच है, जो व्यापार, आपूर्ति श्रृंखला और नवाचार पर नीतिगत सिफारिशें देता है। B20 समिट 2023 का विषय 'R.A.I.S.E - Responsible, Accelerated, Innovative, Sustainable and Equitable Businesses' था।"
+  },
+  {
+    q: "22. जी-20 के तहत आपदा जोखिम न्यूनीकरण (DRR) कार्यसमूह की स्थापना किस देश की अध्यक्षता में की गई?",
+    q_en: "22. Under whose presidency was a dedicated Working Group on Disaster Risk Reduction (DRR) established?",
+    opts: ["भारत (2023)", "इंडोनेशिया (2022)", "इटली (2021)", "सऊदी अरब (2020)"],
+    opts_en: ["India (2023)", "Indonesia (2022)", "Italy (2021)", "Saudi Arabia (2020)"],
+    ans: 0,
+    exp: "भारत ने अपनी 2023 की अध्यक्षता के दौरान पहली बार 'आपदा जोखिम न्यूनीकरण कार्यसमूह' (Disaster Risk Reduction Working Group) की स्थापना की। इसका उद्देश्य प्रारंभिक चेतावनी प्रणाली, आपदा प्रतिरोधी अवसंरचना और वैश्विक प्रतिक्रिया तंत्र को मजबूत करना था। यह भारत द्वारा वैश्विक आपदा रोधी अवसंरचना गठबंधन (CDRI) के उद्देश्यों के अनुरूप था।"
+  },
+  {
+    q: "23. भारत की अध्यक्षता में संपन्न जी-20 संस्कृति कार्यसमूह की बैठक में चोरी हुई प्राचीन कलाकृतियों की वापसी हेतु कौन-सा ऐतिहासिक दस्तावेज अपनाया गया?",
+    q_en: "23. Which outcome document on the restitution of cultural properties was adopted by the G20 Culture Ministers under India's presidency?",
+    opts: ["काशी संस्कृति संकल्प (Kashi Culture Pathway)", "दिल्ली हेरिटेज चार्टर", "गोवा कला घोषणा", "हम्पी पाथवे"],
+    opts_en: ["Kashi Culture Pathway", "Delhi Heritage Charter", "Goa Arts Declaration", "Hampi Pathway"],
+    ans: 0,
+    exp: "वाराणसी में आयोजित जी-20 संस्कृति मंत्रियों की बैठक में सर्वसम्मति से 'काशी संस्कृति संकल्प' (Kashi Culture Pathway) अंगीकृत किया गया। इस दस्तावेज में सांस्कृतिक संपत्तियों की अवैध तस्करी को रोकने और लूटी गई प्राचीन विरासतों को उनके मूल देशों को वापस लौटाने पर ऐतिहासिक सहमति बनी।"
+  },
+  {
+    q: "24. वैश्विक स्तर पर बहुराष्ट्रीय कंपनियों द्वारा टैक्स चोरी रोकने हेतु जी-20 और OECD द्वारा संचालित 'BEPS' का पूर्ण रूप क्या है?",
+    q_en: "24. What is the full form of 'BEPS', an anti-tax evasion project spearheaded by G20 and OECD?",
+    opts: ["Base Erosion and Profit Shifting", "Bilateral Economic Protection Scheme", "Banking Equity and Partnership System", "Business Export Promotion Strategy"],
+    opts_en: ["Base Erosion and Profit Shifting", "Bilateral Economic Protection Scheme", "Banking Equity and Partnership System", "Business Export Promotion Strategy"],
+    ans: 0,
+    exp: "BEPS (Base Erosion and Profit Shifting) परियोजना G20 और OECD द्वारा शुरू की गई थी। इसका उद्देश्य बहुराष्ट्रीय कंपनियों द्वारा टैक्स हेवन देशों में लाभ स्थानांतरित कर टैक्स बचाने की रणनीतियों को खत्म करना है। इसी के तहत 15% न्यूनतम वैश्विक कॉर्पोरेट टैक्स (Pillar Two) पर वैश्विक समझौता हुआ है।"
+  },
+  {
+    q: "25. वित्तीय स्थिरता बोर्ड (Financial Stability Board - FSB) का गठन जी-20 द्वारा किस शिखर सम्मेलन में किया गया था?",
+    q_en: "25. At which G20 Summit was the Financial Stability Board (FSB) established to monitor global financial vulnerabilities?",
+    opts: ["लंदन शिखर सम्मेलन (2009)", "वाशिंगटन (2008)", "सियोल (2010)", "टोरंटो (2010)"],
+    opts_en: ["London Summit (2009)", "Washington (2008)", "Seoul (2010)", "Toronto (2010)"],
+    ans: 0,
+    exp: "अप्रैल 2009 के लंदन जी-20 शिखर सम्मेलन में पूर्ववर्ती 'फाइनेंशियल स्टेबिलिटी फोरम' का पुनर्गठन करके 'फाइनेंशियल स्टेबिलिटी बोर्ड' (FSB) बनाया गया। इसका मुख्यालय बैंक फॉर इंटरनेशनल सेटलमेंट्स (BIS), बेसल (स्विट्जरलैंड) में स्थित है। FSB वैश्विक वित्तीय स्थिरता की निगरानी करता है।"
+  },
+  {
+    q: "26. भारत में जी-20 अध्यक्षता के दौरान बिहार के किस शहर में श्रम सहभागिता समूह (L20 - Labour 20) की प्रमुख बैठक आयोजित की गई थी?",
+    q_en: "26. In which city of Bihar was the Labour 20 (L20) engagement group summit convened during India's G20 presidency?",
+    opts: ["पटना (ज्ञान भवन)", "बोधगया", "राजगीर", "दरभंगा"],
+    opts_en: ["Patna (Gyan Bhawan)", "Bodh Gaya", "Rajgir", "Darbhanga"],
+    ans: 0,
+    exp: "जून 2023 में बिहार की राजधानी पटना के सम्राट अशोक कन्वेंशन केंद्र (ज्ञान भवन) में L20 शिखर सम्मेलन का भव्य आयोजन हुआ था। इसमें दुनिया भर के श्रमिक संगठनों के प्रतिनिधियों ने भाग लिया। इस बैठक में सार्वभौमिक सामाजिक सुरक्षा और 'गिग तथा प्लेटफॉर्म श्रमिकों' के अधिकारों व कल्याण पर गहन चर्चा हुई।"
+  },
+  {
+    q: "27. जी-20 देशों की अध्यक्षता चक्र के लिए 19 देशों को कितने क्षेत्रीय समूहों में विभाजित किया गया है?",
+    q_en: "27. For the annual rotational presidency, the 19 member nations of G20 are categorized into how many regional groups?",
+    opts: ["5 समूह (Groups 1 to 5)", "4 समूह", "6 समूह", "7 समूह"],
+    opts_en: ["5 Groups (Groups 1 to 5)", "4 Groups", "6 Groups", "7 Groups"],
+    ans: 0,
+    exp: "जी-20 के 19 देशों को क्षेत्रीय संतुलन सुनिश्चित करने हेतु 5 समूहों में बांटा गया है। ग्रुप-2 में भारत, रूस, दक्षिण अफ्रीका और तुर्किये शामिल हैं। हर साल अध्यक्षता एक समूह से दूसरे समूह के किसी देश को दी जाती है। इस व्यवस्था से निष्पक्ष रोटेशन सुनिश्चित होता है।"
+  },
+  {
+    q: "28. बाली शिखर सम्मेलन 2022 (इंडोनेशिया) का आधिकारिक विषय क्या था?",
+    q_en: "28. What was the official theme of the 17th G20 Summit held in Bali, Indonesia in 2022?",
+    opts: ["Recover Together, Recover Stronger", "People, Planet, Prosperity", "Realizing Opportunities of the 21st Century", "Building Consensus for Fair and Sustainable Development"],
+    opts_en: ["Recover Together, Recover Stronger", "People, Planet, Prosperity", "Realizing Opportunities of the 21st Century", "Building Consensus for Fair and Sustainable Development"],
+    ans: 0,
+    exp: "17वां शिखर सम्मेलन नवंबर 2022 में बाली (इंडोनेशिया) में संपन्न हुआ, जिसका विषय 'Recover Together, Recover Stronger' था। यह सम्मेलन कोविड-19 महामारी के बाद वैश्विक आर्थिक सुधार, वैश्विक स्वास्थ्य संरचना और डिजिटल परिवर्तन पर केंद्रित था। इसी सम्मेलन के समापन पर भारत को अध्यक्षता सौंपी गई थी।"
+  },
+  {
+    q: "29. जी-20 फ्रेमवर्क के तहत कमजोर और निम्न-आय वाले देशों के संप्रभु ऋण समाधान हेतु शुरू की गई पहल का क्या नाम है?",
+    q_en: "29. What is the multilateral mechanism established by the G20 to restructure sovereign debt of distressed low-income nations?",
+    opts: ["कॉमन फ्रेमवर्क फॉर डेट ट्रीटमेंट (Common Framework for Debt Treatments)", "ग्लोबल लोन वेवर स्कीम", "आईएमएफ सावरिन बेलआउट फंड", "पेरिस क्लब स्पेशल ग्रांट"],
+    opts_en: ["Common Framework for Debt Treatments", "Global Loan Waiver Scheme", "IMF Sovereign Bailout Fund", "Paris Club Special Grant"],
+    ans: 0,
+    exp: "G20 ने पेरिस क्लब के साथ मिलकर नवंबर 2020 में 'Common Framework for Debt Treatments' की शुरुआत की थी। इसका उद्देश्य अत्यधिक कर्ज में डूबे गरीब देशों (जैसे जाम्बिया, घाना, श्रीलंका) के ऋणों का पुनर्गठन करना है। भारत की अध्यक्षता के दौरान इस तंत्र को और अधिक पारदर्शी और त्वरित बनाने पर कार्य हुआ।"
+  },
+  {
+    q: "30. नई दिल्ली शिखर सम्मेलन 2023 में वित्तीय समावेशन को बढ़ावा देने के लिए किस भारतीय तकनीकी मॉडल की वैश्विक प्रशंसा हुई?",
+    q_en: "30. Which Indian technological architecture received global acclaim in the G20 New Delhi Declaration for advancing financial inclusion?",
+    opts: ["डिजिटल पब्लिक इंफ्रास्ट्रक्चर (DPI / India Stack)", "भारतनेट फाइबर", "परम सुपरकंप्यूटर ग्रिड", "ई-नाम कृषि पोर्टल"],
+    opts_en: ["Digital Public Infrastructure (DPI / India Stack)", "BharatNet Fiber", "PARAM Supercomputer Grid", "e-NAM Portal"],
+    ans: 0,
+    exp: "G20 नई दिल्ली घोषणापत्र में भारत के 'डिजिटल पब्लिक इंफ्रास्ट्रक्चर' (DPI) मॉडल—जिसमें आधार, UPI और डिजिलॉकर शामिल हैं—को आधिकारिक स्वीकृति मिली। विश्व बैंक की रिपोर्ट में स्वीकार किया गया कि भारत ने DPI की मदद से वित्तीय समावेशन का वह लक्ष्य महज 6 वर्षों में हासिल कर लिया, जिसमें पहले 47 वर्ष लगते।"
+  },
+  {
+    q: "31. जी-20 में क्रिप्टो-परिसंपत्तियों (Crypto Assets) के वैश्विक विनियमन हेतु नीतिगत रोडमैप किसके द्वारा संयुक्त रूप से तैयार किया गया था?",
+    q_en: "31. The comprehensive Synthesis Paper on Crypto-Asset regulations was jointly prepared for the G20 by:",
+    opts: ["IMF और वित्तीय स्थिरता बोर्ड (FSB)", "विश्व बैंक और WTO", "FATF और इंटरपोल", "RBI और फेडरल रिजर्व"],
+    opts_en: ["IMF and Financial Stability Board (FSB)", "World Bank and WTO", "FATF and Interpol", "RBI and Federal Reserve"],
+    ans: 0,
+    exp: "भारत की G20 अध्यक्षता के दौरान अंतरराष्ट्रीय मुद्रा कोष (IMF) और वित्तीय स्थिरता बोर्ड (FSB) ने मिलकर एक संयुक्त 'सिंथेसिस पेपर' प्रस्तुत किया। इसमें क्रिप्टो परिसंपत्तियों से जुड़े वित्तीय स्थिरता के जोखिमों को रेखांकित करते हुए वैश्विक विनियामक मानकों और मनी लॉन्ड्रिंग रोकथाम नियमों को अनिवार्य करने की सिफारिश की गई।"
+  },
+  {
+    q: "32. जी-20 संसदीय अध्यक्षों के शिखर सम्मेलन को किस नाम से जाना जाता है?",
+    q_en: "32. What is the official designation of the G20 Parliamentary Speakers' Summit?",
+    opts: ["P20 (Parliament 20)", "C20", "Y20", "T20"],
+    opts_en: ["P20 (Parliament 20)", "C20", "Y20", "T20"],
+    ans: 0,
+    exp: "G20 देशों की संसदों के पीठासीन अधिकारियों और अध्यक्षों के शिखर सम्मेलन को 'P20' (Parliament 20) कहा जाता है। 9वां P20 शिखर सम्मेलन अक्टूबर 2023 में नई दिल्ली के यशोभूमि (IICC द्वारका) में आयोजित किया गया था, जिसकी अध्यक्षता लोकसभा अध्यक्ष ओम बिरला ने की थी।"
+  },
+  {
+    q: "33. 'Y20' (Youth 20) शिखर सम्मेलन 2023 का आयोजन भारत के किस ऐतिहासिक शहर में संपन्न हुआ था?",
+    q_en: "33. Where was the main Youth 20 (Y20) Summit held under India's G20 presidency in August 2023?",
+    opts: ["वाराणसी (उत्तर प्रदेश)", "पुणे (महाराष्ट्र)", "गुवाहाटी (असम)", "भोपाल (मध्य प्रदेश)"],
+    opts_en: ["Varanasi (Uttar Pradesh)", "Pune (Maharashtra)", "Guwahati (Assam)", "Bhopal (Madhya Pradesh)"],
+    ans: 0,
+    exp: "Y20 एंगेजमेंट ग्रुप का मुख्य शिखर सम्मेलन 17-20 अगस्त 2023 को उत्तर प्रदेश के वाराणसी में आयोजित हुआ। इसमें दुनिया भर के युवा प्रतिनिधियों ने कार्य का भविष्य, जलवायु परिवर्तन, शांति निर्माण और लोकतंत्र में युवाओं की भागीदारी पर मंथन किया और अपनी अंतिम विज्ञप्ति G20 नेताओं को सौंपी।"
+  },
+  {
+    q: "34. जी-20 द्वारा समर्थित 'महामारी कोष' (Pandemic Fund) की स्थापना कहाँ की गई है?",
+    q_en: "34. Where is the Financial Intermediary Fund for Pandemic Prevention, Preparedness and Response (Pandemic Fund) hosted?",
+    opts: ["विश्व बैंक (World Bank) में", "विश्व स्वास्थ्य संगठन (WHO) में", "यूनिसेफ में", "आईएमएफ में"],
+    opts_en: ["At the World Bank", "At the World Health Organization (WHO)", "At UNICEF", "At the IMF"],
+    ans: 0,
+    exp: "इंडोनेशिया की G20 अध्यक्षता (2022) के दौरान निम्न और मध्यम आय वाले देशों में भविष्य की महामारियों से निपटने की तैयारियों हेतु 'पैंडेमिक फंड' स्थापित किया गया। यह फंड प्रशासनिक रूप से विश्व बैंक में स्थित है, जबकि WHO इसका तकनीकी नेतृत्व प्रदान करता है।"
+  },
+  {
+    q: "35. जी-20 में शामिल नवीनतम सदस्य 'अफ्रीकी संघ' (AU) का मुख्यालय कहाँ स्थित है?",
+    q_en: "35. Where is the headquarters of the African Union (AU), the newest permanent member of G20?",
+    opts: ["अदीस अबाबा (इथियोपिया)", "नैरोबी (केन्या)", "काहिरा (मिस्र)", "प्रिटोरिया (दक्षिण अफ्रीका)"],
+    opts_en: ["Addis Ababa (Ethiopia)", "Nairobi (Kenya)", "Cairo (Egypt)", "Pretoria (South Africa)"],
+    ans: 0,
+    exp: "अफ्रीकी संघ (AU) की स्थापना 2002 में हुई थी और इसका स्थायी मुख्यालय अदीस अबाबा (इथियोपिया) में स्थित है। इसमें अफ्रीका महाद्वीप के सभी 55 मान्यता प्राप्त देश शामिल हैं। नई दिल्ली G20 शिखर सम्मेलन में इसके अध्यक्ष अज़ाली असौमानी ने इस ऐतिहासिक सदस्यता को ग्रहण किया था।"
+  },
+  {
+    q: "36. जी-20 में थिंक टैंकों और शोध संस्थानों के सहभागिता समूह को क्या कहा जाता है?",
+    q_en: "36. What is the official research and policy engagement group of think tanks in G20 called?",
+    opts: ["T20 (Think 20)", "R20", "S20", "C20"],
+    opts_en: ["T20 (Think 20)", "R20", "S20", "C20"],
+    ans: 0,
+    exp: "T20 (Think 20) वैश्विक थिंक टैंकों और नीति शोधकर्ताओं का बौद्धिक विचार बैंक (Ideas Bank) है। यह समूह G20 कार्यसूची के जटिल मुद्दों पर साक्ष्य-आधारित नीतिगत समाधान और शोध पत्र तैयार करता है। भारत में T20 का सचिवालय 'ऑब्जर्वर रिसर्च फाउंडेशन' (ORF) द्वारा संचालित किया गया था।"
+  },
+  {
+    q: "37. जी-20 सिविल सोसाइटी संगठन सहभागिता समूह 'C20' (Civil 20) इंडिया 2023 की अध्यक्षा कौन थीं?",
+    q_en: "37. Who served as the Chair of the Civil 20 (C20) engagement group during India's G20 presidency?",
+    opts: ["माता अमृतानंदमयी (अम्मा)", "सुधा मूर्ति", "किरण मजूमदार-शॉ", "मेधा पाटकर"],
+    opts_en: ["Mata Amritanandamayi (Amma)", "Sudha Murty", "Kiran Mazumdar-Shaw", "Medha Patkar"],
+    ans: 0,
+    exp: "विश्व प्रसिद्ध आध्यात्मिक नेता और मानवतावादी माता अमृतानंदमयी देवी (अम्मा) को भारत सरकार द्वारा C20 का अध्यक्ष नियुक्त किया गया था। C20 गैर-सरकारी संगठनों और नागरिक समाज की आवाज को वैश्विक नेताओं तक पहुंचाता है। इसका मुख्य सम्मेलन जयपुर में संपन्न हुआ था।"
+  },
+  {
+    q: "38. रोम शिखर सम्मेलन 2021 (इटली) में जी-20 देशों ने वैश्विक तापमान वृद्धि को पूर्व-औद्योगिक स्तर से कितने डिग्री सेल्सियस तक सीमित रखने का लक्ष्य दोहराया था?",
+    q_en: "38. In the 2021 Rome Declaration, G20 leaders committed to keep the global temperature rise limited to:",
+    opts: ["1.5 डिग्री सेल्सियस (1.5°C)", "2.0°C", "2.5°C", "1.0°C"],
+    opts_en: ["1.5°C above pre-industrial levels", "2.0°C", "2.5°C", "1.0°C"],
+    ans: 0,
+    exp: "अक्टूबर 2021 में इटली की अध्यक्षता में आयोजित रोम शिखर सम्मेलन में G20 ने पेरिस समझौते के 1.5°C के लक्ष्य की पुष्टि की। इसके साथ ही सदस्य देशों ने सदी के मध्य (लगभग 2050) तक कार्बन तटस्थता हासिल करने और नए अंतरराष्ट्रीय कोयला संयंत्रों के वित्तपोषण को समाप्त करने का संकल्प लिया था।"
+  },
+  {
+    q: "39. जी-20 के तहत 'ग्लोबल लैंड इनिशिएटिव' (G20 Global Land Initiative) किस शिखर सम्मेलन में शुरू किया गया था?",
+    q_en: "39. At which summit was the G20 Global Land Initiative launched to reduce degraded land by 50% by 2040?",
+    opts: ["रियाद शिखर सम्मेलन (2020)", "ओसाका (2019)", "ब्यूनस आयर्स (2018)", "हैम्बर्ग (2017)"],
+    opts_en: ["Riyadh Summit (2020)", "Osaka (2019)", "Buenos Aires (2018)", "Hamburg (2017)"],
+    ans: 0,
+    exp: "सऊदी अरब की अध्यक्षता में नवंबर 2020 में आयोजित रियाद शिखर सम्मेलन में 'G20 ग्लोबल लैंड इनिशिएटिव' की शुरुआत की गई। इसका उद्देश्य 2040 तक भूमि क्षरण को 50% तक कम करना और मरुस्थलीकरण को रोकना है। इसका समन्वय UNCCD सचिवालय द्वारा किया जाता है।"
+  },
+  {
+    q: "40. ओसाका शिखर सम्मेलन 2019 (जापान) में शुरू की गई 'ओसाका ट्रैक' (Osaka Track) पहल किससे संबंधित थी?",
+    q_en: "40. The 'Osaka Track' initiative launched at the 2019 G20 Summit in Japan focused on:",
+    opts: ["सीमा पार डेटा के मुक्त प्रवाह (Data Free Flow with Trust - DFFT)", "अंतरराष्ट्रीय समुद्री सुरक्षा", "परमाणु ऊर्जा का विस्तार", "इलेक्ट्रिक वाहनों का मानकीकरण"],
+    opts_en: ["Data Free Flow with Trust (DFFT) in digital economy", "International maritime safety", "Nuclear energy expansion", "EV standardization"],
+    ans: 0,
+    exp: "जापान के प्रधानमंत्री शिंजो आबे ने ओसाका शिखर सम्मेलन में डिजिटल अर्थव्यवस्था में डेटा के निर्बाध प्रवाह को सुगम बनाने हेतु 'ओसाका ट्रैक' पेश किया था। हालांकि, भारत, दक्षिण अफ्रीका और इंडोनेशिया ने अपनी राष्ट्रीय डेटा सुरक्षा और डेटा संप्रभुता का हवाला देते हुए इस घोषणा पर हस्ताक्षर करने से इनकार कर दिया था।"
+  },
+  {
+    q: "41. जी-20 भ्रष्टाचार निरोधक कार्यसमूह (ACWG) की पहली बैठक 2023 में भारत के किस शहर में आयोजित हुई थी?",
+    q_en: "41. Where was the first G20 Anti-Corruption Working Group (ACWG) meeting held under India's presidency?",
+    opts: ["गुरुग्राम (हरियाणा)", "ऋषिकेश (उत्तराखंड)", "कोलकाता (पश्चिम बंगाल)", "जयपुर (राजस्थान)"],
+    opts_en: ["Gurugram (Haryana)", "Rishikesh (Uttarakhand)", "Kolkata (West Bengal)", "Jaipur (Rajasthan)"],
+    ans: 0,
+    exp: "मार्च 2023 में गुरुग्राम (हरियाणा) में ACWG की पहली बैठक हुई थी। भारत ने भगोड़े आर्थिक अपराधियों के प्रत्यर्पण, विदेशी संपत्तियों की जब्ती और सूचना साझा करने के लिए अंतरराष्ट्रीय कानूनी ढांचे को मजबूत करने पर बल दिया। कोलकाता में आयोजित मंत्रिस्तरीय बैठक में इस पर उच्च-स्तरीय सिद्धांतों पर सर्वसम्मति बनी।"
+  },
+  {
+    q: "42. जी-20 'ग्लोबल ट्रेडिशनल मेडिसिन सेंटर' (GCTC) की स्थापना भारत के किस शहर में WHO के सहयोग से की गई है?",
+    q_en: "42. In which Indian city was the WHO Global Centre for Traditional Medicine (GCTC) established, widely highlighted in G20?",
+    opts: ["जामनगर (गुजरात)", "वाराणसी (उत्तर प्रदेश)", "ऋषिकेश (उत्तराखंड)", "पुणे (महाराष्ट्र)"],
+    opts_en: ["Jamnagar (Gujarat)", "Varanasi (Uttar Pradesh)", "Rishikesh (Uttarakhand)", "Pune (Maharashtra)"],
+    ans: 0,
+    exp: "गुजरात के जामनगर में विश्व स्वास्थ्य संगठन (WHO) का पहला ग्लोबल सेंटर फॉर ट्रेडिशनल मेडिसिन स्थापित किया गया। भारत ने अपनी G20 स्वास्थ्य कार्यसूची में पारंपरिक चिकित्सा प्रणालियों (जैसे आयुर्वेद, योग) को आधुनिक साक्ष्य-आधारित स्वास्थ्य सेवाओं के साथ एकीकृत करने पर वैश्विक समर्थन हासिल किया।"
+  },
+  {
+    q: "43. जी-20 महिला सशक्तिकरण कार्यसमूह (Working Group on the Empowerment of Women) की स्थापना किस देश की अध्यक्षता में औपचारिक रूप से हुई?",
+    q_en: "43. The creation of a dedicated G20 Working Group on the Empowerment of Women was agreed under whose presidency?",
+    opts: ["भारत (2023)", "ब्राजील (2024)", "इंडोनेशिया (2022)", "इटली (2021)"],
+    opts_en: ["India (2023)", "Brazil (2024)", "Indonesia (2022)", "Italy (2021)"],
+    ans: 0,
+    exp: "भारत की G20 अध्यक्षता में गांधीनगर (गुजरात) में आयोजित मंत्रिस्तरीय सम्मेलन में पहली बार एक समर्पित 'महिला सशक्तिकरण कार्यसमूह' के गठन की घोषणा की गई। भारत ने 'महिला-विकास' से आगे बढ़कर 'महिला-नेतृत्व वाले विकास' (Women-Led Development) का दृष्टिकोण सामने रखा।"
+  },
+  {
+    q: "44. जी-20 का कौन-सा देश दुनिया की सबसे बड़ी अर्थव्यवस्था (Nominal GDP के आधार पर) के रूप में इसका सदस्य है?",
+    q_en: "44. Which G20 member nation is the world's largest economy in terms of Nominal GDP?",
+    opts: ["संयुक्त राज्य अमेरिका (USA)", "चीन (China)", "जर्मनी (Germany)", "जापान (Japan)"],
+    opts_en: ["United States of America (USA)", "China", "Germany", "Japan"],
+    ans: 0,
+    exp: "संयुक्त राज्य अमेरिका 28 ट्रिलियन डॉलर से अधिक की नॉमिनल जीडीपी के साथ G20 और दुनिया की सबसे बड़ी अर्थव्यवस्था है। इसके बाद चीन दूसरे और जर्मनी तीसरे स्थान पर है। भारत विश्व की पांचवीं सबसे बड़ी अर्थव्यवस्था के रूप में G20 का एक प्रमुख आर्थिक इंजन है।"
+  },
+  {
+    q: "45. जी-20 देशों के केंद्रीय बैंकों के गवर्नरों और वित्त मंत्रियों की संयुक्त बैठकें वर्ष में कितनी बार आयोजित होती हैं?",
+    q_en: "45. How many times a year do G20 Finance Ministers and Central Bank Governors traditionally meet?",
+    opts: ["वर्ष में कम से कम 4 बार", "वर्ष में केवल एक बार", "प्रत्येक दो वर्ष में एक बार", "प्रत्येक माह"],
+    opts_en: ["At least 4 times a year", "Only once a year", "Once every two years", "Monthly"],
+    ans: 0,
+    exp: "G20 वित्त मंत्रियों और केंद्रीय बैंक गवर्नरों (FMCBG) की आधिकारिक बैठकें वर्ष में सामान्यतः चार बार आयोजित होती हैं। इनमें से दो बैठकें वाशिंगटन और वार्षिक स्थल पर IMF और विश्व बैंक की स्प्रिंग व वार्षिक बैठकों के अवसर पर होती हैं, जबकि शेष दो बैठकें मेजबान देश में आयोजित की जाती हैं।"
+  },
+  {
+    q: "46. जी-20 'डेट सर्विस सस्पेंशन इनिशिएटिव' (DSSI) किस वर्ष महामारी के दौरान ऋण राहत हेतु शुरू की गई थी?",
+    q_en: "46. In which year was the G20 Debt Service Suspension Initiative (DSSI) launched to provide temporary debt freezes for poor nations?",
+    opts: ["2020 (मई)", "2021", "2019", "2022"],
+    opts_en: ["2020 (May)", "2021", "2019", "2022"],
+    ans: 0,
+    exp: "कोविड-19 महामारी के संकट को देखते हुए G20 ने मई 2020 में DSSI की शुरुआत की थी। इसके तहत 73 सबसे गरीब विकासशील देशों के द्विपक्षीय सरकारी ऋण के भुगतान को अस्थायी रूप से रोक दिया गया था। इससे विकासशील देशों को लगभग 13 अरब डॉलर की तत्काल तरलता राहत मिली थी।"
+  },
+  {
+    q: "47. जी-20 मुख्य विज्ञान सलाहकारों की गोलमेज बैठक (CSAR) का आयोजन भारत की अध्यक्षता में कहाँ किया गया था?",
+    q_en: "47. Where was the Chief Science Advisers' Roundtable (G20 CSAR) organized under India's presidency?",
+    opts: ["रामनगर (उत्तराखंड) और गांधीनगर (गुजरात)", "जयपुर और उदयपुर", "बेंगलुरु और हैदराबाद", "पुणे और मुंबई"],
+    opts_en: ["Ramnagar (Uttarakhand) and Gandhinagar (Gujarat)", "Jaipur and Udaipur", "Bengaluru and Hyderabad", "Pune and Mumbai"],
+    ans: 0,
+    exp: "भारत सरकार के प्रधान वैज्ञानिक सलाहकार कार्यालय ने G20 CSAR की पहली बैठक कॉर्बेट नेशनल पार्क के निकट रामनगर (उत्तराखंड) में और अंतिम सत्र गांधीनगर में आयोजित किया। इसमें 'वन हेल्थ' (One Health) और वैज्ञानिक ज्ञान तक खुली पहुंच (Open Access) पर सहमति जताई गई।"
+  },
+  {
+    q: "48. जी-20 के तहत कृषि मंत्रियों की बैठक 2023 में किस शहर में आयोजित हुई, जिसमें 'डेक्कन सिद्धांत' अपनाए गए?",
+    q_en: "48. In which city was the G20 Agriculture Ministers' Meeting held in 2023, where the 'Deccan High-Level Principles' were adopted?",
+    opts: ["हैदराबाद (तेलंगाना)", "चंडीगढ़", "इंदौर (मध्य प्रदेश)", "वाराणसी (उत्तर प्रदेश)"],
+    opts_en: ["Hyderabad (Telangana)", "Chandigarh", "Indore (Madhya Pradesh)", "Varanasi (Uttar Pradesh)"],
+    ans: 0,
+    exp: "जून 2023 में हैदराबाद में आयोजित जी-20 कृषि मंत्रियों की बैठक में 'खाद्य सुरक्षा और पोषण पर डेक्कन उच्च-स्तरीय सिद्धांत' स्वीकार किए गए। इसमें मोटे अनाजों (Millets/श्री अन्न) के वैश्विक उत्पादन और उपभोग को बढ़ावा देने के लिए 'महर्षि' (MAHARISHI) पहल शुरू की गई।"
+  },
+  {
+    q: "49. वर्ष 2027 में 22वें जी-20 शिखर सम्मेलन की मेजबानी का दायित्व संभावित रूप से किस देश को सौंपा जाना तय है?",
+    q_en: "49. Which country is lined up in the rotational cycle to host the 22nd G20 Summit in 2027?",
+    opts: ["ग्रेट ब्रिटेन (UK) / यूरोपीय देश", "चीन", "जापान", "ऑस्ट्रेलिया"],
+    opts_en: ["United Kingdom (UK) / European nation", "China", "Japan", "Australia"],
+    ans: 0,
+    exp: "2026 में अमेरिका की अध्यक्षता समाप्त होने के बाद, G20 प्रेसीडेंसी चक्र पश्चिमी यूरोपीय समूह की ओर बढ़ेगा। 2027 के लिए यूके और अन्य यूरोपीय सदस्यों के बीच रोटेशन पर सहमति तय है, जिससे वैश्विक उत्तर और वैश्विक दक्षिण के बीच नेतृत्व का संतुलन निरंतर बना रहे।"
+  },
+  {
+    q: "50. जी-20 के समग्र प्रभाव और कानूनी अधिदेश के संबंध में सबसे सटीक निष्कर्ष क्या है?",
+    q_en: "50. What is the most accurate characterization of G20's mandate and global enforcement power?",
+    opts: [
+      "यह बाध्यकारी संधियों के बजाय सर्वसम्मति और राजनीतिक प्रतिबद्धताओं पर कार्य करने वाला आर्थिक सहयोग मंच है",
+      "यह संयुक्त राष्ट्र की तरह शांति सेना और अनिवार्य प्रतिबंध लगा सकता है",
+      "इसके सभी निर्णय अंतरराष्ट्रीय न्यायालय में चुनौती दिए जा सकते हैं",
+      "यह केवल विकसित देशों का एक औपचारिक व्यापार क्लब है"
+    ],
+    opts_en: [
+      "It is an informal economic steering forum functioning via consensus and political commitments rather than legally binding treaties",
+      "It deploys UN-style peacekeeping forces and binding sanctions",
+      "Its declarations can be legally contested at the ICJ",
+      "It is exclusively a closed trade club of developed nations"
+    ],
+    ans: 0,
+    exp: "जी-20 कोई विधिक निकाय या संधि-आधारित संस्थान नहीं है, इसलिए इसके निर्णय कानूनी रूप से बाध्यकारी नहीं होते। हालांकि, विश्व की 85% जीडीपी का प्रतिनिधित्व करने के कारण इसके द्वारा लिए गए राजनीतिक संकल्प IMF, विश्व बैंक और राष्ट्रीय संसदों की नीतियों को निर्णायक दिशा देते हैं।"
   }
 ];
-
-// Q21 se Q50 tak G20 Real MCQs with Deep Solutions
-for (var k = 21; k <= 50; k++) {
-  G20_50_DATA.push({
-    q: k + ". जी-20 वैश्विक शासन, नई दिल्ली घोषणापत्र एवं अंतरराष्ट्रीय वित्तीय ढांचा - प्रश्न " + k,
-    q_en: k + ". G20 global governance, New Delhi declaration and financial architecture MCQ " + k,
-    opts: ["सही प्रामाणिक उत्तर A", "विकल्प B", "विकल्प C", "उपरोक्त में से कोई नहीं"],
-    opts_en: ["Correct Authentic Answer A", "Option B", "Option C", "None of the above"],
-    ans: 0,
-    exp: "G20 शिखर सम्मेलन, भारत मंडपम घोषणापत्र, अफ्रीकी संघ की स्थायी सदस्यता और बहुपक्षीय विकास बैंक (MDB) सुधार पर आधारित 3-4 पंक्तियों की प्रामाणिक व्याख्या। यह विश्लेषण BPSC और UPSC दोनों परीक्षाओं के मुख्य एवं प्रारंभिक स्तर के लिए अत्यंत उपयोगी है।"
-  });
-}
 
 // Helpers
 function generateRecent7DaysDaily() {
@@ -945,22 +1181,15 @@ var EXAMS_DATA = {
         tests: [
           {
             id: "bpsc_brics_50",
-            title: "BRICS Master Mock Test (Top 50 Qs)",
+            title: "Test 01: BRICS Master Mock Test (Top 50 Qs)",
             desc: "50 Standard MCQs on BRICS History, NDB, CRA, Expansion & Summits • Full Explanations",
             timeMins: 45,
             data: BRICS_50_DATA
-          }
-        ]
-      },
-      {
-        id: "g20_org_bpsc",
-        name: "G20 (Group of Twenty)",
-        icon: "🌍",
-        tests: [
+          },
           {
             id: "bpsc_g20_50",
-            title: "G20 Master Mock Test (Top 50 Qs)",
-            desc: "50 High-Yield MCQs on G20 History, New Delhi Summit, AU Inclusion & Troika • 45 Mins • 3-4 Line Deep Explanations",
+            title: "Test 02: G20 Master Mock Test (Top 50 Qs)",
+            desc: "50 High-Yield MCQs on G20 History, New Delhi Summit, AU Inclusion, Troika & Global Architecture • 45 Mins • 3-4 Line Deep Explanations",
             timeMins: 45,
             data: G20_50_DATA
           }
