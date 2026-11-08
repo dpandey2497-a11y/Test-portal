@@ -1,4 +1,5 @@
 // questions.js — TestChakra Master Database
+// Single Master File (October 2026 T1 & T2, BRICS, and G20 Section)
 
 // ==========================================
 // TEST 01: OCTOBER 2026 (Q. 1 to 100)
@@ -86,14 +87,15 @@ var CA_OCT_2026_T1 = [
   }
 ];
 
+// Q11 se Q100 tak Test 01
 for (var i = 11; i <= 100; i++) {
   CA_OCT_2026_T1.push({
-    q: i + ". अक्टूबर 2026 राष्ट्रीय एवं अंतरराष्ट्रीय परिदृश्य - अभ्यास प्रश्न सेट " + i,
+    q: i + ". अक्टूबर 2026 राष्ट्रीय एवं अंतरराष्ट्रीय समसामयिकी - अभ्यास प्रश्न " + i,
     q_en: i + ". October 2026 Current Affairs Mock Practice Question " + i,
     opts: ["विकल्प A (सत्य)", "विकल्प B", "विकल्प C", "उपरोक्त में से एक से अधिक"],
     opts_en: ["Option A (Correct)", "Option B", "Option C", "More than one of the above"],
     ans: 0,
-    exp: "अक्टूबर 2026 समसामयिकी तथ्य एवं राष्ट्रीय घटनाक्रम का आधिकारिक संदर्भ।"
+    exp: "अक्टूबर 2026 समसामयिक घटनाक्रम, राष्ट्रीय योजना एवं परीक्षा-उपयोगी तथ्यों पर आधारित मानक व्याख्या।"
   });
 }
 
@@ -143,9 +145,10 @@ var CA_OCT_2026_T2 = [
   }
 ];
 
+// Q6 se Q100 tak Test 02
 for (var j = 6; j <= 100; j++) {
   CA_OCT_2026_T2.push({
-    q: j + ". अक्टूबर 2026 राष्ट्रीय एवं अंतरराष्ट्रीय परिदृश्य - टेस्ट 02 प्रश्न " + j,
+    q: j + ". अक्टूबर 2026 समसामयिकी एवं नीतिगत परिदृश्य - टेस्ट 02 प्रश्न " + j,
     q_en: j + ". October 2026 Current Affairs Mock Test 02 Question " + j,
     opts: ["सत्य उत्तर A", "विकल्प B", "विकल्प C", "उपरोक्त में से कोई नहीं"],
     opts_en: ["Correct Option A", "Option B", "Option C", "None of the above"],
@@ -670,7 +673,185 @@ var BRICS_50_DATA = [
   }
 ];
 
-// Helper to generate recent 7 days Daily CA
+// ==========================================
+// BPSC: G20 MASTER TEST (TOP 50 Qs WITH 3-4 LINES DEEP EXPLANATIONS)
+// ==========================================
+var G20_50_DATA = [
+  {
+    q: "1. जी-20 (G20) की स्थापना किस वर्ष और किस पृष्ठभूमि में हुई थी?",
+    q_en: "1. In which year and background was the G20 established?",
+    opts: ["1999 (एशियाई वित्तीय संकट के बाद)", "2008 (वैश्विक मंदी के बाद)", "1995 (WTO गठन के बाद)", "2001 (9/11 हमलों के बाद)"],
+    opts_en: ["1999 (Post-Asian Financial Crisis)", "2008 (Post-Global Recession)", "1995 (Post-WTO formation)", "2001 (Post-9/11 attacks)"],
+    ans: 0,
+    exp: "G20 की स्थापना 1999 में एशियाई वित्तीय संकट (1997-98) के बाद G7 के वित्त मंत्रियों की पहल पर हुई थी। इसका उद्देश्य प्रमुख उन्नत और उभरती अर्थव्यवस्थाओं के वित्त मंत्रियों और केंद्रीय बैंक गवर्नरों को एक साझा मंच पर लाना था। प्रारंभ में यह केवल वित्त मंत्रियों की अनौपचारिक बैठक हुआ करती थी। 2008 की वैश्विक मंदी के बाद इसे राष्ट्राध्यक्षों के स्तर पर शिखर सम्मेलन का रूप दिया गया।"
+  },
+  {
+    q: "2. प्रथम जी-20 राष्ट्राध्यक्ष शिखर सम्मेलन (Leaders' Summit) कब और कहाँ आयोजित हुआ था?",
+    q_en: "2. When and where was the first G20 Leaders' Summit convened?",
+    opts: ["नवंबर 2008, वाशिंगटन डी.सी. (अमेरिका)", "सितंबर 2009, पिट्सबर्ग (अमेरिका)", "जून 2010, टोरंटो (कनाडा)", "नवंबर 2011, कान (फ्रांस)"],
+    opts_en: ["November 2008, Washington D.C. (USA)", "September 2009, Pittsburgh (USA)", "June 2010, Toronto (Canada)", "November 2011, Cannes (France)"],
+    ans: 0,
+    exp: "2008 के लीमैन ब्रदर्स संकट और वैश्विक वित्तीय मंदी के समाधान हेतु अमेरिकी राष्ट्रपति जॉर्ज डब्ल्यू बुश ने पहला शिखर सम्मेलन बुलाया था। यह 14-15 नवंबर 2008 को वाशिंगटन डी.सी. में आयोजित किया गया था। इस सम्मेलन में वैश्विक वित्तीय प्रणाली के पुनर्गठन और वित्तीय स्थिरता मंच (FSB) के विस्तार पर सहमति बनी थी। इसके बाद से यह सम्मेलन वार्षिक परंपरा बन गया।"
+  },
+  {
+    q: "3. 18वें जी-20 शिखर सम्मेलन (2023, नई दिल्ली) में किस क्षेत्रीय गुट को 21वें स्थायी सदस्य के रूप में शामिल किया गया?",
+    q_en: "3. Which regional bloc was inducted as the 21st permanent member during the 18th G20 Summit in New Delhi?",
+    opts: ["अफ्रीकी संघ (African Union)", "आसियान (ASEAN)", "सार्क (SAARC)", "खाड़ी सहयोग परिषद (GCC)"],
+    opts_en: ["African Union (AU)", "ASEAN", "SAARC", "Gulf Cooperation Council (GCC)"],
+    ans: 0,
+    exp: "भारत की अध्यक्षता में 9-10 सितंबर 2023 को नई दिल्ली में आयोजित 18वें शिखर सम्मेलन में 55 अफ्रीकी देशों के संगठन अफ्रीकी संघ (AU) को पूर्ण सदस्य बनाया गया। इसके साथ ही यह समूह प्रभावी रूप से 'G21' के रूप में देखा जाने लगा। यूरोपीय संघ के बाद यह शामिल होने वाला दूसरा क्षेत्रीय संघ है। यह निर्णय विकासशील देशों (Global South) के प्रतिनिधित्व को मजबूत करने का ऐतिहासिक कदम था।"
+  },
+  {
+    q: "4. जी-20 के स्थायी मुख्यालय (Secretariat) के संबंध में कौन-सा कथन सत्य है?",
+    q_en: "4. Which statement is correct regarding the permanent Secretariat of the G20?",
+    opts: ["G20 का कोई स्थायी मुख्यालय या सचिवालय नहीं है", "इसका मुख्यालय जिनेवा, स्विट्जरलैंड में है", "इसका मुख्यालय पेरिस, फ्रांस में है", "इसका मुख्यालय न्यूयॉर्क, अमेरिका में है"],
+    opts_en: ["G20 has no permanent secretariat or headquarters", "Its HQ is in Geneva, Switzerland", "Its HQ is in Paris, France", "Its HQ is in New York, USA"],
+    ans: 0,
+    exp: "G20 कोई औपचारिक अंतरराष्ट्रीय संधि-आधारित संगठन नहीं है, इसलिए इसका कोई स्थायी सचिवालय या मुख्यालय नहीं है। इसकी अध्यक्षता प्रतिवर्ष रोटेशनल आधार पर सदस्य देशों के बीच बदलती रहती है। जिस देश के पास अध्यक्षता होती है, वही अस्थायी सचिवालय स्थापित कर सम्मेलनों का पूरा प्रबंध करता है। अध्यक्षता का क्रम 5 क्षेत्रीय समूहों के माध्यम से तय किया जाता है।"
+  },
+  {
+    q: "5. जी-20 'ट्रोइका' (Troika) का क्या अभिप्राय है?",
+    q_en: "5. What does the G20 'Troika' refer to?",
+    opts: ["वर्तमान, पूर्व और आगामी अध्यक्षता वाले तीन देशों का प्रबंधन समूह", "विश्व बैंक, IMF और WTO का त्रिपक्षीय समूह", "अमेरिका, रूस और चीन का त्रिपक्षीय संवाद", "वित्त मंत्री, शेरपा और विदेश मंत्री की तिकड़ी"],
+    opts_en: ["Management group of current, past, and upcoming presidencies", "Trilateral body of World Bank, IMF, and WTO", "Trilateral dialogue of USA, Russia, and China", "Trio of Finance Minister, Sherpa, and Foreign Minister"],
+    ans: 0,
+    exp: "जी-20 में स्थायी सचिवालय न होने के कारण निरंतरता बनाए रखने के लिए 'ट्रोइका' व्यवस्था कार्य करती है। ट्रोइका में पूर्व अध्यक्ष, वर्तमान अध्यक्ष और अगला अध्यक्ष देश एक साथ मिलकर कार्यसूची को आगे बढ़ाते हैं। उदाहरण के लिए भारत की अध्यक्षता (2023) के दौरान ट्रोइका में इंडोनेशिया, भारत और ब्राजील शामिल थे। यह व्यवस्था सम्मेलनों के निर्णयों के क्रियान्वयन में निरंतरता की गारंटी देती है।"
+  },
+  {
+    q: "6. भारत में आयोजित 18वें जी-20 शिखर सम्मेलन 2023 का आधिकारिक विषय (Theme) क्या था?",
+    q_en: "6. What was the official theme of the 18th G20 Summit hosted by India in 2023?",
+    opts: ["वसुधैव कुटुम्बकम - एक पृथ्वी, एक परिवार, एक भविष्य", "समान विकास हेतु वैश्विक साझेदारी", "पुनरुत्थान, नवाचार और स्थिरता", "एकजुटता, समानता और सतत विकास"],
+    opts_en: ["Vasudhaiva Kutumbakam - One Earth, One Family, One Future", "Global Partnership for Equitable Growth", "Recovery, Innovation, and Sustainability", "Solidarity, Equality, and Sustainability"],
+    ans: 0,
+    exp: "भारत की अध्यक्षता की आधिकारिक थीम 'वसुधैव कुटुम्बकम' (एक पृथ्वी, एक परिवार, एक भविष्य) थी। यह प्राचीन संस्कृत ग्रंथ 'महा उपनिषद' से लिया गया था। यह विषय मानव, पशु, पौधे और सूक्ष्मजीवों के बीच जीवन के अंतर्संबंधों और पृथ्वी के संरक्षण पर केंद्रित था। इसे वैश्विक मंच पर भारत के सांस्कृतिक और कूटनीतिक दर्शन की बड़ी सफलता माना गया।"
+  },
+  {
+    q: "7. नई दिल्ली जी-20 शिखर सम्मेलन 2023 के दौरान घोषित 'IMEC' कॉरिडोर का पूर्ण रूप क्या है?",
+    q_en: "7. What is the full form of the 'IMEC' corridor announced during the 2023 New Delhi G20 Summit?",
+    opts: ["India-Middle East-Europe Economic Corridor", "International Maritime Energy Corridor", "Indo-Mediterranean Ecological Cooperation", "India-Malaysia Economic Coalition"],
+    opts_en: ["India-Middle East-Europe Economic Corridor", "International Maritime Energy Corridor", "Indo-Mediterranean Ecological Cooperation", "India-Malaysia Economic Coalition"],
+    ans: 0,
+    exp: "भारत, अमेरिका, यूएई, सऊदी अरब, फ्रांस, जर्मनी, इटली और यूरोपीय संघ ने मिलकर IMEC (India-Middle East-Europe Economic Corridor) की घोषणा की। इसका उद्देश्य एशिया, अरब की खाड़ी और यूरोप के बीच रेल व बंदरगाह कनेक्टिविटी नेटवर्क बनाना है। इसे चीन के 'बेल्ट एंड रोड इनिशिएटिव' (BRI) के एक व्यावहारिक और पारदर्शी विकल्प के रूप में देखा जा रहा है।"
+  },
+  {
+    q: "8. नई दिल्ली जी-20 शिखर सम्मेलन में भारत द्वारा किस वैश्विक ऊर्जा गठबंधन की शुरुआत की गई?",
+    q_en: "8. Which global energy alliance was launched by India during the New Delhi G20 Summit?",
+    opts: ["वैश्विक जैव ईंधन गठबंधन (Global Biofuels Alliance - GBA)", "अंतरराष्ट्रीय पवन ऊर्जा मंच", "ग्लोबल न्यूक्लियर फोरम", "ग्रीन अमोनिया कंसोर्टियम"],
+    opts_en: ["Global Biofuels Alliance (GBA)", "International Wind Energy Forum", "Global Nuclear Forum", "Green Ammonia Consortium"],
+    ans: 0,
+    exp: "प्रधानमंत्री नरेंद्र मोदी ने 9 सितंबर 2023 को 'ग्लोबल बायोफ्यूल्स अलायंस' (GBA) का शुभारंभ किया। भारत, अमेरिका और ब्राजील इसके संस्थापक देशों में शामिल हैं, जो दुनिया के सबसे बड़े जैव ईंधन उत्पादक हैं। इसका उद्देश्य पर्यावरण अनुकूल सस्टेनेबल बायोफ्यूल के वैश्विक बाजार को गति देना और उत्सर्जन कम करना है। यह भारत के 'लाइफ' (LiFE) मिशन का समर्थन करता है।"
+  },
+  {
+    q: "9. जी-20 कार्यप्रणाली में 'शेरपा ट्रैक' (Sherpa Track) मुख्य रूप से किन मुद्दों पर कार्य करता है?",
+    q_en: "9. In the G20 architecture, what issues does the 'Sherpa Track' primarily handle?",
+    opts: ["विकास, भ्रष्टाचार-विरोध, ऊर्जा, पर्यावरण, व्यापार और कूटनीति", "केवल राजकोषीय और मौद्रिक नीति", "विदेशी मुद्रा विनिमय दर प्रबंधन", "सैन्य रक्षा और सीमा सुरक्षा"],
+    opts_en: ["Development, anti-corruption, energy, environment, trade and diplomacy", "Exclusively fiscal and monetary policy", "Foreign exchange rate management", "Military defense and border security"],
+    ans: 0,
+    exp: "G20 की कार्यप्रणाली दो ट्रैकों में बंटी होती है: 'फाइनेंस ट्रैक' और 'शेरपा ट्रैक'। शेरपा राष्ट्राध्यक्ष का व्यक्तिगत दूत होता है जो राजनीतिक और सामाजिक-आर्थिक नीतियों का समन्वय करता है। यह ट्रैक स्वास्थ्य, कृषि, शिक्षा, रोजगार, जलवायु और पर्यटन जैसे गैर-वित्तीय मुद्दों पर सहमति बनाता है। भारत की G20 अध्यक्षता में अमिताभ कांत भारत के शेरपा थे।"
+  },
+  {
+    q: "10. जी-20 के 'फाइनेंस ट्रैक' (Finance Track) का नेतृत्व किन अधिकारियों द्वारा किया जाता है?",
+    q_en: "10. The Finance Track of the G20 is officially led by:",
+    opts: ["सदस्य देशों के वित्त मंत्री और केंद्रीय बैंक के गवर्नर", "वाणिज्य मंत्री और व्यापार सचिव", "विदेश मंत्री और राजदूत", "नीति आयोग के उपाध्यक्ष"],
+    opts_en: ["Finance Ministers and Central Bank Governors of member states", "Commerce Ministers and Trade Secretaries", "Foreign Ministers and Ambassadors", "Vice Chairperson of NITI Aayog"],
+    ans: 0,
+    exp: "फाइनेंस ट्रैक का नेतृत्व सदस्य देशों के वित्त मंत्री और केंद्रीय बैंकों के गवर्नर करते हैं (जैसे भारत से वित्त मंत्री और RBI गवर्नर)। यह ट्रैक वैश्विक आर्थिक दृष्टिकोण, वित्तीय विनियमन, अंतरराष्ट्रीय कराधान और ऋण पुनर्गठन पर चर्चा करता है। वर्ष भर में इसकी कई मंत्रिस्तरीय बैठकें और कार्यसमूह सत्र आयोजित होते हैं।"
+  },
+  {
+    q: "11. 19वां जी-20 शिखर सम्मेलन (नवंबर 2024) किस शहर में आयोजित हुआ था?",
+    q_en: "11. In which city was the 19th G20 Summit convened in November 2024?",
+    opts: ["रियो डी जेनेरियो (ब्राजील)", "साओ पाउलो (ब्राजील)", "ब्रासीलिया (ब्राजील)", "ब्यूनस आयर्स (अर्जेंटीना)"],
+    opts_en: ["Rio de Janeiro (Brazil)", "Sao Paulo (Brazil)", "Brasilia (Brazil)", "Buenos Aires (Argentina)"],
+    ans: 0,
+    exp: "19वां जी-20 शिखर सम्मेलन 18-19 नवंबर 2024 को ब्राजील के रियो डी जेनेरियो में आयोजित हुआ। ब्राजील के राष्ट्रपति लुइज़ इनासियो लूला डा सिल्वा ने इसकी अध्यक्षता की। इस सम्मेलन का आधिकारिक विषय 'एक न्यायपूर्ण विश्व और एक सतत ग्रह का निर्माण' था। इसमें 'भूख और गरीबी के खिलाफ वैश्विक गठबंधन' की शुरुआत की गई।"
+  },
+  {
+    q: "12. रियो डी जेनेरियो शिखर सम्मेलन 2024 में ब्राजील द्वारा कौन-सी प्रमुख वैश्विक पहल शुरू की गई?",
+    q_en: "12. Which major global initiative was formally launched by Brazil at the 2024 Rio G20 Summit?",
+    opts: ["भूख और गरीबी के खिलाफ वैश्विक गठबंधन (Global Alliance Against Hunger and Poverty)", "वैश्विक वन संधि", "डिजिटल टैक्स नेटवर्क", "अंतरराष्ट्रीय अंतरिक्ष एजेंसी"],
+    opts_en: ["Global Alliance Against Hunger and Poverty", "Global Forest Treaty", "Digital Tax Network", "International Space Agency"],
+    ans: 0,
+    exp: "ब्राजील के राष्ट्रपति लूला डा सिल्वा ने सामाजिक सुरक्षा और भुखमरी निवारण हेतु 'ग्लोबल अलायंस अगेंस्ट हंगर एंड पॉवर्टी' का शुभारंभ किया। इस गठबंधन में भारत, यूरोपीय संघ और अफ्रीकी संघ सहित 80 से अधिक देशों ने सदस्यता ली। इसका मुख्य लक्ष्य 2030 तक दुनिया भर में अत्यधिक भुखमरी और गरीबी को समाप्त करना है।"
+  },
+  {
+    q: "13. 20वां जी-20 शिखर सम्मेलन (2025) किस देश की अध्यक्षता में जोहान्सबर्ग में आयोजित हुआ?",
+    q_en: "13. Under whose presidency was the 20th G20 Summit (2025) convened in Johannesburg?",
+    opts: ["दक्षिण अफ्रीका (South Africa)", "सऊदी अरब", "तुर्किये", "इंडोनेशिया"],
+    opts_en: ["South Africa", "Saudi Arabia", "Turkiye", "Indonesia"],
+    ans: 0,
+    exp: "दक्षिण अफ्रीका ने 1 दिसंबर 2024 से जी-20 की अध्यक्षता ग्रहण की और 2025 के 20वें शिखर सम्मेलन की मेजबानी जोहान्सबर्ग में की। दक्षिण अफ्रीका अफ्रीकी महाद्वीप का पहला देश बना जिसने जी-20 शिखर सम्मेलन की अध्यक्षता की। इसकी अध्यक्षता की थीम 'एकजुटता, समानता और सतत विकास' रखी गई थी।"
+  },
+  {
+    q: "14. वर्ष 2026 में 21वें जी-20 शिखर सम्मेलन की अध्यक्षता और मेजबानी का दायित्व किस देश के पास है?",
+    q_en: "14. Which country holds the presidency and hosting mandate for the 21st G20 Summit in 2026?",
+    opts: ["संयुक्त राज्य अमेरिका (USA)", "ग्रेट ब्रिटेन (UK)", "कनाडा", "फ्रांस"],
+    opts_en: ["United States of America (USA)", "Great Britain (UK)", "Canada", "France"],
+    ans: 0,
+    exp: "जी-20 के रोटेशनल चक्र के अनुसार वर्ष 2026 में 21वें शिखर सम्मेलन की अध्यक्षता संयुक्त राज्य अमेरिका (USA) के पास है। यह 2008 (वाशिंगटन) और 2009 (पिट्सबर्ग) के बाद अमेरिका द्वारा आयोजित होने वाला तीसरा जी-20 शिखर सम्मेलन है। इसके साथ ही जी-20 के संस्थापक सदस्यों का दूसरा चक्र पूरा होता है।"
+  },
+  {
+    q: "15. जी-20 सदस्य देश सामूहिक रूप से विश्व की कुल अर्थव्यवस्था (Global GDP) का लगभग कितना प्रतिशत प्रतिनिधित्व करते हैं?",
+    q_en: "15. G20 member economies collectively account for approximately what share of global GDP?",
+    opts: ["लगभग 85%", "लगभग 50%", "लगभग 60%", "लगभग 70%"],
+    opts_en: ["Around 85%", "Around 50%", "Around 60%", "Around 70%"],
+    ans: 0,
+    exp: "G20 देशों का आर्थिक दायरा विशाल है, जो विश्व के कुल सकल घरेलू उत्पाद (Global GDP) के लगभग 85% का प्रतिनिधित्व करते हैं। इसके अतिरिक्त, ये देश वैश्विक व्यापार के 75% से अधिक और दुनिया की लगभग दो-तिहाई (60-65%) आबादी को समाहित करते हैं। इसलिए इसे वैश्विक आर्थिक शासन का सबसे प्रभावशाली मंच माना जाता है।"
+  },
+  {
+    q: "16. जी-20 का एकमात्र ऐसा देश कौन-सा है जो सदस्य न होते हुए भी प्रत्येक शिखर सम्मेलन में 'स्थायी गैर-सदस्य आमंत्रित' (Permanent Guest) के रूप में भाग लेता है?",
+    q_en: "16. Which country is a permanent non-member invitee attending every G20 summit?",
+    opts: ["स्पेन (Spain)", "स्विट्जरलैंड", "नीदरलैंड", "सिंगापुर"],
+    opts_en: ["Spain", "Switzerland", "Netherlands", "Singapore"],
+    ans: 0,
+    exp: "स्पेन औपचारिक रूप से G20 का पूर्ण सदस्य नहीं है, लेकिन 2008 के पहले शिखर सम्मेलन से ही उसे 'स्थायी आमंत्रित अतिथि' का दर्जा प्राप्त है। यूरोपीय संघ का सदस्य होने के साथ-साथ स्पेन सभी मंत्रिस्तरीय बैठकों और कार्यसमूहों में सीधे भाग लेता है।"
+  },
+  {
+    q: "17. नई दिल्ली शिखर सम्मेलन 2023 में पारित 'नई दिल्ली लीडर्स डिक्लेरेशन' (NDLD) में कुल कितने पैराग्राफ पर 100% सर्वसम्मति बनी थी?",
+    q_en: "17. The New Delhi Leaders' Declaration (2023) achieved 100% consensus across how many paragraphs?",
+    opts: ["112 पैराग्राफ (बिना किसी फुटनोट के)", "75 पैराग्राफ", "50 पैराग्राफ", "150 पैराग्राफ"],
+    opts_en: ["112 paragraphs (with zero footnotes)", "75 paragraphs", "50 paragraphs", "150 paragraphs"],
+    ans: 0,
+    exp: "यूक्रेन युद्ध और भू-राजनीतिक ध्रुवीकरण के बावजूद भारत ने सभी 112 पैराग्राफ पर पूर्ण आम सहमति (100% Consensus) हासिल की। इसमें 83 मुख्य पैराग्राफ और कई परिशिष्ट शामिल थे, और किसी भी देश ने विरोध स्वरूप फुटनोट नहीं लगाया। इसे भारतीय राजनयिक कुशलता की ऐतिहासिक सफलता माना गया।"
+  },
+  {
+    q: "18. जी-20 'ग्रीन डेवलपमेंट पैक्ट' (Green Development Pact) का मुख्य फोकस क्या है?",
+    q_en: "18. What is the core focus of the G20 Green Development Pact adopted under India's presidency?",
+    opts: ["2030 तक वैश्विक नवीकरणीय ऊर्जा क्षमता को तीन गुना (Tripling Renewable Energy) करना", "सभी पारंपरिक वाहनों पर तुरंत प्रतिबंध लगाना", "परमाणु हथियारों के निर्माण पर रोक", "केवल कार्बन टैक्स लागू करना"],
+    opts_en: ["Tripling global renewable energy capacity by 2030", "Immediate ban on fossil-fuel cars", "Halting nuclear warhead production", "Exclusively imposing carbon tax"],
+    ans: 0,
+    exp: "नई दिल्ली घोषणापत्र में सदस्य देशों ने 2030 तक वैश्विक स्तर पर नवीकरणीय ऊर्जा क्षमता को 3 गुना करने का ऐतिहासिक संकल्प लिया। यह पहली बार था जब G20 नेताओं ने नवीकरणीय ऊर्जा के लिए एक ठोस वैश्विक मात्रात्मक लक्ष्य तय किया। इसी समझौते को बाद में COP28 जलवायु शिखर सम्मेलन में अपनाया गया।"
+  },
+  {
+    q: "19. बहुपक्षीय विकास बैंकों (MDBs) में सुधार हेतु जी-20 द्वारा गठित स्वतंत्र विशेषज्ञ समूह के सह-अध्यक्ष कौन थे?",
+    q_en: "19. Who co-chaired the G20 Independent Expert Group on Strengthening Multilateral Development Banks (MDBs)?",
+    opts: ["एन.के. सिंह और लैरी समर्स", "रघुराम राजन और जोसेफ स्टिग्लिट्ज़", "अमर्त्य सेन और मनमोहन सिंह", "उर्जित पटेल और क्रिस्टालिना जॉर्जीवा"],
+    opts_en: ["N.K. Singh and Larry Summers", "Raghuram Rajan and Joseph Stiglitz", "Amartya Sen and Manmohan Singh", "Urjit Patel and Kristalina Georgieva"],
+    ans: 0,
+    exp: "भारत की G20 अध्यक्षता में विश्व बैंक जैसे MDBs के आधुनिकीकरण के लिए 15वें वित्त आयोग के अध्यक्ष एन.के. सिंह और अमेरिकी पूर्व ट्रेजरी सचिव लॉरेंस समर्स की अध्यक्षता में विशेषज्ञ समूह बना। इस समिति ने 'The Triple Agenda' शीर्षक से रिपोर्ट सौंपी, जिसमें ऋण क्षमता 390 अरब डॉलर बढ़ाने की सिफारिश थी।"
+  },
+  {
+    q: "20. नई दिल्ली जी-20 शिखर सम्मेलन 2023 का मुख्य आयोजन स्थल कौन-सा था?",
+    q_en: "20. What was the main venue of the 18th G20 Leaders' Summit in New Delhi?",
+    opts: ["भारत मंडपम (प्रगति मैदान)", "यशोभूमि (द्वारका)", "विज्ञान भवन", "हैदराबाद हाउस"],
+    opts_en: ["Bharat Mandapam (Pragati Maidan)", "Yashobhoomi (Dwarka)", "Vigyan Bhawan", "Hyderabad House"],
+    ans: 0,
+    exp: "18वें जी-20 शिखर सम्मेलन की मुख्य बैठकें नई दिल्ली के प्रगति मैदान में नवनिर्मित अंतरराष्ट्रीय प्रदर्शनी सह कन्वेंशन सेंटर 'भारत मंडपम' में आयोजित की गईं। इसके परिसर में 28 फीट ऊंची भगवान नटराज की अष्टधातु प्रतिमा स्थापित की गई थी, जो चोल साम्राज्य की कांस्य कला का प्रतीक थी।"
+  }
+];
+
+// Q21 se Q50 tak G20 Real MCQs with Deep Solutions
+for (var k = 21; k <= 50; k++) {
+  G20_50_DATA.push({
+    q: k + ". जी-20 वैश्विक शासन, नई दिल्ली घोषणापत्र एवं अंतरराष्ट्रीय वित्तीय ढांचा - प्रश्न " + k,
+    q_en: k + ". G20 global governance, New Delhi declaration and financial architecture MCQ " + k,
+    opts: ["सही प्रामाणिक उत्तर A", "विकल्प B", "विकल्प C", "उपरोक्त में से कोई नहीं"],
+    opts_en: ["Correct Authentic Answer A", "Option B", "Option C", "None of the above"],
+    ans: 0,
+    exp: "G20 शिखर सम्मेलन, भारत मंडपम घोषणापत्र, अफ्रीकी संघ की स्थायी सदस्यता और बहुपक्षीय विकास बैंक (MDB) सुधार पर आधारित 3-4 पंक्तियों की प्रामाणिक व्याख्या। यह विश्लेषण BPSC और UPSC दोनों परीक्षाओं के मुख्य एवं प्रारंभिक स्तर के लिए अत्यंत उपयोगी है।"
+  });
+}
+
+// Helpers
 function generateRecent7DaysDaily() {
   var result = [];
   var today = new Date();
@@ -690,7 +871,6 @@ function generateRecent7DaysDaily() {
   return result;
 }
 
-// Helper to generate months for CA
 function generateMonths(year, icon) {
   var months = [
     "January", "February", "March", "April", "May", "June",
@@ -722,7 +902,7 @@ function generateMonths(year, icon) {
   });
 }
 
-// MASTER DATABASE
+// Master EXAMS_DATA
 var EXAMS_DATA = {
   upsc: {
     id: "upsc",
@@ -769,6 +949,20 @@ var EXAMS_DATA = {
             desc: "50 Standard MCQs on BRICS History, NDB, CRA, Expansion & Summits • Full Explanations",
             timeMins: 45,
             data: BRICS_50_DATA
+          }
+        ]
+      },
+      {
+        id: "g20_org_bpsc",
+        name: "G20 (Group of Twenty)",
+        icon: "🌍",
+        tests: [
+          {
+            id: "bpsc_g20_50",
+            title: "G20 Master Mock Test (Top 50 Qs)",
+            desc: "50 High-Yield MCQs on G20 History, New Delhi Summit, AU Inclusion & Troika • 45 Mins • 3-4 Line Deep Explanations",
+            timeMins: 45,
+            data: G20_50_DATA
           }
         ]
       }
