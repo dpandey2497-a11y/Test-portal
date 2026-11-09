@@ -25,6 +25,47 @@
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
     }
+        /* Safe Horizontal Test Cards */
+    #tests-view .grid, 
+    #subject-tests-grid, 
+    [id*="test-list"], 
+    [id*="tests-container"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+    }
+
+    #tests-view .glass-card,
+    #subject-tests-grid .glass-card,
+    .test-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 18px 24px !important;
+        border-radius: 16px !important;
+        border: 1px solid #e2e8f0 !important;
+        background: #ffffff !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+    }
+        #tests-view .glass-card button,
+    #subject-tests-grid .glass-card button,
+    .test-card button {
+        background-color: #0284c7 !important;
+        color: #ffffff !important;
+        border-radius: 10px !important;
+        padding: 10px 22px !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        width: auto !important;
+        margin-top: 0 !important;
+        box-shadow: none !important;
+    }
+
+
+    
+    
+
 
 
 
