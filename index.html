@@ -21,10 +21,44 @@
       background-attachment: fixed;
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 18px 24px !important;
+    border-radius: 18px !important;
+    border: 1px solid #e2e8f0 !important;
+    background: #ffffff !important;
+    margin-bottom: 16px !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+    .glass-card button {
+    background: #0284c7 !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    padding: 9px 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: none !important;
+}
+
+
+.glass-card button {
+    background: #0284c7 !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    padding: 9px 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: none !important;
+}
+
     :fullscreen, ::backdrop {
       background-color: #f8fafc !important;
     }
