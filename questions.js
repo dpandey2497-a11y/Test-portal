@@ -1544,7 +1544,15 @@ var EXAMS_DATA = {
             desc: "50 High-Yield MCQs on G20 History, New Delhi Summit, AU Inclusion, Troika & Global Architecture • 45 Mins • 3-4 Line Deep Explanations",
             timeMins: 45,
             data: G20_50_DATA
+          },
+                    {
+            id: "bpsc_asean_50",
+            title: "Test 03: ASEAN Master Mock Test (Top 50 Qs)",
+            desc: "50 High-Yield MCQs on ASEAN History, Pillars, India-ASEAN Ties & Summits • 45 Mins • 3-4 Line Deep Explanations",
+            timeMins: 45,
+            data: ASEAN_50_DATA
           }
+
         ]
       }
     ]
