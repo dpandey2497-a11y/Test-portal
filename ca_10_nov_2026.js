@@ -110,3 +110,8 @@ window.ca10Nov2026Data = [
     explanation: "INS समर्थ एक बहुउद्देशीय पोत है जिसका निर्माण L&T द्वारा 75% स्वदेशी सामग्री से किया गया है। इसे कारवार बेस (कर्नाटक) पर नौसैनिक हथियारों और सेंसर्स के समुद्री परीक्षण एवं मूल्यांकन हेतु समर्पित किया गया।"
   }
 ];
+window['2026-11-10'] = window.ca10Nov2026Data;
+window.ca_10_nov_2026 = window.ca10Nov2026Data;
+if (!window.DAILY_CA_DATA) window.DAILY_CA_DATA = {};
+window.DAILY_CA_DATA['2026-11-10'] = window.ca10Nov2026Data;
+
