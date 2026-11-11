@@ -1620,30 +1620,46 @@
     window.onload = init;
   </script>
   <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    try {
-      if (typeof EXAMS_DATA !== 'undefined' && EXAMS_DATA.ca) {
-        var newTest = {
-          id: 'ca-10-nov-2026',
-          title: 'Daily Current Affairs - 10 Nov 2026',
-          duration: 10,
-          desc: '10 November 2026 Daily Exam Current Affairs',
-          questions: window.ca10Nov2026Data || []
-        };
-        if (EXAMS_DATA.ca.years && EXAMS_DATA.ca.years['2026']) {
-          var targetList = EXAMS_DATA.ca.years['2026'];
-          if (Array.isArray(targetList)) {
-            targetList.unshift(newTest);
-          } else if (targetList.nov && targetList.nov.tests) {
-            targetList.nov.tests.unshift(newTest);
+  (function() {
+    function injectTestData() {
+      var qs = window.ca_10_nov_questions || window.ca10Nov2026Data;
+      if (!qs || qs.length === 0) return;
+
+      var testItem = {
+        id: 'ca-2026-11-10',
+        title: 'Daily CA: 10 नव॰ 2026',
+        desc: '10 November 2026 Daily Current Affairs',
+        duration: 10,
+        questions: qs
+      };
+
+      if (!window.DAILY_CA_DATA) window.DAILY_CA_DATA = {};
+      window.DAILY_CA_DATA['2026-11-10'] = [testItem];
+      window.DAILY_CA_DATA['10-11-2026'] = [testItem];
+
+      if (window.EXAMS_DATA && window.EXAMS_DATA.ca) {
+        var ca = window.EXAMS_DATA.ca;
+        if (ca.years && ca.years['2026']) {
+          var y26 = ca.years['2026'];
+          if (Array.isArray(y26)) {
+            if (!y26.some(function(t) { return t.id === testItem.id; })) y26.unshift(testItem);
+          } else if (y26.nov && Array.isArray(y26.nov.tests)) {
+            if (!y26.nov.tests.some(function(t) { return t.id === testItem.id; })) y26.nov.tests.unshift(testItem);
           }
         }
       }
-    } catch(e) {
-      console.log(e);
+
+      if (typeof renderDailyCaCards === 'function') renderDailyCaCards();
     }
-  });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', injectTestData);
+    } else {
+      injectTestData();
+    }
+  })();
 </script>
+
 
 
 </body>
